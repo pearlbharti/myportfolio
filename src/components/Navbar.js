@@ -85,10 +85,9 @@ function Navbar() {
                     align-items: center;
                     padding: 0 1em;
                     box-sizing: border-box;
-                    background-color: #f8f9fa;
+                    background-color: rgba(255, 252, 238, 1);
                     border-bottom: 1px solid #e9ecef;
                     position: relative;
-                    z-index: 1000;
                     overflow: hidden;
                     transition: height 0.3s ease;
                 }
@@ -125,7 +124,6 @@ function Navbar() {
                     top: 100%;
                     right: 0;
                     width: 100%;
-                    background-color: #f8f9fa;
                     border-bottom: 1px solid #e9ecef;
                     opacity: 1;
                     overflow: visible; /* Ensure content is visible */
