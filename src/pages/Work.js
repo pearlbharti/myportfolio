@@ -42,28 +42,35 @@ function Work() {
         if (listProjectElement) {
             const itemElements = listProjectElement.querySelectorAll('.list-project-item');
             if (itemElements.length > 0) {
-                const itemHeight = itemElements[0].clientHeight || 50; // Assume 50 if height is not available
-                const listHeight = listProjectElement.clientHeight;
-
-                // Calculate the scroll position
                 const activeItem = itemElements[activeProject];
                 if (activeItem) {
-                    const itemOffsetTop = activeItem.offsetTop;
+                    // Center the active item vertically within the list
                     const itemHeight = activeItem.clientHeight;
                     const containerHeight = listProjectElement.clientHeight;
-
-                    // Center the active item in the container
-                    const scrollTop = itemOffsetTop - (containerHeight / 2) + (itemHeight / 2);
-
-                    // Scroll to the calculated position
-                    listProjectElement.scrollTo({
-                        top: Math.max(scrollTop, 0), // Prevent negative scroll
-                        behavior: 'smooth'
-                    });
+                    const scrollPosition = activeItem.offsetTop - (containerHeight / 2) + (itemHeight / 2);
+                    listProjectElement.scrollTop = scrollPosition;
                 }
             }
         }
     }, [activeProject]);
+
+    // Center the initial project (Project 0) when the component mounts
+    useEffect(() => {
+        const listProjectElement = listProjectRef.current;
+        if (listProjectElement) {
+            const itemElements = listProjectElement.querySelectorAll('.list-project-item');
+            if (itemElements.length > 0) {
+                const initialItem = itemElements[0];
+                if (initialItem) {
+                    // Center the initial item vertically within the list
+                    const itemHeight = initialItem.clientHeight;
+                    const containerHeight = listProjectElement.clientHeight;
+                    const scrollPosition = initialItem.offsetTop - (containerHeight / 2) + (itemHeight / 2);
+                    listProjectElement.scrollTop = scrollPosition;
+                }
+            }
+        }
+    }, []);
 
     return (
         <div className="projects-page">

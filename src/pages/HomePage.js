@@ -1,5 +1,6 @@
 import React from 'react';
-import HomePageExtend from './HomePageExtend'
+import FeaturedWork from './FeaturedWork'
+import SelectedBlogs from './SelectedBlogs';
 function HomePage() {
     return (
         <>
@@ -51,7 +52,8 @@ function HomePage() {
                     />
                     <div className="scroll-text">SCROLL DOWN</div>
                 </div>
-                <HomePageExtend />
+                <FeaturedWork />
+                <SelectedBlogs />
             </div>
 
             <style jsx>{`
