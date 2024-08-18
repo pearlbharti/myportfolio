@@ -63,19 +63,23 @@ function SelectedBlogs() {
                     {blogs.map((blog, index) => (
                         <div
                             key={index}
-                            className={`blog-item ${scrollIndex === index ? 'active' : ''}`}
-                            style={{
-                                display: scrollIndex === index ? 'flex' : 'none',
-                            }}
+                            className={`blog-item-wrapper ${scrollIndex === index ? 'active' : ''}`}
                         >
-                            <div className="blog-image">
-                                <img src={blog.image} alt={blog.title} />
-                            </div>
-                            <div className="blog-content">
-                                <h2 className="blog-title">{blog.title}</h2>
-                                <p className="blog-date">{blog.date}</p>
-                                <p className="blog-text">{blog.content}</p>
-                                <button className="read-more-button">Read More</button>
+                            <div
+                                className="blog-item"
+                                style={{
+                                    opacity: scrollIndex === index ? 1 : 0,
+                                }}
+                            >
+                                <div className="blog-image">
+                                    <img src={blog.image} alt={blog.title} />
+                                </div>
+                                <div className="blog-content">
+                                    <h2 className="blog-title">{blog.title}</h2>
+                                    <p className="blog-date">{blog.date}</p>
+                                    <p className="blog-text">{blog.content}</p>
+                                    <button className="read-more-button">Read More</button>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -93,130 +97,150 @@ function SelectedBlogs() {
             </div>
 
             <style jsx>{`
-                .selected-blogs-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    height: 90vh;
-                    position: relative;
-                }
+    .selected-blogs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        position: relative;
+    }
 
-                .blog-main-title {
-                    font-family: 'Josefin Sans', sans-serif;
-                    font-size: 28px;
-                    margin-bottom: 50px;
-                }
+    .blog-main-title {
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 28px;
+        margin-bottom: 50px;
+    }
 
-                .blogs-wrapper {
-                    position: relative;
-                    display: flex;
-                    width: 80%;
-                    max-width: 800px;
-                    height: 500px;
-                    overflow: hidden;
-                    justify-content: center;
-                }
+    .blogs-wrapper {
+        position: relative;
+        display: flex;
+        width: 80%;
+        max-width: 800px;
+        height: 400px;
+        overflow: visible; /* Hide overflow to avoid layout shifting */
+        justify-content: center;
+    }
 
-                .blogs-rectangle {
-                    position: relative;
-                    width: calc(100% - 30px);
-                    height: 100%;
-                    overflow: hidden;
-                    border-radius: 20px;
-                    background: #fff;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
+    .blogs-rectangle {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        border: 3px solid #e0e0e0; /* Add border effect */
+    }
 
-                .blog-item {
-                    display: none;
-                    width: 100%;
-                    height: 100%;
-                    flex-direction: row;
-                    padding: 20px;
-                    transition: opacity 0.3s ease;
-                }
+    .blog-item-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.7s ease; /* Fade effect duration */
+        overflow: visible;
+    }
 
-                .blog-item.active {
-                    display: flex;
-                }
+    .blog-item {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: opacity 0.7s ease; /* Fade effect duration */
+        opacity: 0; /* Default opacity */
+    }
 
-                .blog-image {
-                    flex: 0 0 30%;
-                    margin-right: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
+    .blog-item-wrapper.active .blog-item {
+        opacity: 1; /* Fully opaque when active */
+    }
 
-                .blog-image img {
-                    max-width: 100%;
-                    max-height: 100%;
-                    border-radius: 4px;
-                    display: block;
-                }
+    .blog-image {
+        width: 300px; /* Fixed size */
+        height: 300px; /* Fixed size */
+        position: absolute; /* Absolute positioning to ensure overflow */
+        left: -50px; /* Adjust this to control overflow */
+        top: 50%;
+        transform: translateY(-50%); /* Center the image vertically */
+        z-index: 1; /* Ensure the image is above the rectangle */
+        border-radius: 20px; /* Rounded corners to match the image */
+        border: 3px solid #e0e0e0; /* Add border effect */
+    }
 
-                .blog-content {
-                    flex: 1;
-                    overflow: hidden;
-                }
+    .blog-image img {
+        width: 100%; /* Ensure image fits container */
+        height: 100%; /* Ensure image fits container */
+        border-radius: 20px; /* Rounded corners */
+        object-fit: cover;
+    }
 
-                .blog-title {
-                    font-size: 22px;
-                    margin: 0 0 10px 0;
-                }
+    .blog-content {
+        flex: 0 0 60%; /* Limit blog content width to 60% */
+        margin-left: 250px; /* Account for the image width + overflow */
+        overflow: hidden;
+    }
 
-                .blog-date {
-                    font-size: 14px;
-                    color: #888;
-                    margin: 0 0 10px 0;
-                }
+    .blog-title {
+        font-size: 22px;
+        margin: 0 0 10px 0;
+    }
 
-                .blog-text {
-                    font-size: 16px;
-                    margin: 0 0 10px 0;
-                }
+    .blog-date {
+        font-size: 14px;
+        color: #888;
+        margin: 0 0 10px 0;
+    }
 
-                .read-more-button {
-                    background-color: #007bff;
-                    color: white;
-                    border: none;
-                    border-radius: 4px;
-                    padding: 10px;
-                    cursor: pointer;
-                }
+    .blog-text {
+        font-size: 16px;
+        margin: 0 0 10px 0;
+    }
 
-                .read-more-button:hover {
-                    background-color: #0056b3;
-                }
+    .read-more-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        cursor: pointer;
+    }
 
-                .progress-bar-container {
-                    position: absolute;
-                    right: 10px;
-                    top: 0;
-                    height: 100%;
-                    width: 20px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                }
+    .read-more-button:hover {
+        background-color: #0056b3;
+    }
 
-                .blog-bubble {
-                    width: 15px;
-                    height: 15px;
-                    margin: 5px 0;
-                    border-radius: 50%;
-                    background-color: #ddd;
-                    transition: transform 0.3s ease, background-color 0.3s ease;
-                    cursor: pointer;
-                }
+    .progress-bar-container {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        height: 100%;
+        width: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-                .active-bubble {
-                    transform: scale(1.5);
-                    background-color: #333;
-                }
-            `}</style>
+    .blog-bubble {
+        width: 15px;
+        height: 15px;
+        margin: 5px 0;
+        border-radius: 50%;
+        background-color: #ddd;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .active-bubble {
+        transform: scale(1.5);
+        background-color: #333;
+    }
+`}</style>
+
         </div>
     );
 }

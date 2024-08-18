@@ -93,7 +93,6 @@ function FeaturedWork() {
                 .featured-work-container {
                     text-align: center;
                     padding: 20px;
-                    width: 100vw; /* Full viewport width */
                 }
 
                 .featured-work-title {
@@ -155,7 +154,6 @@ function FeaturedWork() {
                 }
 
                 .more-work-button {
-                    border-radius: 15px;
                     background-color: rgba(0, 0, 0, 1);
                     box-shadow: 0px 4px 4px rgba(30, 30, 30, 0.8);
                     color: rgba(255, 255, 255, 1);
@@ -166,6 +164,9 @@ function FeaturedWork() {
                     white-space: nowrap;
                     margin: 20px auto 0;
                     cursor: pointer;
+                    background: linear-gradient(267.58deg, rgba(122, 33, 237, 0) 82.42%, rgba(122, 33, 237, 0.3) 91.39%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #000000;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 50px rgba(122, 33, 237, 0.3);
+                    border-radius: 20px;
                 }
 
                 .more-work-button:hover {
