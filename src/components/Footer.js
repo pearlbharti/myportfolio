@@ -4,7 +4,7 @@ function Footer() {
     return (
         <div className="footer">
             <div className="content">
-                <p>
+                <p className='footer-text'>
                     If you're looking to start a new project or need fresh ideas, I'd love to connect and see how my skills can help. I'm always open for collaboration and discussions, Let's get in touch!
                 </p>
                 <p>
@@ -26,14 +26,17 @@ function Footer() {
             </div>
             <style jsx>{`
                 .footer {
+
                     font-family: 'Josefin Sans', sans-serif;
                     text-align: center;
                     padding: 0 2rem;
-                    background-color: #f4f4f4;
+                    background-color: #010004;
                     color: #333;
                     border-top: 1px solid #ddd;
                     height: 20vh;
                 }
+                    .footer-text{
+                    color:#E7EEFF}
                 .content p {
                     margin: 0 0 10px;
                     font-size: 1.3rem;

@@ -112,7 +112,7 @@ function HomePage() {
                 {!hasScrolled && (
                     <div className="scroll-section">
                         <div className="arrow-image">
-                            src="<svg width="47" height="108" viewBox="0 0 47 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            src=<svg width="47" height="108" viewBox="0 0 47 108" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M46 1.00024L23.5 22.0002L1 1.00024" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
                                 <path d="M46 43L23.5 64L1 43" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
                                 <path d="M46 63.9998L23.5 84.9998L1 63.9998" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
