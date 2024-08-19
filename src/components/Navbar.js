@@ -163,15 +163,23 @@ function Navbar() {
     .nav-link {
         text-decoration: none;
         color: inherit;
+        position: relative; /* Ensure the circle is correctly positioned */
     }
 
     .nav-link:hover .nav-item {
-        color: #007bff;
+        // color: #007bff;
     }
-
+    .nav-item.active{
+            //  color: #007bff; /* Change text color for active item */
+            background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 41%);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Smoky effect */
+            border-radius: 1px; /* Rounded corners to match the background */
+            // transform: translateY(-5px); /* Slight lift effect */
+        }
     .nav-item.active::after {
         content: '';
         position: absolute;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         left: 0;
         bottom: 0;
         width: 100%;
@@ -179,19 +187,6 @@ function Navbar() {
         background: radial-gradient(70.31% 100% at 50% 0%, rgba(131, 113, 243, 0.5) 0%, rgba(69, 156, 236, 0) 100%), radial-gradient(130.16% 129.69% at 63.64% -12.5%, #8528FB 0%, rgba(86, 84, 74, 0.12) 100%), radial-gradient(80.68% 51.24% at 19.32% 40.62%, #1864B7 0%, rgba(23, 61, 102, 0.88) 100%), radial-gradient(28.98% 110.94% at 43.75% -31.25%, rgba(24, 17, 24, 0.53) 21.25%, #000000 100%), #030303;
         border-radius: 4px;
         transform: translateY(50%); /* Adjust if necessary to align with text */
-    }
-
-    .nav-item.active::before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: 50%;
-        width: 120%; /* Adjust size as needed */
-        height: 120%; /* Adjust size as needed */
-        background: rgba(255, 255, 255, 0.3); /* Cloudy white effect */
-        border-radius: 50%;
-        transform: translate(-50%, 50%); /* Center the circle behind the text */
-        z-index: -1; /* Ensure the circle is behind the text */
     }
 
     .hamburger {
