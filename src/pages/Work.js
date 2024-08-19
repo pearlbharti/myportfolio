@@ -26,13 +26,21 @@ function Work() {
     const [activeProject, setActiveProject] = useState(0);
     const [toggle, setToggle] = useState('data');
     const [showImage, setShowImage] = useState(false);
-
-    const contentcontainerRef = useRef(null);
-    const listProjectRef = useRef(null);
-
     const [text, setText] = useState("");
     const [displayedText, setDisplayedText] = useState("I offer no proof, only confidence.");
     const [animationState, setAnimationState] = useState('typing');
+
+
+    const projectDivRef = useRef(null);
+    const listProjectRef = useRef(null);
+    const contentcontainerRef = useRef(null);
+
+    const projects = toggle === 'data' ? dataProjects : toggle === 'software' ? softwareProjects : otherProjects;
+
+    const [curtainHeight, setCurtainHeight] = useState(100);
+    const curtainRef = useRef(null);
+    const [scrollY, setScrollY] = useState(0);
+
 
     useEffect(() => {
         const typingDuration = 2000; // Duration for typing animation
@@ -80,12 +88,6 @@ function Work() {
         }
     }, [animationState, displayedText]);
 
-    const projects = toggle === 'data' ? dataProjects : toggle === 'software' ? softwareProjects : otherProjects;
-
-    const [curtainHeight, setCurtainHeight] = useState(100);
-    const curtainRef = useRef(null);
-    const [scrollY, setScrollY] = useState(0);
-
     useEffect(() => {
         const handleScroll = throttle(() => {
             const curtainRect = curtainRef.current.getBoundingClientRect();
@@ -105,9 +107,9 @@ function Work() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (!contentcontainerRef.current) return;
+            if (!projectDivRef.current) return;
 
-            const scrollTop = contentcontainerRef.current.scrollTop;
+            const scrollTop = projectDivRef.current.scrollTop;
             const projectElements = document.querySelectorAll('.project');
             const viewportHeight = window.innerHeight;
             let closestIndex = 0;
@@ -128,7 +130,7 @@ function Work() {
             setActiveProject(closestIndex);
         };
 
-        const projectDivElement = contentcontainerRef.current;
+        const projectDivElement = projectDivRef.current;
         projectDivElement.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -177,17 +179,14 @@ function Work() {
     }, []);
 
     useEffect(() => {
-
         const timer = setTimeout(() => {
             if (contentcontainerRef.current) {
                 console.log('Scrolling to top');
                 contentcontainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-        }, 3500);
-
+        }, 4000);
         return () => clearTimeout(timer);
-
-    }, [showImage]);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -216,49 +215,57 @@ function Work() {
                     <span className={`header-text typing-text ${animationState}`}>{text}</span>
                 </div>
             </header>
-
-
             <div className="curtain-effect" ref={curtainRef}>
                 <div className="curtain" style={{ height: `${curtainHeight}%`, transform: curtainTransform }}></div>
-                <div className="toggle-container">
-                    <button className={`toggle-btn ${toggle === 'data' ? 'active' : ''}`} onClick={() => setToggle('data')}>
-                        Data
-                    </button>
-                    <button className={`toggle-btn ${toggle === 'software' ? 'active' : ''}`} onClick={() => setToggle('software')}>
-                        Software
-                    </button>
-                    <button className={`toggle-btn ${toggle === 'others' ? 'active' : ''}`} onClick={() => setToggle('others')}>
-                        Others
-                    </button>
-                </div>
-                <div className="content-container" ref={contentcontainerRef}>
-                    <div className="list-project" ref={listProjectRef}>
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className={`list-project-item ${activeProject === index ? 'active' : ''}`}
-                            >
-                                {project.title}
-                            </div>
-                        ))}
+                <div className="projects-page" ref={contentcontainerRef}>
+                    <div className="toggle-container">
+                        <button className={`toggle-btn ${toggle === 'data' ? 'active' : ''}`} onClick={() => setToggle('data')}>
+                            Data
+                        </button>
+                        <button className={`toggle-btn ${toggle === 'software' ? 'active' : ''}`} onClick={() => setToggle('software')}>
+                            Software
+                        </button>
+                        <button className={`toggle-btn ${toggle === 'others' ? 'active' : ''}`} onClick={() => setToggle('others')}>
+                            Others
+                        </button>
                     </div>
-                    <div className="vertical-line"></div>
-                    <div className="project-div">
-                        {projects.map((project, index) => (
-                            <div key={index} className={`project ${index % 2 === 0 ? 'left-image' : 'right-image'}`}>
-                                <div className="project-content">
-                                    <h2>{project.title}</h2>
-                                    <p>{project.description}</p>
+                    <div className="content-container" >
+                        <div className="list-project" ref={listProjectRef}>
+                            {projects.map((project, index) => (
+                                <div
+                                    key={index}
+                                    className={`list-project-item ${activeProject === index ? 'active' : ''}`}
+                                >
+                                    {project.title}
                                 </div>
-                                <img src={project.image} alt={project.title} className="project-image" />
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        <div className="vertical-line"></div>
+                        <div className="project-div" ref={projectDivRef}>
+                            {projects.map((project, index) => (
+                                <div key={index} className={`project ${index % 2 === 0 ? 'left-image' : 'right-image'}`}>
+                                    <div className="project-content">
+                                        <h2>{project.title}</h2>
+                                        <p>{project.description}</p>
+                                    </div>
+                                    <img src={project.image} alt={project.title} className="project-image" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
+
             </div>
             {showImage && !hasScrolled && (
                 <div className="no-wait-container">
-                    <div className="jumping-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }}>
+                    <div className="jumping-image">
+                        <svg width="47" height="108" viewBox="0 0 47 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M46 1.00024L23.5 22.0002L1 1.00024" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
+                            <path d="M46 43L23.5 64L1 43" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
+                            <path d="M46 63.9998L23.5 84.9998L1 63.9998" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
+                            <path d="M46 85L23.5 106L1 85" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
+                            <path d="M46 22L23.5 43L1 22" stroke="#C1DAFF" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" />
+                        </svg>
                     </div>
                     <div className="no-wait-text">No, Wait!</div>
                 </div>
@@ -270,7 +277,7 @@ function Work() {
                     flex-direction: column;
                     position: relative;
                 }
-              .header-work {
+                .header-work {
         background-color: #010004;
         height: 60vh;
         text-align: center;
@@ -363,15 +370,6 @@ function Work() {
                 @keyframes cursor-blink {
                     from, to { border-color: transparent; }
                     50% { border-color: black; }
-                }
-                .underline-2 {
-                    width: 60vw;
-                    height: 2px;
-                    background-color: #E7EEFF;
-                    position: absolute;
-                    bottom: 0;
-                    left: 50%;
-                    transform: translateX(-50%);
                 }
                 .curtain-effect {
                     position: relative;
