@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import GlareButton1 from '../components/GlareButton1';
 
 function FeaturedWork() {
     const [leftMostCardIndex, setLeftMostCardIndex] = useState(0);
@@ -86,8 +87,7 @@ function FeaturedWork() {
                     <div key={index} className={`bubble ${leftMostCardIndex === index ? 'active-bubble' : ''}`} />
                 ))}
             </div>
-
-            <div className="more-work-button">More Work</div>
+            <GlareButton1>More Work</GlareButton1>
 
             <style jsx>{`
                 .featured-work-container {
@@ -99,6 +99,7 @@ function FeaturedWork() {
                     font-family: 'Josefin Sans', sans-serif;
                     font-size: 28px;
                     margin-bottom: 20px;
+                    color
                 }
 
                 .scroll-container {

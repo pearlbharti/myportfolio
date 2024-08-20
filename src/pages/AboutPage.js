@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { throttle } from 'lodash'; // Import throttle function
-
+import { myImage } from '../assets/images';
 function AboutPage() {
     const [curtainHeight, setCurtainHeight] = useState(100);
     const curtainRef = useRef(null);
@@ -149,7 +149,7 @@ function AboutPage() {
                 .image-container {
                     width: 100%;
                     height: 120%;
-                    background-image: url('https://dvw0mu5xdr2i4.cloudfront.net/IMG_7774.jpg');
+                    background-image: url(${myImage});
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;

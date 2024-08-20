@@ -90,16 +90,18 @@ function Navbar() {
             </div>
             <style jsx>{`
     .navbar {
-        align-items: center;
-        padding: 0 1em;
-        height: 2.5rem; /* Adjust this to fit your design */
-        box-sizing: border-box;
-        background-color: #010004;
-        border-bottom: none; /* Remove border-bottom from navbar */
-        position: relative;
-        overflow: hidden;
-        transition: height 0.3s ease;
-    }
+    align-items: center;
+    padding: 0 1em;
+    height: 2.5rem; /* Adjust this to fit your design */
+    box-sizing: border-box;
+    background-color: #010004;
+    border-bottom: none; /* Remove border-bottom from navbar */
+    position: sticky;
+    top: 0;
+    z-index: 10000; /* Ensure the navbar is above other content */
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
 
     .navbar-container {
         display: flex;

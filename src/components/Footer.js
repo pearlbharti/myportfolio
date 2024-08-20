@@ -8,10 +8,10 @@ function Footer() {
                     If you're looking to start a new project or need fresh ideas, I'd love to connect and see how my skills can help. I'm always open for collaboration and discussions, Let's get in touch!
                 </p>
                 <p>
-                    <a href="mailto:snehpillai02@gmail.com">snehpillai02@gmail.com</a> / <a href="mailto:spillai@umassd.edu">spillai@umassd.edu</a>
+                    <a href="mailto:snehpillai02@gmail.com" className="no-color">snehpillai02@gmail.com</a> / <a href="mailto:spillai@umassd.edu" className="no-color">spillai@umassd.edu</a>
                 </p>
                 <p>
-                    <a href="https://your-portfolio-link.com" target="_blank" rel="noopener noreferrer">Learn more about me here</a>
+                    <a href="https://your-portfolio-link.com" target="_blank" rel="noopener noreferrer" className="no-color">Learn more about me </a><a href="https://your-portfolio-link.com" target="_blank" rel="noopener noreferrer">here</a>
                 </p>
             </div>
             <div className="footer-bottom">
@@ -19,34 +19,45 @@ function Footer() {
                     <p>&copy; Sneh Pillai, Built using ReactJs</p>
                 </div>
                 <div className="right">
-                    <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer">Github</a>
-                    <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    <a href="https://medium.com/@your-medium" target="_blank" rel="noopener noreferrer">Medium</a>
+                    <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="no-color">Github</a>
+                    <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" className="no-color">LinkedIn</a>
+                    <a href="https://medium.com/@your-medium" target="_blank" rel="noopener noreferrer" className="no-color">Medium</a>
                 </div>
             </div>
             <style jsx>{`
                 .footer {
-
                     font-family: 'Josefin Sans', sans-serif;
                     text-align: center;
-                    padding: 0 2rem;
+                        padding: 3rem 8rem 0rem;
                     background-color: #010004;
                     color: #333;
-                    border-top: 1px solid #ddd;
-                    height: 20vh;
                 }
-                    .footer-text{
-                    color:#E7EEFF}
+                .footer::before {
+                    content: '';
+                    display: block;
+                    width: 60%; /* 60% of the screen width */
+                    margin: 0 auto; /* Center it */
+                    border-top: 1px solid rgba(221, 221, 221, 0.5); /* Reduced opacity */
+                    position: relative;
+                    top: -1rem; /* Adjust position to overlap with the original border */
+                }
+                .footer-text {
+                    color: #E7EEFF;
+                    margin-bottom: 15px;
+                    font-weight: 300;
+                }
                 .content p {
                     margin: 0 0 10px;
                     font-size: 1.3rem;
                 }
                 a {
-                    color: #0070f3;
                     text-decoration: none;
                 }
                 a:hover {
                     text-decoration: underline;
+                }
+                .no-color {
+                    color: inherit; /* Removes the color, inherits the text color */
                 }
                 .footer-bottom {
                     display: flex;
@@ -61,9 +72,6 @@ function Footer() {
                     margin-left: 15px;
                     font-size: 14px;
                 }
-            `}</style>
-            <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
             `}</style>
         </div>
     )

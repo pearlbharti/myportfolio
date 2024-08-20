@@ -1,25 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { throttle } from 'lodash';
 import { confidenceInterval, jumpingArrow } from '../assets/images';
+import ProjectWork from '../components/ProjectWork';
 
-// Example project data for three categories
-const dataProjects = Array.from({ length: 15 }, (_, index) => ({
-    title: `Data Project ${index + 1}`,
-    description: `Description for Data Project ${index + 1}`,
-    image: `/img/data-project${index + 1}.jpg`
-}));
-
-const softwareProjects = Array.from({ length: 15 }, (_, index) => ({
-    title: `Software Project ${index + 1}`,
-    description: `Description for Software Project ${index + 1}`,
-    image: `/img/software-project${index + 1}.jpg`
-}));
-
-const otherProjects = Array.from({ length: 15 }, (_, index) => ({
-    title: `Other Project ${index + 1}`,
-    description: `Description for Other Project ${index + 1}`,
-    image: `/img/other-project${index + 1}.jpg`
-}));
 
 function Work() {
     const [hasScrolled, setHasScrolled] = useState(false);
@@ -34,8 +17,6 @@ function Work() {
     const projectDivRef = useRef(null);
     const listProjectRef = useRef(null);
     const contentcontainerRef = useRef(null);
-
-    const projects = toggle === 'data' ? dataProjects : toggle === 'software' ? softwareProjects : otherProjects;
 
     const [curtainHeight, setCurtainHeight] = useState(100);
     const curtainRef = useRef(null);
@@ -170,19 +151,19 @@ function Work() {
         }
     }, [toggle]);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowImage(true);
-        }, 700);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setShowImage(true);
+    //     }, 700);
 
-        return () => clearTimeout(timer);
-    }, []);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             if (contentcontainerRef.current) {
                 console.log('Scrolling to top');
-                contentcontainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                contentcontainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }, 4000);
         return () => clearTimeout(timer);
@@ -218,41 +199,19 @@ function Work() {
             <div className="curtain-effect" ref={curtainRef}>
                 <div className="curtain" style={{ height: `${curtainHeight}%`, transform: curtainTransform }}></div>
                 <div className="projects-page" ref={contentcontainerRef}>
-                    <div className="toggle-container">
-                        <button className={`toggle-btn ${toggle === 'data' ? 'active' : ''}`} onClick={() => setToggle('data')}>
-                            Data
-                        </button>
-                        <button className={`toggle-btn ${toggle === 'software' ? 'active' : ''}`} onClick={() => setToggle('software')}>
-                            Software
-                        </button>
-                        <button className={`toggle-btn ${toggle === 'others' ? 'active' : ''}`} onClick={() => setToggle('others')}>
-                            Others
-                        </button>
-                    </div>
-                    <div className="content-container" >
-                        <div className="list-project" ref={listProjectRef}>
-                            {projects.map((project, index) => (
-                                <div
-                                    key={index}
-                                    className={`list-project-item ${activeProject === index ? 'active' : ''}`}
-                                >
-                                    {project.title}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="vertical-line"></div>
-                        <div className="project-div" ref={projectDivRef}>
-                            {projects.map((project, index) => (
-                                <div key={index} className={`project ${index % 2 === 0 ? 'left-image' : 'right-image'}`}>
-                                    <div className="project-content">
-                                        <h2>{project.title}</h2>
-                                        <p>{project.description}</p>
-                                    </div>
-                                    <img src={project.image} alt={project.title} className="project-image" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <ProjectWork
+                        toggle={toggle}
+                        setToggle={setToggle}
+                        activeProject={activeProject}
+                        setActiveProject={setActiveProject}
+                        curtainHeight={curtainHeight}
+                        curtainTransform={curtainTransform}
+                        showImage={showImage}
+                        hasScrolled={hasScrolled}
+                        contentcontainerRef={contentcontainerRef}
+                        projectDivRef={projectDivRef}
+                        listProjectRef={listProjectRef}
+                    />
                 </div>
 
             </div>
@@ -278,98 +237,77 @@ function Work() {
                     position: relative;
                 }
                 .header-work {
-        background-color: #010004;
-        height: 60vh;
-        text-align: center;
-        padding: 4em;
-        color: #E7EEFF;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .header-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.2;
-        align-content: center;
-    }
-
-    .typing-container {
-        display: inline-flex; /* Ensures centering within flex container */
-        justify-content: center; /* Centers text horizontally */
-        width: 100%; /* Full width of the header */
-        overflow: hidden; /* Ensures overflow is clipped */
-    }
-
-    .header-text {
-        font-size: 4rem;
-        font-weight: 200;
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 2px solid #E7EEFF; /* Cursor effect */
-    }
-
-        .typing-text {
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-        border-right: 2px solid;
-            }
-
-            .typing-text.typing {
-                width: 0;
-                animation: typing 2s steps(40, end) forwards, cursor-blink 0.5s step-end infinite;
-            }
-
-            .typing-text.backspacing {
-                width: 0;
-                animation: backspacing 1s steps(40, end) forwards, cursor-blink 0.5s step-end infinite;
-            }
-
-            .typing-text.typing-new-text {
-                width: 0;
-                animation: typing-new-text 2s steps(30, end) forwards, cursor-blink 0.5s step-end infinite;
-            }
-
-            .typing-text.done {
-                width: auto; /* Ensures the text is fully visible */
-                animation: none; /* Disables any ongoing animations */
-            }
-
-            .typing-text.done {
-                width: auto; /* Ensures the text is fully visible */
-                animation: none; /* Disables any ongoing animations */
-            }
-
-            @keyframes typing {
-                from { width: 0; }
-                to { width: 1000px; /* Adjust this to the length of the longer text */ }
+                    background-color: #010004;
+                    height: 60vh;
+                    text-align: center;
+                    padding: 4em;
+                    color: #E7EEFF;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
                 }
-
-            @keyframes backspacing {
-                from { width: 1000px; /* Width of longer text */ }
-                to { width: 0px; /* Width of shorter text */ }
+                .header-bg {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0.2;
+                    align-content: center;
                 }
-
-                @keyframes cursor-blink {
-                from, to { border-color: transparent; }
-                50% { border-color: black; }
+                .typing-container {
+                    display: inline-flex;
+                    justify-content: center;
+                    width: 100%;
+                    overflow: hidden;
                 }
-                @keyframes typing-new-text {
-                from { width: 0; }
-                to { width: 100%; } /* Width of the new text "No, Wait!" */
+                .header-text {
+                    font-size: 4rem;
+                    font-weight: 200;
+                    display: inline-block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    border-right: 2px solid #E7EEFF;
                 }
-
+                .typing-text {
+                    display: inline-block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    border-right: 2px solid;
+                }
+                .typing-text.typing {
+                    width: 0;
+                    animation: typing 2s steps(40, end) forwards, cursor-blink 0.5s step-end infinite;
+                }
+                .typing-text.backspacing {
+                    width: 0;
+                    animation: backspacing 1s steps(40, end) forwards, cursor-blink 0.5s step-end infinite;
+                }
+                .typing-text.typing-new-text {
+                    width: 0;
+                    animation: typing-new-text 2s steps(30, end) forwards, cursor-blink 0.5s step-end infinite;
+                }
+                .typing-text.done {
+                    width: auto;
+                    animation: none;
+                }
+                @keyframes typing {
+                    from { width: 0; }
+                    to { width: 1000px; }
+                }
+                @keyframes backspacing {
+                    from { width: 1000px; }
+                    to { width: 0; }
+                }
                 @keyframes cursor-blink {
                     from, to { border-color: transparent; }
                     50% { border-color: black; }
+                }
+                @keyframes typing-new-text {
+                    from { width: 0; }
+                    to { width: 100%; }
                 }
                 .curtain-effect {
                     position: relative;
@@ -387,93 +325,6 @@ function Work() {
                     transition: height 0.1s ease, transform 0.5s ease;
                     border-radius: 80% 80% 100% 100%;
                 }
-                .toggle-container {
-                    display: flex;
-                    margin: 10px 0;
-                    padding: 4rem 0 0 3rem;
-                }
-                .toggle-btn {
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    margin: 0 5px;
-                    cursor: pointer;
-                    background-color: #f4f4f4;
-                    border: none;
-                    border-radius: 5px;
-                    transition: background-color 0.3s ease;
-                }
-                .toggle-btn.active {
-                    background-color: #ccc;
-                }
-                .content-container {
-                    display: flex;
-                    flex: 1;
-                    height: 100vh;
-                }
-                .list-project {
-                    width: 30%;
-                    position: relative;
-                    overflow-y: auto;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-                }
-                .list-project-item {
-                    padding: 1rem;
-                    text-align: center;
-                    font-size: 14px;
-                    transition: transform 0.3s ease, font-size 0.3s ease;
-                    width: 100%;
-                    flex-shrink: 0;
-                    color: #E7EEFF;
-                    opacity: 0.5;
-                }
-                .list-project-item.active {
-                    font-size: 24px;
-                    transform: scale(1.2);
-                    font-weight: bold;
-                    opacity: 1;
-                }
-                .vertical-line {
-                    width: 1px;
-                    background-color: #E7EEFF;
-                    height: 50vh;
-                    align-self: center;
-                }
-                .project-div {
-                    height: 80vh;
-                    width: 70%;
-                    overflow-y: scroll;
-                    position: relative;
-                    border-radius: 45px;
-                    padding: 20px;
-                    margin: 2rem;
-                    box-sizing: border-box;
-                }
-                .project {
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 20px;
-                }
-                .project.left-image {
-                    flex-direction: row;
-                }
-                .project.right-image {
-                    flex-direction: row-reverse;
-                }
-                .project-image {
-                    width: 50%;
-                    height: auto;
-                    border-radius: 10px;
-                    margin: 0 20px;
-                }
-                .project-content {
-                    width: 50%;
-                    color: #E7EEFF;
-                    height: 20rem;
-                }
                 .no-wait-container {
                     position: fixed;
                     bottom: 0;
@@ -487,7 +338,7 @@ function Work() {
                 .jumping-image {
                     width: 80px;
                     height: 80px;
-                    margin-bottom: 2rem; /* Increased margin to prevent overlap with text */
+                    margin-bottom: 2rem;
                     animation: jump 1s infinite;
                 }
                 .no-wait-text {
@@ -499,7 +350,7 @@ function Work() {
                         transform: translateY(0);
                     }
                     50% {
-                        transform: translateY(-40px); /* Increased jump height */
+                        transform: translateY(-40px);
                     }
                 }
                 @media (max-width: 768px) {
