@@ -89,4 +89,3 @@ export const linkedInIcon = `<svg width="40" height="40" viewBox="0 0 40 40" fil
                                 </filter>
                             </defs>
                         </svg>`
-
