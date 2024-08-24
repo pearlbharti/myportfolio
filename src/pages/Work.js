@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { throttle } from 'lodash';
-import { confidenceInterval, jumpingArrow } from '../assets/images';
+import { confidenceInterval } from '../assets/images';
 import ProjectWork from '../components/ProjectWork';
 
 
@@ -90,7 +90,7 @@ function Work() {
         const handleScroll = () => {
             if (!projectDivRef.current) return;
 
-            const scrollTop = projectDivRef.current.scrollTop;
+            // const scrollTop = projectDivRef.current.scrollTop;
             const projectElements = document.querySelectorAll('.project');
             const viewportHeight = window.innerHeight;
             let closestIndex = 0;

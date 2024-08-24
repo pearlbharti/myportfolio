@@ -1,40 +1,38 @@
 import React, { useState, useEffect, useRef } from 'react';
 import GlareButton1 from '../components/GlareButton1';
+import { featuredWork } from '../assets/workData';
+import WorkCard from '../components/WorkCard';
 
 function FeaturedWork() {
+    const repeatArray = (arr, times) => Array.from({ length: times }, () => arr).flat();
     const [leftMostCardIndex, setLeftMostCardIndex] = useState(0);
+    const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 800);
+    const [isAnimationActive, setIsAnimationActive] = useState(true);
     const scrollContainerRef = useRef(null);
-    const cardData = ['Project 1', 'Project 2', 'Project 3', 'Project 4', 'Project 5'];
-    const duplicatedCardData = [...cardData, ...cardData, ...cardData]; // Duplicate cards
 
-    // Set card width and margin
-    const cardWidth = 600; // Example width, adjust as needed
-    const cardMargin = 5; // Space between cards
+    const cardWidth = 400;
+    const cardMargin = 5;
+    const cardWidthWithMargin = cardWidth + cardMargin;
 
-    // Update card width based on container width
+    // Duplicate the featuredWork array to create an infinite scroll effect
+    const duplicatedFeaturedWork = repeatArray(featuredWork, 10);
+
     useEffect(() => {
         const scrollContainer = scrollContainerRef.current;
         if (!scrollContainer) return;
 
-        const cardWidthWithMargin = cardWidth + cardMargin;
-
         const handleScroll = () => {
-            const scrollLeft = scrollContainer.scrollLeft;
-            const newIndex = Math.floor((scrollLeft + cardWidth / 2) / cardWidthWithMargin) % cardData.length;
-            setLeftMostCardIndex(newIndex);
-        };
-
-        const handleResize = () => {
-            if (scrollContainer) {
-                // Calculate initial scroll position based on the current width and number of cards
-                const initialScrollLeft = cardWidthWithMargin * cardData.length;
-                scrollContainer.scrollLeft = initialScrollLeft;
-                handleScroll();
+            if (!isAnimationActive && isWideScreen) {
+                const scrollLeft = scrollContainer.scrollLeft;
+                const centerOffset = scrollContainer.clientWidth / 2;
+                const index = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
+                setLeftMostCardIndex(index);
             }
         };
 
-        // Initialize scroll position
-        handleResize();
+        const handleResize = () => {
+            setIsWideScreen(window.innerWidth > 800);
+        };
 
         scrollContainer.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
@@ -43,22 +41,55 @@ function FeaturedWork() {
             scrollContainer.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
-    }, [cardWidth, cardMargin]);
+    }, [cardWidthWithMargin, isWideScreen, isAnimationActive]);
 
-    // Helper function to get the card style
-    const getCardStyle = (isCenterCard) => ({
+    useEffect(() => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer) return;
+
+        const initialScrollPosition = (duplicatedFeaturedWork.length / 2) * cardWidthWithMargin - scrollContainer.clientWidth / 2;
+        const targetScrollPosition = initialScrollPosition;
+        const duration = 0; // duration of the scroll in milliseconds
+        const startTime = performance.now();
+
+        setIsAnimationActive(true);
+
+        const animateScroll = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Smoother easing function for natural feel
+            const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+            scrollContainer.scrollLeft = targetScrollPosition * easeOutExpo(progress);
+
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            } else {
+                // Ensure exact final position and update active card
+                scrollContainer.scrollLeft = targetScrollPosition;
+                const scrollLeft = scrollContainer.scrollLeft;
+                const centerOffset = scrollContainer.clientWidth / 2;
+                const finalIndex = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
+                setLeftMostCardIndex(finalIndex);
+                setIsAnimationActive(false);
+            }
+        };
+
+        requestAnimationFrame(animateScroll);
+    }, [cardWidthWithMargin, duplicatedFeaturedWork.length]);
+
+    const getCardStyle = (isActiveCard) => ({
         flex: `0 0 ${cardWidth}px`,
         height: `${cardWidth}px`,
         margin: `0 ${cardMargin}px`,
-        backgroundColor: '#ddd',
         transition: 'transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0.5s ease-in-out',
-        scrollSnapAlign: 'center',
-        transform: isCenterCard ? `scale(1.0)` : 'scale(0.8)',
-        zIndex: isCenterCard ? 1 : 0,
-        boxShadow: isCenterCard ? '0 15px 30px rgba(0, 0, 0, 0.4)' : 'none',
-        backgroundColor: isCenterCard ? 'rgba(0, 0, 0, 0.15)' : '#ddd',
-        marginLeft: isCenterCard ? `${cardMargin * 1.2}px` : `${cardMargin}px`,
-        marginRight: isCenterCard ? `${cardMargin * 1.2}px` : `${cardMargin}px`,
+        scrollSnapAlign: 'start',
+        transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
+        zIndex: isActiveCard ? 1 : 0,
+        boxShadow: isActiveCard ? '0 15px 30px rgba(0, 0, 0, 0.4)' : 'none',
+        marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
+        marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
 
     return (
@@ -67,15 +98,21 @@ function FeaturedWork() {
 
             <div className="scroll-container" ref={scrollContainerRef}>
                 <div className="scroll-inner">
-                    {duplicatedCardData.map((project, index) => {
-                        const isCenterCard = leftMostCardIndex === (index % cardData.length);
+                    {duplicatedFeaturedWork.map((project, index) => {
+                        const actualIndex = index % featuredWork.length;
+                        const isActiveCard = !isAnimationActive && isWideScreen && leftMostCardIndex === actualIndex;
                         return (
                             <div
                                 key={index}
-                                style={getCardStyle(isCenterCard)}
-                                className={`card ${isCenterCard ? 'center-card' : ''}`}
+                                style={getCardStyle(isActiveCard)}
+                                className={`card ${isActiveCard ? 'active-card' : ''}`}
                             >
-                                {project}
+                                <WorkCard
+                                    title={project.title}
+                                    description={project.description}
+                                    image={project.image}
+                                    isActive={isActiveCard}
+                                />
                             </div>
                         );
                     })}
@@ -83,8 +120,8 @@ function FeaturedWork() {
             </div>
 
             <div className="bubble-progress-bar-container">
-                {[...Array(cardData.length)].map((_, index) => (
-                    <div key={index} className={`bubble ${leftMostCardIndex === index ? 'active-bubble' : ''}`} />
+                {featuredWork.map((_, index) => (
+                    <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} />
                 ))}
             </div>
             <GlareButton1>More Work</GlareButton1>
@@ -99,10 +136,11 @@ function FeaturedWork() {
                     font-family: 'Josefin Sans', sans-serif;
                     font-size: 28px;
                     margin-bottom: 20px;
-                    color
+                    color: #E7EEFF;
                 }
 
                 .scroll-container {
+                    font-family: 'Josefin Sans', sans-serif;
                     display: flex;
                     overflow-x: auto;
                     scroll-snap-type: x mandatory;
@@ -118,20 +156,8 @@ function FeaturedWork() {
 
                 .scroll-inner {
                     display: flex;
-                    width: ${cardWidth * duplicatedCardData.length + cardMargin * (duplicatedCardData.length - 1)}px;
+                    width: ${cardWidth * duplicatedFeaturedWork.length + cardMargin * (duplicatedFeaturedWork.length - 1)}px;
                     text-align: center;
-                }
-
-                .card {
-                    background-color: #ddd;
-                    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0.5s ease-in-out;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 18px;
-                    font-family: 'Josefin Sans', sans-serif;
-                    position: relative;
-                    scroll-snap-align: center;
                 }
 
                 .bubble-progress-bar-container {
