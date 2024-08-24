@@ -87,7 +87,11 @@ function FeaturedWork() {
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
-        boxShadow: isActiveCard ? '0 15px 30px rgba(0, 0, 0, 0.4)' : 'none',
+        border: '4px solid #E7EEFF', // Boundary box with color #E7EEFF
+        borderRadius: '15px',
+        boxShadow: isActiveCard
+            ? '0 10px 25px rgba(241, 231, 254, 1)' // More blurry shadow only on the bottom
+            : '0 10px 25px rgba(241, 231, 254, 1)', // Non-active cards have the same shadow for consistency
         marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
         marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
@@ -158,6 +162,8 @@ function FeaturedWork() {
                     display: flex;
                     width: ${cardWidth * duplicatedFeaturedWork.length + cardMargin * (duplicatedFeaturedWork.length - 1)}px;
                     text-align: center;
+                    height: 50vh;
+                    align-items: center;
                 }
 
                 .bubble-progress-bar-container {

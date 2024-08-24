@@ -98,7 +98,7 @@ const WorkCard = ({ title, description, image, isActive }) => {
           justify-content: space-between;
           margin-top: 10px;
           width: 100%;
-          padding: 0 10px; /* Add padding for better spacing */
+          padding: 10px 0px; /* Add padding for better spacing */
         }
 
         .card-button {
