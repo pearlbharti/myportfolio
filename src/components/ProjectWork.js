@@ -1,7 +1,7 @@
 // ProjectsPage.js
 import React, { useRef, useEffect, useState } from 'react';
 import { dataProjects, softwareProjects, otherProjects } from '../assets/projectData';
-
+import GlareButton1 from './GlareButton1';
 function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projectDivRef }) {
     const projects = toggle === 'data' ? dataProjects : toggle === 'software' ? softwareProjects : otherProjects;
     console.log("toggle", toggle)
@@ -36,8 +36,10 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
                         <div key={index} className={`project ${index % 2 === 0 ? 'left-image' : 'right-image'}`}>
                             <div className="project-content">
                                 <span className='project-title'>{project.title}</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.</p>
-                                <button className="check-btn">Check it out</button>
+                                <p className='project-description'>{project.description}</p>
+
+                                <button className="check-btn">
+                                    Check it out</button>
                             </div>
                             <img src={project.image} alt={project.title} className="project-image" />
                         </div>
@@ -125,13 +127,13 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
         padding: 20px;
         margin: 2rem auto; /* Centers the div horizontally */
         box-sizing: border-box;
-
     }
     .project {
         display: flex;
         align-items: center;
         margin-bottom: 20px;
-        height: 30vh;
+        height: 30rem;
+        justify-content: space-between;
     }
     .project.left-image {
         flex-direction: row;
@@ -140,39 +142,43 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
         flex-direction: row-reverse;
     }
     .project-image {
-        width: 50%;
-        height: auto;
+        // height: 100%; /* Ensures the image takes up the full height of the .project class */
+        // width: auto; /* Maintains the aspect ratio */
+        width: 27rem;
+         height: 25rem;
+        max-width: 100%; /* Prevents the image from exceeding the container's width */
         border-radius: 10px;
         margin: 0 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow */
     }
 
-    .project-title{
-    font-size: 1.5rem;
-    font-weight: 400;
+    .project-title {
+        font-size: 1.5rem;
+        font-weight: 400;
     }
 
     .project-content {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .check-btn {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: transparent;
-            color: #E7EEFF;
-            border: 2px solid #E7EEFF;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .check-btn:hover {
-            background-color: #E7EEFF;
-            color: #333;
-        }
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .check-btn {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: transparent;
+        // color: #E7EEFF;
+        border: 2px solid #E7EEFF;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .check-btn:hover {
+        background-color: #E7EEFF;
+        color: #333;
+    }
     @media (max-width: 768px) {
         .projects-page {
             flex-direction: column;
@@ -191,12 +197,16 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
         .project-image {
             width: 100%;
             margin: 10px 0;
+            height: auto;
+            max-width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow */
         }
         .project-content {
             width: 100%;
         }
     }
 `}</style>
+
 
         </>
     );

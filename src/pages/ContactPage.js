@@ -1,6 +1,6 @@
 import React from 'react';
 import { githubIcon, mediumIcon, linkedInIcon } from '../assets/images';
-
+import GlareButton1 from '../components/GlareButton1';
 function ContactPage() {
     return (
         <div className="page-container">
@@ -35,7 +35,7 @@ function ContactPage() {
                         placeholder="Your Message"
                         className="textarea"
                     />
-                    <button type="submit" className="button">Send Message</button>
+                    <GlareButton1>Send Message</GlareButton1>
                 </form>
             </div>
             <style jsx>{`

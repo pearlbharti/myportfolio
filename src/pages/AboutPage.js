@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { throttle } from 'lodash'; // Import throttle function
 import { myImage } from '../assets/images';
+import Experience from '../components/Experience';
 function AboutPage() {
     const [curtainHeight, setCurtainHeight] = useState(100);
     const curtainRef = useRef(null);
@@ -61,27 +62,26 @@ function AboutPage() {
                     <div className="cards">
                         <div className="card">
                             <span>DATA SCIENCE</span>
-                            <p>Lorem ipsum dolor sit amet...</p>
+                            <p>Everything from building cool machine learning models to setting up smooth data pipelines and using cloud tech to get the most out of your data.</p>
                         </div>
                         <div className="card">
                             <span>DEVELOPMENT</span>
-                            <p>Lorem ipsum dolor sit amet...</p>
+                            <p>Four years of expertise in several programming languages and databases with a deep understanding of DevOps and Automation and CI/CD pipelines. </p>
                         </div>
                         <div className="card">
                             <span>FULL PACKAGE</span>
-                            <p>Lorem ipsum dolor sit amet...</p>
+                            <p>I blend AI and machine learning know-how with hands-on experience in software development and cloud tech. I’ve got a knack for making complex systems work smoothly, from coding in Python and JavaScript to wrangling big data on AWS.</p>
                         </div>
                     </div>
+
                 </section>
             </div>
+            <div className="journey">
+                <div className="journey-title">My journey</div>
+            </div>
+
             <div className="interests">
-                <div className="left">
-                    <img src="" alt="Vertical" className="vertical-image" />
-                </div>
-                <div className="right">
-                    <h3>Title</h3>
-                    <p>Lorem ipsum dolor sit amet...</p>
-                </div>
+                <Experience />
             </div>
             <style jsx>{`
                 .about-page {
@@ -157,7 +157,7 @@ function AboutPage() {
                 }
                 .curtain-effect {
                     position: relative;
-                    height: 80vh;
+                    height: 100vh;
                     z-index: 2;
                     overflow: hidden;
                 }
@@ -208,15 +208,30 @@ function AboutPage() {
                     font-size: 20px;
                 }
                 .card p {
-                    font-size: 14px;
+                    font-size: 18px;
                     line-height: 1.5;
                 }
+                .journey {
+                position: relative;
+                // height: 100vh;
+                // background-color: #010004;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #010004;
+            }
+
+            .journey-title {
+                font-size: 4rem;
+                font-weight: 200;
+                text-align: center;
+                margin: 3rem 0 1rem 0;
+            }
                 .interests {
                     display: flex;
-                    padding: 20px;
                     position: relative;
                     background-color: #010004;
-                    height: 100vh;
+                    // height: 100vh;
                 }
                 .interests .left {
                     flex: 1;
@@ -230,3 +245,8 @@ function AboutPage() {
 }
 
 export default AboutPage;
+
+
+// Whether it's coding up solutions, making sense of your data, or creating visuals that really pop, I'm here to make sure you get valuable insights and see real results. Let's turn your data challenges into opportunities and make data work for you!
+// My strong database knowledge includes MySQL, PostgreSQL, MongoDB, Cassandra, CosmosDB, and Redis, allowing me to efficiently design, manage, and integrate data solutions. With this comprehensive skill set. Let's develop scalable applications, optimize workflows, and ensure robust development, database management and deployment processes together.
+// Plus, my DevOps skills keep everything running like a well-oiled machine. Whether it’s diving into data analysis or building cool new features, I bring a bit of everything to the table and make it all come together seamlessly

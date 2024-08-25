@@ -152,6 +152,7 @@ function FeaturedWork() {
                     scroll-behavior: smooth; /* Smooth scrolling */
                     width: 100%; /* Full width */
                     position: relative;
+                    padding: 3rem 0rem;
                 }
 
                 .scroll-container::-webkit-scrollbar {

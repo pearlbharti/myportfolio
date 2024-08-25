@@ -93,24 +93,25 @@ function SelectedBlogs() {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    height: 80vh;
+                    height: 60vh; /* Reduced height */
                     position: relative;
+                    padding: 0 0 3rem 0; /* Adjusted padding */
                 }
 
                 .blog-main-title {
                     font-family: 'Josefin Sans', sans-serif;
-                    font-size: 28px;
-                    margin-bottom: 50px;
-                    color: #E7EEFF; /* Updated color */
+                    font-size: 24px; /* Reduced font size */
+                    margin-bottom: 30px; /* Reduced margin */
+                    color: #E7EEFF;
                 }
 
                 .blogs-wrapper {
                     position: relative;
                     display: flex;
-                    width: 80%;
-                    max-width: 800px;
-                    height: 400px;
-                    overflow: visible; /* Hide overflow to avoid layout shifting */
+                    width: 70%; /* Reduced width */
+                    max-width: 600px; /* Reduced max-width */
+                    height: 300px; /* Reduced height */
+                    overflow: visible;
                     justify-content: center;
                 }
 
@@ -118,12 +119,12 @@ function SelectedBlogs() {
                     position: relative;
                     width: 100%;
                     height: 100%;
-                    border-radius: 20px;
-                    background: #010004; /* Updated background color */
-                    box-shadow: 2px 2px 15px rgba(241, 231, 254, 0.9),   /* bottom-right */
-                    -2px 2px 15px rgba(241, 231, 254, 0),  /* bottom-left (invisible) */
-                    2px -2px 15px rgba(241, 231, 254, 0.9),  /* top-right */
-                    2px 2px 15px rgba(241, 231, 254, 0.9);   /* bottom-right */
+                    border-radius: 15px; /* Reduced border-radius */
+                    background: #010004;
+                    box-shadow: 2px 2px 10px rgba(241, 231, 254, 0.7), /* Adjusted shadow */
+                                -2px 2px 10px rgba(241, 231, 254, 0),
+                                2px -2px 10px rgba(241, 231, 254, 0.7),
+                                2px 2px 10px rgba(241, 231, 254, 0.7);
                     display: flex;
                 }
 
@@ -134,72 +135,71 @@ function SelectedBlogs() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    transition: opacity 0.7s ease; /* Fade effect duration */
+                    transition: opacity 0.7s ease;
                     overflow: visible;
                 }
 
                 .blog-item {
                     display: flex;
-                    width: 100%;
-                    height: 100%;
+                    width: 90%; /* Reduced width */
+                    height: 80%; /* Reduced height */
                     flex-direction: row;
-                    padding: 20px;
+                    padding: 10px; /* Reduced padding */
                     box-sizing: border-box;
-                    transition: opacity 0.7s ease; /* Fade effect duration */
-                    opacity: 0; /* Default opacity */
+                    transition: opacity 0.7s ease;
+                    opacity: 0;
                 }
 
                 .blog-item-wrapper.active .blog-item {
-                    opacity: 1; /* Fully opaque when active */
+                    opacity: 1;
                 }
 
                 .blog-image {
-                    width: 300px; /* Fixed size */
-                    height: 300px; /* Fixed size */
-                    position: absolute; /* Absolute positioning to ensure overflow */
-                    left: -50px; /* Adjust this to control overflow */
+                    width: 200px; /* Reduced size */
+                    height: 200px; /* Reduced size */
+                    position: absolute;
+                    left: -30px; /* Adjusted positioning */
                     top: 50%;
-                    transform: translateY(-50%); /* Center the image vertically */
-                    z-index: 1; /* Ensure the image is above the rectangle */
+                    transform: translateY(-50%);
+                    z-index: 1;
                     border: 4px solid black;
-                    border-radius: 20px; /* Rounded corners */
-                    /* Removed border */
+                    border-radius: 15px; /* Reduced border-radius */
                 }
 
                 .blog-image img {
-                    width: 100%; /* Ensure image fits container */
-                    height: 100%; /* Ensure image fits container */
-                    border-radius: 20px; /* Rounded corners */
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 15px;
                     object-fit: cover;
                 }
 
                 .blog-content {
-                    flex: 0 0 60%; /* Limit blog content width to 60% */
-                    margin-left: 250px; /* Account for the image width + overflow */
+                    flex: 0 0 70%; /* Adjusted content width */
+                    margin-left: 180px; /* Adjusted for image */
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center; /* Center vertically */
-                    align-items: center; /* Center horizontally */
+                    justify-content: center;
+                    align-items: center;
                     text-align: center;
                 }
 
                 .blog-title {
-                    font-size: 22px;
-                    margin: 0 0 10px 0;
-                    color: #E7EEFF; /* Updated color */
+                    font-size: 18px; /* Reduced font size */
+                    margin: 0 0 5px 0; /* Reduced margin */
+                    color: #E7EEFF;
                 }
 
                 .blog-date {
-                    font-size: 14px;
-                    color: #E7EEFF; /* Updated color */
-                    margin: 0 0 10px 0;
+                    font-size: 12px; /* Reduced font size */
+                    color: #E7EEFF;
+                    margin: 0 0 5px 0; /* Reduced margin */
                 }
 
                 .blog-text {
-                    font-size: 16px;
-                    margin: 0 0 10px 0;
-                    color: #E7EEFF; /* Updated color */
+                    font-size: 14px; /* Reduced font size */
+                    margin: 0 0 5px 0; /* Reduced margin */
+                    color: #E7EEFF;
                 }
 
                 .read-more-button {
@@ -207,9 +207,9 @@ function SelectedBlogs() {
                     color: #E7EEFF;
                     border: 2px solid #E7EEFF;
                     border-radius: 4px;
-                    padding: 10px;
+                    padding: 8px; /* Reduced padding */
                     cursor: pointer;
-                    align-self: flex-end; /* Align the button at the bottom */
+                    align-self: flex-end;
                 }
 
                 .read-more-button:hover {
@@ -221,7 +221,7 @@ function SelectedBlogs() {
                     right: 10px;
                     top: 0;
                     height: 100%;
-                    width: 20px;
+                    width: 15px; /* Reduced width */
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -229,9 +229,9 @@ function SelectedBlogs() {
                 }
 
                 .blog-bubble {
-                    width: 15px;
-                    height: 15px;
-                    margin: 5px 0;
+                    width: 12px; /* Reduced size */
+                    height: 12px; /* Reduced size */
+                    margin: 3px 0; /* Reduced margin */
                     border-radius: 50%;
                     background-color: #ddd;
                     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -239,7 +239,7 @@ function SelectedBlogs() {
                 }
 
                 .active-bubble {
-                    transform: scale(1.5);
+                    transform: scale(1.3); /* Adjusted scale */
                     background-color: #333;
                 }
             `}</style>

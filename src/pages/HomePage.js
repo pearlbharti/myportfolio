@@ -79,7 +79,7 @@ function HomePage() {
                     width: calc(100vw - 4rem); /* Adjusts width relative to the viewport width with 2rem padding on each side */
                     max-width: 70vw; /* Ensure it doesn't exceed 70% of the viewport width */
                     font: 200 calc(1.5vw + 0.8rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 278px 0 0; /* Adjusted for centering */
+                    margin: 10rem 0 0; /* Adjusted for centering */
                 }
 
                 .image-gallery {
