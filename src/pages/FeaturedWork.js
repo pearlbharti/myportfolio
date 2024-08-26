@@ -11,11 +11,11 @@ function FeaturedWork() {
     const scrollContainerRef = useRef(null);
 
     const cardWidth = 400;
-    const cardMargin = 5;
+    const cardMargin = 0;
     const cardWidthWithMargin = cardWidth + cardMargin;
 
     // Duplicate the featuredWork array to create an infinite scroll effect
-    const duplicatedFeaturedWork = repeatArray(featuredWork, 10);
+    const duplicatedFeaturedWork = repeatArray(featuredWork, 15);
 
     useEffect(() => {
         const scrollContainer = scrollContainerRef.current;
@@ -87,11 +87,13 @@ function FeaturedWork() {
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
-        border: '4px solid #E7EEFF', // Boundary box with color #E7EEFF
-        borderRadius: '15px',
-        boxShadow: isActiveCard
-            ? '0 10px 25px rgba(241, 231, 254, 1)' // More blurry shadow only on the bottom
-            : '0 10px 25px rgba(241, 231, 254, 1)', // Non-active cards have the same shadow for consistency
+        border: isActiveCard ? '8px solid #b8becc' : '4px solid #b8becc', // Boundary box with color #E7EEFF
+        borderRadius: '20px',
+        boxSizing: 'border-box',
+        // boxShadow: isActiveCard ? `0px 0px 48px rgba(138, 142, 153, 0.5)` : `rgba(138, 142, 153, 0.9) 2px 5px 50px`,
+        // boxShadow: isActiveCard
+        //     ? '0 10px 25px rgba(241, 231, 254, 1)' // More blurry shadow only on the bottom
+        //     : '0 10px 25px rgba(241, 231, 254, 1)', // Non-active cards have the same shadow for consistency
         marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
         marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
@@ -128,19 +130,28 @@ function FeaturedWork() {
                     <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} />
                 ))}
             </div>
-            <GlareButton1>More Work</GlareButton1>
+            <GlareButton1 link="/work" onClick={() => console.log('Navigating to Work page')}>More Work</GlareButton1>
 
             <style jsx>{`
                 .featured-work-container {
                     text-align: center;
                     padding: 20px;
+                    
+                }
+
+                .card{
+                border: '4px solid #b8becc',
                 }
 
                 .featured-work-title {
-                    font-family: 'Josefin Sans', sans-serif;
-                    font-size: 28px;
-                    margin-bottom: 20px;
+                    // font-family: 'Josefin Sans', sans-serif;
+                    // font-size: 28px;
+                    // margin-bottom: 20px;
                     color: #E7EEFF;
+                    font-size: 3rem;
+                    font-weight: 400;
+                    text-align: center;
+                    margin: 3rem 0 1rem 0;
                 }
 
                 .scroll-container {

@@ -1,12 +1,35 @@
 import React from 'react';
 import './Button.css';
+import { Link } from 'react-router-dom';
+import './Button.css';
 
-const Button = ({ children, onClick }) => {
+
+const Button = ({ children, onClick, link, type = '' }) => {
+    const isInternal = link && link.startsWith('/');
+
+
+    if (type === "submit") {
+        return (
+            <button type="submit" className="cta-button" onClick={onClick}>
+                {children}
+            </button>
+        );
+    }
+
+    if (isInternal) {
+        return (
+            <Link to={link} className="cta-button" onClick={onClick}>
+                {children}
+            </Link>
+        );
+    }
+
     return (
-        <button className="cta-button" onClick={onClick}>
+        <a href={link} className="cta-button" onClick={() => { console.log("clicked") }} target="_blank" rel="noopener noreferrer">
             {children}
-        </button>
+        </a>
     );
 };
 
 export default Button;
+

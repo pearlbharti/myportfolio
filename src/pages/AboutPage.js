@@ -34,7 +34,7 @@ function AboutPage() {
         <div className="about-page">
             <header className="header">
                 <span className='header-text'>Helping you thrive in the digital world.</span>
-                <div className="underline"></div>
+                {/* <div className="underline"></div> */}
                 <div className="underline-2"></div>
             </header>
 
@@ -43,6 +43,11 @@ function AboutPage() {
                     <p className='intro-text'>
                         I help people from all over the world with tailor-made solutions. With each project, I push my work to new horizons, always putting quality first.
                     </p>
+                    <p className='intro-text'>
+                        I’m a software engineer with 3.5 years of experience and am currently studying Data Science at UMass Dartmouth. My passion for programming, math, and problem-solving drives me, and I’m eager to explore new opportunities and tackle exciting projects.
+                    </p>
+
+
                 </div>
                 <div className="right">
                     <div className="image-wrapper">
@@ -61,23 +66,20 @@ function AboutPage() {
                     <div className="services-title">I can help you with</div>
                     <div className="cards">
                         <div className="card">
-                            <span>DATA SCIENCE</span>
-                            <p>Everything from building cool machine learning models to setting up smooth data pipelines and using cloud tech to get the most out of your data.</p>
+                            <span className='service-subtitle'>DATA SCIENCE</span>
+                            <p className='service-text'>Everything from building cool machine learning models to setting up smooth data pipelines and using cloud tech to get the most out of your data.</p>
                         </div>
                         <div className="card">
-                            <span>DEVELOPMENT</span>
-                            <p>Four years of expertise in several programming languages and databases with a deep understanding of DevOps and Automation and CI/CD pipelines. </p>
+                            <span className='service-subtitle'>DEVELOPMENT</span>
+                            <p className='service-text'>Four years of expertise in several programming languages and databases with a deep understanding of DevOps and Automation and CI/CD pipelines. </p>
                         </div>
                         <div className="card">
-                            <span>FULL PACKAGE</span>
-                            <p>I blend AI and machine learning know-how with hands-on experience in software development and cloud tech. I’ve got a knack for making complex systems work smoothly, from coding in Python and JavaScript to wrangling big data on AWS.</p>
+                            <span className='service-subtitle'>FULL PACKAGE</span>
+                            <p className='service-text'>I blend AI and machine learning know-how with hands-on experience in software development and cloud tech. I’ve got a knack for making complex systems work smoothly, from coding in Python and JavaScript to wrangling big data on AWS.</p>
                         </div>
                     </div>
 
                 </section>
-            </div>
-            <div className="journey">
-                <div className="journey-title">My journey</div>
             </div>
 
             <div className="interests">
@@ -86,7 +88,17 @@ function AboutPage() {
             <style jsx>{`
                 .about-page {
                     font-family: 'Josefin Sans', sans-serif;
+                    background-color: #FAF9F6;
                 }
+                    .service-subtitle{
+                    font-weight: 600;
+                    font-size: 1.3rem;
+                    }
+                    .service-text{
+                    font-weight: 300;
+                    font-size: 1.3rem;
+                    line-height: 1.5;
+                    }
                 .header {
                     height: 50vh;
                     text-align: center;
@@ -99,11 +111,14 @@ function AboutPage() {
                     position: relative;
                 }
                 .header-text {
-                    font-size: 4rem;
-                    font-weight: 200;
+                    font-size: 3rem;
+                    font-weight: 300;
+                    
                 }
                 .intro-text {
                     color: #E7EEFF;
+                    font-weight: 300;
+                    font-size: 1.9em;
                 }
                 .underline {
                     width: 50px;
@@ -113,8 +128,8 @@ function AboutPage() {
                 }
                 .underline-2 {
                     width: 60vw;
-                    height: 2px;
-                    background-color: #E7EEFF;
+                    height: 4px;
+                    background-color: grey;
                     position: absolute;
                     bottom: 0;
                     left: 50%;
@@ -207,10 +222,10 @@ function AboutPage() {
                     margin-bottom: 10px;
                     font-size: 20px;
                 }
-                .card p {
-                    font-size: 18px;
-                    line-height: 1.5;
-                }
+                // .card p {
+                //     font-size: 18px;
+                //     line-height: 1.5;
+                // }
                 .journey {
                 position: relative;
                 // height: 100vh;
@@ -221,12 +236,7 @@ function AboutPage() {
                 color: #010004;
             }
 
-            .journey-title {
-                font-size: 4rem;
-                font-weight: 200;
-                text-align: center;
-                margin: 3rem 0 1rem 0;
-            }
+           
                 .interests {
                     display: flex;
                     position: relative;

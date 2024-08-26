@@ -31,7 +31,7 @@ export const storyData = [
         title: 'Master of Science',
         company: 'Data Science',
         description: 'Armed with big dreams, I moved to the U.S. to pursue my master’s, aiming to soak up all the high-quality education the country had to offer. The first few months was a bit of a bumpy ride, but I quickly found my footing. I threw myself into mastering the latest industry tech, balancing my passion for both software engineering and data science. Not only have I kept my grades up, but I’ve also managed to stay deeply involved in both fields. The experience has been both challenging and rewarding, and I’m excited about what the future holds as I continue to bridge the gap between software and data.',
-        image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/story_images/umass.jpg'
+        image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/story_images/umass.png'
     },
 ];
 

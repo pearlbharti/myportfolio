@@ -36,12 +36,12 @@ function HomePage() {
                     <div className="image-gallery">
                         <div className="github-icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div>
                         <div className="email-icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
-                        <div className="medium-icon" dangerouslySetInnerHTML={{ __html: mediumIcon }}></div>
+                        {/* <div className="medium-icon" dangerouslySetInnerHTML={{ __html: mediumIcon }}></div> */}
                         <div className="linkedin-icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
 
 
                     </div>
-                    <GlareButton1>Connect with Me!</GlareButton1>
+                    <GlareButton1 link="/contact" onClick={() => console.log('Navigating to Contact page')}>Connect with Me!</GlareButton1>
 
                 </div>
                 {!hasScrolled && (

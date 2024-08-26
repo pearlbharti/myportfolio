@@ -23,7 +23,7 @@ const WorkCard = ({ title, description, image, isActive }) => {
           width: 100%;
           height: 100%;
           overflow: hidden;
-          border-radius: 8px;
+          border-radius: 20px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -33,7 +33,7 @@ const WorkCard = ({ title, description, image, isActive }) => {
           background-size: cover;
           background-position: center;
           transition: transform 0.5s ease, filter 0.5s ease;
-          filter: brightness(50%) blur(3px);
+          filter: brightness(90%) blur(3px);
         }
 
         .work-card:not(.active):hover .card-image {
@@ -102,14 +102,22 @@ const WorkCard = ({ title, description, image, isActive }) => {
         }
 
         .card-button {
-          background-color: transparent;
-          color: white;
-          border: 2px solid white;
-          text-decoration: none;
-          padding: 6px 12px; /* Smaller size */
-          border-radius: 20px; /* Rounder */
+          /* Smaller button with white outline, white background, and 'Josefin Sans' font */
+          --button_radius: 0.5em;
+          --button_color: #000000;
+          --button_outline_color: #ffffff;
+          font-family: 'Josefin Sans', sans-serif;
           font-size: 0.8rem; /* Adjusted size */
+          font-weight: bold;
+          border: 2px solid var(--button_outline_color);
+          border-radius: var(--button_radius);
+          // background: var(--button_outline_color);
+          background: transparent;
+          padding: 6px 12px;
+          // color: var(--button_color);
+          color: white;
           text-align: center;
+          text-decoration: none;
           flex: 1;
           margin: 0 5px;
           display: block;
@@ -117,7 +125,15 @@ const WorkCard = ({ title, description, image, isActive }) => {
         }
 
         .card-button:hover {
-          background-color: #E7EEFF;
+          /* Pull the button upwards slightly when hovered */
+          transform: translateY(-0.2em);
+          background-color: rgba(231, 238, 255, 0.1); /* Light hover effect */
+          text-decoration: none;
+        }
+
+        .card-button:active {
+          /* Push the button downwards when pressed */
+          transform: translateY(0);
         }
       `}</style>
     </div>

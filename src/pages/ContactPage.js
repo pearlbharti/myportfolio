@@ -1,72 +1,119 @@
-import React from 'react';
-import { githubIcon, mediumIcon, linkedInIcon } from '../assets/images';
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
+import { githubIcon, linkedInIcon } from '../assets/images';
 import GlareButton1 from '../components/GlareButton1';
+
 function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        emailjs.send('service_x2y7s6a', 'template_mxz9bqe', formData, '-YI4SGA2u3CCaQF9U')
+            .then((response) => {
+                setFeedbackMessage('Your message has been sent successfully.');
+                console.log("Mail Sent");
+                setFormData({ name: '', email: '', message: '' }); // Clear the form
+            })
+            .catch((error) => {
+                setFeedbackMessage('Sorry, there seems to be an issue. Please email me at snehsuresh02@gmail.com.');
+                console.error('EmailJS error:', error);
+            });
+    };
+
     return (
         <div className="page-container">
             <div className="icon-container">
-                <a href="">
+                <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer">
                     <div className="github-icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div>
                 </a>
-                <a href="">
-                    <div className="medium-icon" dangerouslySetInnerHTML={{ __html: mediumIcon }}></div>
-                </a>
-                <a href="">
+                <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer">
                     <div className="linkedin-icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
                 </a>
             </div>
             <div className="contact-form-container">
-                <span className="title">Let's Collaborate</span>
+                <span className="title">Let's Collaborate!</span>
                 <p className="subtitle">
                     Excited to work together or looking to hire me? Send me a message through the form, and don't forget to check out my resume <a href="/resume.pdf" className="link">here</a>!
                 </p>
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit}>
                     <input
                         type="text"
-                        placeholder="Name"
+                        name="name"
+                        placeholder="Name*"
                         className="input"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
                     />
                     <input
                         type="email"
-                        placeholder="Email ID"
+                        name="email"
+                        placeholder="Email ID*"
                         className="input"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                     />
                     <textarea
-                        placeholder="Your Message"
+                        name="message"
+                        placeholder="Your Message*"
                         className="textarea"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
                     />
-                    <GlareButton1>Send Message</GlareButton1>
+                    <GlareButton1 type="submit">
+                        <div className="button-msg">Send Message</div>
+                    </GlareButton1>
                 </form>
+                {feedbackMessage && (
+                    <p className="feedback-message">{feedbackMessage}</p>
+                )}
             </div>
             <style jsx>{`
+                .button-msg {
+                }
                 .page-container {
                     font-family: 'Josefin Sans', sans-serif;
                     height: 90vh;
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     background-color: #010004;
                     position: relative;
                 }
                 .contact-form-container {
-                    background-color: #141414;
+                    background-color: transparent;
                     padding: 30px;
                     border-radius: 8px;
+                    border: 1px solid #ffffff;
                     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
                     max-width: 500px;
                     width: 100%;
                     text-align: center;
                 }
                 .title {
-                    font-size: 2rem;
+                    font-size: 2.8rem;
                     margin-bottom: 20px;
                     color: #E7EEFF;
                     font-weight: 400;
                 }
                 .subtitle {
-                    font-size: 1.25rem;
+                    font-size: 1.6rem;
                     margin-bottom: 30px;
                     color: #dddddd;
+                    font-weight: 300;
                 }
                 .link {
                     color: #007BFF;
@@ -76,34 +123,23 @@ function ContactPage() {
                     display: flex;
                     flex-direction: column;
                 }
-                .input {
+                .input, .textarea {
                     padding: 10px;
                     margin-bottom: 15px;
                     border-radius: 5px;
-                    border: 1px solid #ccc;
+                    border: 1px solid #ffffff;
                     font-size: 1rem;
-                    background-color: #1c1c1c;
+                    background-color: transparent;
                     color: #ffffff;
                 }
                 .textarea {
-                    padding: 10px;
-                    margin-bottom: 15px;
-                    border-radius: 5px;
-                    border: 1px solid #ccc;
-                    font-size: 1rem;
                     height: 100px;
                     resize: none;
-                    background-color: #1c1c1c;
-                    color: #ffffff;
                 }
-                .button {
-                    padding: 10px;
-                    border-radius: 5px;
-                    border: none;
-                    background-color: #007BFF;
-                    color: #fff;
+                .feedback-message {
+                    margin-top: 15px;
                     font-size: 1rem;
-                    cursor: pointer;
+                    color: green;
                 }
                 .icon-container {
                     position: absolute;
@@ -125,6 +161,7 @@ function ContactPage() {
                 .icon:hover {
                     fill: #007BFF;
                 }
+                
             `}</style>
         </div>
     );

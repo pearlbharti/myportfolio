@@ -4,12 +4,11 @@ import { storyData } from '../assets/story';
 const Experience = () => {
     const [progressHeight, setProgressHeight] = useState(0);
 
-
-
     useEffect(() => {
         const handleScroll = () => {
             const experienceContainer = document.querySelector('.experience-container');
             const checkpoints = document.querySelectorAll('.progress-checkpoint');
+            const years = document.querySelectorAll('.checkpoint-year');
             const experienceTop = experienceContainer.getBoundingClientRect().top + window.scrollY;
             const experienceHeight = experienceContainer.clientHeight;
             const scrollTop = window.scrollY;
@@ -18,7 +17,7 @@ const Experience = () => {
             if (scrollTop + viewportMiddle >= experienceTop && scrollTop + viewportMiddle <= experienceTop + experienceHeight) {
                 let scrolledPercentage = ((scrollTop + viewportMiddle - experienceTop) / experienceHeight) * 100;
                 if (scrolledPercentage >= 82) {
-                    scrolledPercentage = 82
+                    scrolledPercentage = 82;
                 }
                 setProgressHeight(scrolledPercentage);
 
@@ -39,9 +38,21 @@ const Experience = () => {
                         }
                     }
                 });
+
+                years.forEach((year) => {
+                    const yearPosition = parseFloat(year.parentElement.getAttribute('data-position'));
+                    const isActive = scrolledPercentage >= yearPosition;
+
+                    if (isActive) {
+                        year.classList.add('active');
+                    } else {
+                        year.classList.remove('active');
+                    }
+                });
             } else if (scrollTop + viewportMiddle < experienceTop) {
                 setProgressHeight(0);
                 checkpoints.forEach((checkpoint) => checkpoint.classList.remove('active'));
+                years.forEach((year) => year.classList.remove('active'));
                 document.querySelectorAll('.experience-image-wrapper').forEach(wrapper => wrapper.classList.remove('active'));
             }
         };
@@ -54,20 +65,28 @@ const Experience = () => {
         return <p>Error: Story data is not available.</p>;
     }
 
+    const years = [2019, 2021, 2022, 2023];
+    const checkpoints = [27, 45, 63, 82]
+
     return (
         <div className="experience-container">
             <div className="progress-bar">
                 <div className="progress-bar-inner">
                     <div className="progress-filled" style={{ height: `${progressHeight}%` }}></div>
-                    <div className="progress-checkpoint" data-position="5"></div>
-                    <div className="progress-checkpoint" data-position="20"></div>
-                    <div className="progress-checkpoint" data-position="40"></div>
-                    <div className="progress-checkpoint" data-position="60"></div>
-                    <div className="progress-checkpoint" data-position="80"></div>
-                    <div className="progress-checkpoint" data-position="100"></div>
+                    <div className="progress-checkpoint" data-position="8">
+                        <span className="checkpoint-year">2015</span>
+                    </div>
+                    {years.map((year, index) => (
+                        <div className="progress-checkpoint" key={index} data-position={checkpoints[index]} >
+                            <span className="checkpoint-year">{year}</span>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="experience-details">
+                <div className="journey">
+                    <div className="journey-title">My journey</div>
+                </div>
                 {storyData.map((item, index) => (
                     <div className="experience-item" key={index}>
                         <div className="experience-content">
@@ -89,13 +108,18 @@ const Experience = () => {
                 ))}
             </div>
             <style jsx>{`
-    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
-
     .experience-container {
         display: flex;
         position: relative;
-        font-family: 'Josefin Sans', sans-serif; /* Apply Josefin Sans font */
+        font-family: 'Josefin Sans', sans-serif;
     }
+         .journey-title {
+                font-size: 4rem;
+                font-weight: 200;
+                text-align: center;
+                margin: 3rem 0 4rem 0;
+                color: white;
+            }
 
     .progress-bar {
         width: 10%;
@@ -137,6 +161,9 @@ const Experience = () => {
         border-radius: 10%;
         z-index: 1;
         transition: background-color 0.3s ease, border-color 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .progress-checkpoint.active {
@@ -144,60 +171,64 @@ const Experience = () => {
         background-color: #E7EEFF;
     }
 
-    @keyframes blink {
-        0% { opacity: 1; }
-        50% { opacity: 0.5; }
-        100% { opacity: 1; }
-    }
-
-    
-
-    .progress-checkpoint.active.blink {
-        animation: blink 1s infinite;
+    .progress-checkpoint .checkpoint-year {
+        position: absolute;
+        left: 20px; /* Adjust to move the year to the right of the checkpoint */
+        font-size: 0.75em;
+        color: #010004;
+        background-color: #010004;
+        padding: 2px 4px;
+        border-radius: 4px;
+        transition: color 0.3s ease, background-color 0.3s ease;
     }
 
     .progress-checkpoint:nth-child(2) {
-        top: 1%;
+        top: 8.5%;
     }
 
     .progress-checkpoint:nth-child(3) {
-        top: 22%;
+        top: 27%;
     }
 
     .progress-checkpoint:nth-child(4) {
-        top: 42%;
+        top: 45%;
     }
 
     .progress-checkpoint:nth-child(5) {
-        top: 62%;
+        top: 63%;
     }
-
 
     .progress-checkpoint:nth-child(6) {
         top: 82%;
+    }
+
+    .checkpoint-year.active {
+        color: #010004;
+        background-color: #E7EEFF;
     }
 
     .experience-details {
         width: 90%;
         margin-left: 10%;
         padding: 20px;
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     .experience-item {
-        margin: 0rem 1rem 5rem 1rem;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        position: relative;
-        height: 20rem;
-    }
+    margin: 0rem 0 5rem 0; /* Adjust margins to avoid overlap */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+}
 
     .experience-content {
-        display: flex;
-        align-items: flex-start;
-        width: 100%;
-    }
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
+    max-width: 100%; /* Ensure it does not stretch beyond container */
+}
 
     .experience-text {
         flex: 1;
@@ -206,17 +237,19 @@ const Experience = () => {
         justify-content: space-between;
     }
 
-  .experience-image-wrapper {
+    
+.experience-image-wrapper {
     position: relative;
     width: 30%;
-    /* Set a fixed width for the container */
-    padding-top: 30%; /* Maintain the aspect ratio of 1:1 */
-    margin-left: 20px;
-    overflow: hidden; /* Ensure overflow is hidden for the square aspect ratio */
-        box-shadow: 0px 4px 8px 0px #8a8e99;
+    padding-top: 30%; /* Maintain a square aspect ratio */
+    margin-left: 20px; /* Ensure space between items */
+    overflow: hidden;
+    box-shadow: 0px 4px 8px 0px #8a8e99;
+    border-radius: 10px;
+    margin-right: 3rem;
 }
 
-.experience-image {
+    .experience-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -224,60 +257,48 @@ const Experience = () => {
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
-
 }
-
-
-    // .experience-image-border {
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     border: 5px solid #E7EEFF;
-    //     transform: translate(15px, 15px); /* Offset initially */
-    //     transition: transform 0.3s ease; /* Smooth transition */
-    //     box-sizing: border-box; /* Ensures border is included in the box dimensions */
-    //     z-index: 1; /* Ensure border is behind the image */
-    // }
 
     .experience-image-wrapper.active .experience-image-border {
-    transform: translate(0, 0) scale(1.05); /* Move to fit around the image */
-}
+        transform: translate(0, 0) scale(1.05);
+    }
 
     .exp-title {
         display: block;
-        font-size: 1.5em; /* Slightly smaller */
+        font-size: 1.5em;
         font-weight: bold;
         margin-bottom: 5px;
-        color: #E7EEFF; /* Apply text color */
-    }
-        .exp-subtitle {
-        display: block;
-        font-size: 1.1em; /* Slightly smaller */
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #8a8e99; /* Apply text color */
+        color: #E7EEFF;
     }
 
-    .exp-description{
-    font-size: 18px;
-    line-height: 1.5;
+    .exp-subtitle {
+        display: block;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #8a8e99;
+    }
+
+    .exp-description {
+        font-size: 1.3rem;
+        line-height: 1.5;
+        color: #b8becc;
+            margin: 0 6rem 0 0;
     }
 
     .exp-company {
-        font-size: 1.25em; /* Larger than title */
+        font-size: 1.25em;
         font-weight: bold;
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     .exp-location, .exp-date {
         margin: 5px 0;
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     .exp-date strong {
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     .exp-list {
@@ -288,19 +309,31 @@ const Experience = () => {
 
     .exp-list li {
         margin-bottom: 5px;
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     h3, h4, ul {
-        color: #E7EEFF; /* Apply text color */
+        color: #E7EEFF;
     }
 
     ul {
         list-style-type: disc;
         margin-left: 20px;
     }
-`}</style>
 
+    @media (max-width: 768px) {
+    .experience-item {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .experience-image-wrapper {
+        width: 100%; /* Make images full-width on smaller screens */
+        margin-left: 0; /* Remove left margin */
+        margin-bottom: 20px; /* Add bottom margin for spacing */
+        
+    }
+}
+`}</style>
         </div>
     );
 };
