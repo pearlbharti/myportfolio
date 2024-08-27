@@ -26,7 +26,7 @@ function App() {
     return () => clearTimeout(timer); // Cleanup on component unmount
   }, []);
   return (
-    <Router basename="/myportfolio" >
+    <Router >
       {loading ? (
         <LoadingScreen /> // Show loading screen while loading is true
       ) : (
@@ -35,10 +35,10 @@ function App() {
           <Navbar isVisible={navbarVisible} />
           <Routes>
             <Route path="/myportfolio" element={<HomePage />} />
-            <Route path="/work" element={<Work />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/devlogs" element={<Devlog />} />
+            <Route path="/myportfolio/work" element={<Work />} />
+            <Route path="/myportfolio/about" element={<AboutPage />} />
+            <Route path="/myportfolio/contact" element={<ContactPage />} />
+            <Route path="/myportfolio/devlogs" element={<Devlog />} />
           </Routes>
           <Footer />
         </>
