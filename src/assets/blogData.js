@@ -30,7 +30,7 @@ export const blogs = [
     },
     {
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/blog_images/melanoma_classifier.webp',
-        title: 'Fine-Tuning for Sensitivity: Crafting a Melanoma Classifier for the Real World',
+        title: 'Fine-Tuning a Melanoma Classifier for Sensitivity',
         date: 'December 19, 2023',
         content: 'Iterative Optimisation: This blog will introduce you to the complexities of continual fine-tuning in machine learning. Learn how to dynamically adjust models, improve hyperparameters, and never stop striving for optimal performance.',
         link: 'https://medium.com/@snehsuresh02/wisconsin-breast-cancer-diagnosis-svm-analysis-b87e0d303b8c',

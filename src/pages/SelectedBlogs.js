@@ -5,8 +5,11 @@ function SelectedBlogs() {
     const [scrollIndex, setScrollIndex] = useState(0);
     const lastScrollTime = useRef(0);
     const scrollAmount = useRef(0);
+    const touchStartY = useRef(0);
+    const touchEndY = useRef(0);
     const SCROLL_DELAY = 500;
     const SCROLL_THRESHOLD = 100;
+    const TOUCH_THRESHOLD = 50;
 
     const handleWheel = (e) => {
         e.preventDefault();
@@ -31,12 +34,35 @@ function SelectedBlogs() {
         }
     };
 
+    const handleTouchStart = (e) => {
+        touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+        touchEndY.current = e.changedTouches[0].clientY;
+        const touchDiff = touchStartY.current - touchEndY.current;
+
+        if (touchDiff > TOUCH_THRESHOLD) {
+            if (scrollIndex < blogs.length - 1) {
+                setScrollIndex((prevIndex) => prevIndex + 1);
+            }
+        } else if (touchDiff < -TOUCH_THRESHOLD) {
+            if (scrollIndex > 0) {
+                setScrollIndex((prevIndex) => prevIndex - 1);
+            }
+        }
+    };
+
     useEffect(() => {
         const container = document.querySelector('.blogs-rectangle');
         container.addEventListener('wheel', handleWheel);
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchend', handleTouchEnd);
 
         return () => {
             container.removeEventListener('wheel', handleWheel);
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchend', handleTouchEnd);
         };
     }, [scrollIndex]);
 
