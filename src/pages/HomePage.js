@@ -6,6 +6,7 @@ import { githubIcon, linkedInIcon, emailIcon, jumpingArrow } from '../assets/ima
 
 function HomePage() {
     const [hasScrolled, setHasScrolled] = useState(false);
+    const [showContent, setShowContent] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,6 +20,15 @@ function HomePage() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+    }, []);
+
+    useEffect(() => {
+        // Set showContent to true after CTA button animation
+        const timer = setTimeout(() => {
+            setShowContent(true);
+        }, 2000); // Delay should match CTA button animation duration
+
+        return () => clearTimeout(timer);
     }, []);
 
     return (
@@ -49,11 +59,15 @@ function HomePage() {
                 </div>
                 {!hasScrolled && (
                     <div className="scroll-section">
-                        <div className="arrow-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }} ></div>
+                        <div className="arrow-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }}></div>
                     </div>
                 )}
-                <FeaturedWork />
-                <SelectedBlogs />
+                {showContent && (
+                    <>
+                        <FeaturedWork />
+                        <SelectedBlogs />
+                    </>
+                )}
             </div>
 
             <style jsx>{`
@@ -71,6 +85,7 @@ function HomePage() {
                     padding-bottom: 70px;
                     flex-direction: column;
                     align-items: center;
+                    height:90vh;
                 }
 
                 .intro-text {
@@ -79,7 +94,7 @@ function HomePage() {
                     width: calc(100vw - 4rem);
                     max-width: 70vw;
                     font: 200 calc(1.5vw + 0.8rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 10rem 0 0;
+                    margin: 15rem 0 0;
                     opacity: 0;
                     animation: fadeIn 2s ease-in forwards;
                 }
@@ -99,19 +114,19 @@ function HomePage() {
                 }
 
                 .github-icon {
-                    animation-delay: 0.1s; /* Starts after the intro text finishes fading in */
+                    animation-delay: 0.1s;
                 }
                 .email-icon {
-                    animation-delay: 0.3s; /* Delayed further to appear after GitHub icon */
+                    animation-delay: 0.3s;
                 }
                 .linkedin-icon {
-                    animation-delay: 0.5s; /* Delayed further to appear after Email icon */
+                    animation-delay: 0.5s;
                 }
 
                 .cta-button {
                     opacity: 0;
                     animation: fadeInButton 0.5s ease-in forwards;
-                    animation-delay: 1.5s; /* Delayed to appear after the icons */
+                    animation-delay: 1.5s;
                 }
 
                 .scroll-section {
@@ -179,6 +194,12 @@ function HomePage() {
                         font-size: 20px;
                         padding: 10px 20px;
                     }
+                        .intro-text {
+                   
+                    margin: 10rem 0 0;
+                    // opacity: 0;
+                    // animation: fadeIn 2s ease-in forwards;
+                }
                 }
             `}</style>
             <style jsx global>{`

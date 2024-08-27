@@ -23,7 +23,7 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
           </div>
           <div className="spacer"></div>
           <div className="card-buttons">
-            <a href={link} target="_blank" rel="noopener noreferrer" className="card-button">Check it out!</a>
+            <a href={link} target="_blank" rel="noopener noreferrer" className="card-button">Check it</a>
             {/* <a href="#" className="card-button">Try Me</a> */}
           </div>
         </div>
@@ -188,6 +188,10 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
       left: -20px; /* Move further outside the card */
       z-index: 2;
     }
+
+    .card-content {
+    transform: translateY(0%);
+      }
 
     .pin-lines.right {
       right: -20px; /* Move further outside the card */

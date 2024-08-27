@@ -224,7 +224,7 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
 
     .project-content {
         width: 100%;
-        height: 500px;
+        height: 400px;
         padding: 0 1rem; /* Add padding to give some margin */
         border: 4mm ridge rgba(0, 0, 0, .9);
         border-radius: 25px;

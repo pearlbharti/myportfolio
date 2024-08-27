@@ -2,21 +2,21 @@
 export const dataProjects = [
     {
         title: 'Facial Emotion To Audio',
-        description: 'This project provides a real-time system that detects facial emotions using YOLO and converts them into audio feedback. It includes configurable detection intervals, text-to-speech integration, and optimized performance for seamless user experience.',
+        description: 'This project provides a real-time system that detects facial emotions using YOLO and converts them into audio feedback with configurable detection intervals.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/emotion_to_audio.jpg',
         link: 'https://facial-emotion-to-audio-conversion-system.onrender.com',
         skills: ["python", "roboflow", "javascript"]
     },
     {
         title: 'Retreival Augmented Generation Chatbot',
-        description: 'A Retrieval-Augmented Generation (RAG) app using AWS Lambda and ECR, integrating Langchain, Docker, and HuggingFace. It automates data ingestion, retrieval, generation, and CI/CD processes (Check Github Repo)',
+        description: 'Automating data ingestion, retrieval, generation, and CI/CD processes (Check Github Repo)',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/rag_chatbot.jpg',
         link: 'https://retrieval-agumented-generation-qa.onrender.com',
-        skills: ["llama2", "AWS", "python"]
+        skills: ["llama2", "AWS", "Huggingface"]
     },
     {
         title: 'Reddit Data Pipeline',
-        description: 'This project sets up a comprehensive ETL pipeline for analyzing Reddit music data using Apache Airflow, Celery, and AWS services. It extracts data via Reddit API, stores it in S3, transforms with AWS Glue/Athena, and loads into Redshift and Quicksight for analysis.',
+        description: 'This project sets up a comprehensive ETL pipeline for analyzing Reddit music data using Apache Airflow, Celery, and AWS services.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/reddit_pipeline.png',
         link: 'https://github.com/snehsuresh/reddit-data-pipeline',
         skills: ["airflow", "docker", "AWS"]
@@ -30,7 +30,7 @@ export const dataProjects = [
     },
     {
         title: 'British Airways Reviews Dashboard',
-        description: 'The British Airways review dashboard in Tableau visualizes customer feedback by aggregating and analyzing reviews. It includes numerous metrics like monthly ratings and comfort scores.',
+        description: 'The British Airways review dashboard in Tableau visualizes customer feedback by aggregating and analyzing reviews. ',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/british_airways.png',
         link: 'https://public.tableau.com/app/profile/sneh.pillai/viz/BritishAirwaysReviews_17242935042790/BritishAirwaysDashboard',
         skills: ["Tableau"]
@@ -38,7 +38,7 @@ export const dataProjects = [
 
     {
         title: 'Tuberculosis X-Ray Detection System',
-        description: 'This project involves deploying a CNN for tuberculosis detection in chest X-rays using Docker and Apache Airflow. Docker containers manage the environment, while Airflow orchestrates data ingestion, training, and evaluation tasks, with DVC handling dataset versioning.',
+        description: 'This project involves deploying a CNN for tuberculosis detection in chest X-rays using Docker and Apache Airflow for orchestrateing pipeline tasks with the help of DVC versioning.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/tb_xray.jpg',
         link: 'https://tuberculosis-xray-diagnosis-classifier.onrender.com',
         skills: ["Airflow", "DVC", "CNN"]

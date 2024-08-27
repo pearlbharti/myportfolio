@@ -372,7 +372,7 @@ function Work() {
                     }
 
                      .header-text {
-                        font-size: 1.7rem; /* Increase the font size */
+                        font-size: 1.5rem; /* Increase the font size */
                         white-space: nowrap; /* Ensure the text doesn't wrap */
                         text-align: center; /* Center the text */
                         width: 100%;
