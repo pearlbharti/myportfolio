@@ -34,7 +34,7 @@ function App() {
           <ScrollToTop />
           <Navbar isVisible={navbarVisible} />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/myportfolio" element={<HomePage />} />
             <Route path="/work" element={<Work />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
