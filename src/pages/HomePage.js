@@ -4,6 +4,7 @@ import SelectedBlogs from './SelectedBlogs';
 import GlareButton1 from '../components/GlareButton1';
 import { githubIcon, linkedInIcon, emailIcon, jumpingArrow } from '../assets/images';
 import { heroText } from '../assets/text';
+
 function HomePage() {
     const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -35,24 +36,21 @@ function HomePage() {
                         Massachusetts, Dartmouth.
                     </div>
                     <div className="image-gallery">
-                        <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer"><div className="github-icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div></a>
-
-                        <a href="mailto:snehpillai02@gmail.com">
-                            <div className="email-icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
+                        <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer">
+                            <div className="github-icon icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div>
                         </a>
-
-                        <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer"><div className="linkedin-icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div></a>
-
-
-
+                        <a href="mailto:snehpillai02@gmail.com">
+                            <div className="email-icon icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer">
+                            <div className="linkedin-icon icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
+                        </a>
                     </div>
-                    <GlareButton1 link="/contact" onClick={() => console.log('Navigating to Contact page')}>Connect with Me!</GlareButton1>
-
+                    <GlareButton1 className="cta-button" link="/contact" onClick={() => console.log('Navigating to Contact page')}>Connect with Me!</GlareButton1>
                 </div>
                 {!hasScrolled && (
                     <div className="scroll-section">
-                        <div className="arrow-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }} >
-                        </div>
+                        <div className="arrow-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }} ></div>
                     </div>
                 )}
                 <FeaturedWork />
@@ -69,10 +67,8 @@ function HomePage() {
                 }
 
                 .landing {
-                    // background-color: rgba(255, 252, 238, 1);
                     display: flex;
                     width: 100%;
-                    // height: 90vh;
                     padding-bottom: 70px;
                     flex-direction: column;
                     align-items: center;
@@ -81,42 +77,46 @@ function HomePage() {
                 .intro-text {
                     color: #E7EEFF;
                     text-align: center;
-                    width: calc(100vw - 4rem); /* Adjusts width relative to the viewport width with 2rem padding on each side */
-                    max-width: 70vw; /* Ensure it doesn't exceed 70% of the viewport width */
+                    width: calc(100vw - 4rem);
+                    max-width: 70vw;
                     font: 200 calc(1.5vw + 0.8rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 10rem 0 0; /* Adjusted for centering */
+                    margin: 10rem 0 0;
+                    opacity: 0;
+                    animation: fadeIn 2s ease-in forwards;
                 }
 
                 .image-gallery {
                     display: flex;
                     color: #E7EEFF;
                     margin: 3rem 0 1rem 0;
-                    gap: 1.5rem; /* Reduced space between images */
+                    gap: 1.5rem;
                     justify-content: space-between;
-                    max-width: 600px; /* Adjust as needed */
+                    max-width: 600px;
                 }
 
-                .image-small-1, .image-small-2, .image-small-3, .image-small-4 {
-                    aspect-ratio: 1;
-                    object-fit: contain;
-                    object-position: center;
+                .icon {
+                    opacity: 0;
+                    animation: fadeInIcon 0.5s ease-in forwards;
                 }
 
-                .image-small-1 {
-                    width: 40px;
+                .github-icon {
+                    animation-delay: 0.1s; /* Starts after the intro text finishes fading in */
                 }
-                .image-small-2 {
-                    width: 45px;
+                .email-icon {
+                    animation-delay: 0.3s; /* Delayed further to appear after GitHub icon */
                 }
-                .image-small-3 {
-                    width: 43px;
+                .linkedin-icon {
+                    animation-delay: 0.5s; /* Delayed further to appear after Email icon */
                 }
-                .image-small-4 {
-                    width: 40px;
+
+                .cta-button {
+                    opacity: 0;
+                    animation: fadeInButton 0.5s ease-in forwards;
+                    animation-delay: 1.5s; /* Delayed to appear after the icons */
                 }
 
                 .scroll-section {
-                    position: fixed; /* Fixed positioning to stay at the bottom-left of the screen */
+                    position: fixed;
                     bottom: 0;
                     left: 0;
                     display: flex;
@@ -132,17 +132,35 @@ function HomePage() {
                     animation: jump 1s ease-in-out infinite;
                 }
 
-                .scroll-text {
-                    margin-top: -10px;
-                    color: rgba(0, 0, 0, 1);
-                    font: 200 20px 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
                 }
 
-                .background-image {
-                    aspect-ratio: 1.54;
-                    object-fit: contain;
-                    object-position: center;
-                    width: 100%;
+                @keyframes fadeInIcon {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes fadeInButton {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
                 }
 
                 @keyframes jump {
@@ -159,8 +177,8 @@ function HomePage() {
 
                 @media (max-width: 600px) {
                     .cta-button {
-                        font-size: 20px; /* Adjust font size for smaller screens */
-                        padding: 10px 20px; /* Adjust padding accordingly */
+                        font-size: 20px;
+                        padding: 10px 20px;
                     }
                 }
             `}</style>

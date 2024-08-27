@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-function Navbar() {
+function Navbar({ isVisible }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const navigateRef = useRef(null);
@@ -35,7 +35,7 @@ function Navbar() {
 
     return (
         <>
-            <div className="navbar">
+            <div className={`navbar ${isVisible ? 'fade-in' : ''}`}>
                 <div className="navbar-container" ref={navbarContainerRef}>
                     <Link to="/" onClick={handleLinkClick}>
                         <div className="logo-img">
@@ -88,19 +88,28 @@ function Navbar() {
                 )}
             </div>
             <style jsx>{`
+                /* Ensure the body background is set */
+                body {
+                    background-color: #010004;
+                }
+
                 .navbar {
                     align-items: center;
                     padding: 0 1em;
-                    height: 2.5rem; /* Adjust this to fit your design */
-                    box-sizing: border-box;
-                    background-color: #010004;
-                    border-bottom: none; /* Remove border-bottom from navbar */
-                    position: sticky;
-                    top: -10px;
-                    z-index: 10000; /* Ensure the navbar is above other content */
-                    overflow: hidden;
-                    transition: height 0.3s ease;
                     height: 5em;
+                    box-sizing: border-box;
+                    background-color: #010004; /* Set background color explicitly */
+                    border-bottom: none;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10000;
+                    overflow: hidden;
+                    transition: opacity 2s ease;
+                    opacity: 0;
+                }
+
+                .navbar.fade-in {
+                    opacity: 1;
                 }
 
                 .navbar-container {
@@ -109,20 +118,20 @@ function Navbar() {
                     align-items: center;
                     justify-content: space-between;
                     position: relative;
-                    height: 100%; /* Ensures that the container is the same height as the navbar */
+                    height: 100%;
                 }
 
                 .logo-img {
-                    height: 100%; /* The logo container will be as tall as the navbar */
-                    width: auto; /* Adjust width as necessary */
+                    height: 100%;
+                    width: auto;
                     display: flex;
-                    align-items: center; /* Ensures the image is centered vertically */
+                    align-items: center;
                 }
 
                 .the-img {
-                    height: 100%; /* Image will cover the height of its container */
-                    width: 10rem; /* Maintains the aspect ratio of the image */
-                    object-fit: cover; /* Ensures the image covers the entire container */
+                    height: 100%;
+                    width: 10rem;
+                    object-fit: cover;
                     object-position: center;
                 }
 
@@ -137,7 +146,6 @@ function Navbar() {
                     transition: opacity 0.3s ease;
                 }
 
-
                 .nav-item {
                     display: flex;
                     flex-direction: column;
@@ -147,25 +155,20 @@ function Navbar() {
                     color: #E7EEFF;
                     padding: 1em;
                     font-weight: 500;
-                    position: relative; /* For absolute positioning of the border and circle */
+                    position: relative;
                     transition: color 0.3s ease;
                 }
 
                 .nav-link {
                     text-decoration: none;
                     color: inherit;
-                    position: relative; /* Ensure the circle is correctly positioned */
-                }
-
-                .nav-link:hover .nav-item {
-                    // color: #007bff;
+                    position: relative;
                 }
 
                 .nav-item.active {
                     background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 41%);
-                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Smoky effect */
-                    border-radius: 1px; /* Rounded corners to match the background */
-                    // transform: translateY(-5px); /* Slight lift effect */
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                    border-radius: 1px;
                 }
 
                 .nav-item.active::after {
@@ -175,10 +178,10 @@ function Navbar() {
                     left: 0;
                     bottom: 0;
                     width: 100%;
-                    height: 4px; /* Adjust height as needed */
+                    height: 4px;
                     background: radial-gradient(70.31% 100% at 50% 0%, rgba(131, 113, 243, 0.5) 0%, rgba(69, 156, 236, 0) 100%), radial-gradient(130.16% 129.69% at 63.64% -12.5%, #8528FB 0%, rgba(86, 84, 74, 0.12) 100%), radial-gradient(80.68% 51.24% at 19.32% 40.62%, #1864B7 0%, rgba(23, 61, 102, 0.88) 100%), radial-gradient(28.98% 110.94% at 43.75% -31.25%, rgba(24, 17, 24, 0.53) 21.25%, #000000 100%), #030303;
                     border-radius: 4px;
-                    transform: translateY(50%); /* Adjust if necessary to align with text */
+                    transform: translateY(50%);
                 }
 
                 .hamburger {
@@ -194,13 +197,13 @@ function Navbar() {
                     }
 
                     .navigate {
-                        display: flex; /* Set display to flex to support transitions */
+                        display: flex;
                         max-height: 0;
                         opacity: 0;
-                        padding: 0; /* Remove padding when closed */
+                        padding: 0;
                         overflow: hidden;
                         gap: 0rem;
-                        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out; /* Smooth transition for max-height, opacity, and padding */
+                        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
                     }
 
                     .hamburger {
@@ -208,15 +211,15 @@ function Navbar() {
                     }
 
                     .navigate.open {
-                        max-height: 1000px; /* Use a large value for smooth transition, or adjust based on content height */
+                        max-height: 1000px;
                         opacity: 1;
-                        padding: 1rem; /* Add padding when open */
+                        padding: 1rem;
                         background: black;
                         flex-direction: column;
                         align-items: center;
                         top: 0;
                         right: 0;
-                        position: relative; /* Positioning context for pseudo-element */
+                        position: relative;
                         box-shadow: 0px 9px 14px -4px rgba(255, 255, 255, 0.5);
                         border-radius: 10px;
                     }
@@ -224,11 +227,11 @@ function Navbar() {
                     .navigate.open::after {
                         content: '';
                         position: absolute;
-                        bottom: 0; /* Position the border at the bottom */
-                        left: 50%; /* Center the border horizontally */
-                        transform: translateX(-50%); /* Adjust for centering */
-                        width: 1.5rem; /* Width of the border */
-                        border-bottom: 1px solid #e9ecef; /* Border style */
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 1.5rem;
+                        border-bottom: 1px solid #e9ecef;
                     }
                 }
             `}</style>
