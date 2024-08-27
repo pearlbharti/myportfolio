@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import FeaturedWork from './FeaturedWork';
 import SelectedBlogs from './SelectedBlogs';
 import GlareButton1 from '../components/GlareButton1';
-import { githubIcon, linkedInIcon, mediumIcon, emailIcon, jumpingArrow } from '../assets/images';
+import { githubIcon, linkedInIcon, emailIcon, jumpingArrow } from '../assets/images';
+import { heroText } from '../assets/text';
 function HomePage() {
     const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -34,10 +35,14 @@ function HomePage() {
                         Massachusetts, Dartmouth.
                     </div>
                     <div className="image-gallery">
-                        <div className="github-icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div>
-                        <div className="email-icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
-                        {/* <div className="medium-icon" dangerouslySetInnerHTML={{ __html: mediumIcon }}></div> */}
-                        <div className="linkedin-icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
+                        <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer"><div className="github-icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div></a>
+
+                        <a href="mailto:snehpillai02@gmail.com">
+                            <div className="email-icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer"><div className="linkedin-icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div></a>
+
 
 
                     </div>
@@ -67,7 +72,7 @@ function HomePage() {
                     // background-color: rgba(255, 252, 238, 1);
                     display: flex;
                     width: 100%;
-                    height: 90vh;
+                    // height: 90vh;
                     padding-bottom: 70px;
                     flex-direction: column;
                     align-items: center;
@@ -85,7 +90,7 @@ function HomePage() {
                 .image-gallery {
                     display: flex;
                     color: #E7EEFF;
-                    margin-top: 45px;
+                    margin: 3rem 0 1rem 0;
                     gap: 1.5rem; /* Reduced space between images */
                     justify-content: space-between;
                     max-width: 600px; /* Adjust as needed */

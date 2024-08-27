@@ -14,8 +14,8 @@ function FeaturedWork() {
     const cardMargin = 0;
     const cardWidthWithMargin = cardWidth + cardMargin;
 
-    // Duplicate the featuredWork array to create an infinite scroll effect
-    const duplicatedFeaturedWork = repeatArray(featuredWork, 15);
+    // Use different data for small screens
+    const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork, 15) : featuredWork;
 
     useEffect(() => {
         const scrollContainer = scrollContainerRef.current;
@@ -44,56 +44,55 @@ function FeaturedWork() {
     }, [cardWidthWithMargin, isWideScreen, isAnimationActive]);
 
     useEffect(() => {
-        const scrollContainer = scrollContainerRef.current;
-        if (!scrollContainer) return;
+        if (isWideScreen) {
+            const scrollContainer = scrollContainerRef.current;
+            if (!scrollContainer) return;
 
-        const initialScrollPosition = (duplicatedFeaturedWork.length / 2) * cardWidthWithMargin - scrollContainer.clientWidth / 2;
-        const targetScrollPosition = initialScrollPosition;
-        const duration = 0; // duration of the scroll in milliseconds
-        const startTime = performance.now();
+            const initialScrollPosition = (displayedFeaturedWork.length / 2) * cardWidthWithMargin - scrollContainer.clientWidth / 2;
+            const targetScrollPosition = initialScrollPosition;
+            const duration = 0; // duration of the scroll in milliseconds
+            const startTime = performance.now();
 
-        setIsAnimationActive(true);
+            setIsAnimationActive(true);
 
-        const animateScroll = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+            const animateScroll = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
 
-            // Smoother easing function for natural feel
-            const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+                // Smoother easing function for natural feel
+                const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
-            scrollContainer.scrollLeft = targetScrollPosition * easeOutExpo(progress);
+                scrollContainer.scrollLeft = targetScrollPosition * easeOutExpo(progress);
 
-            if (progress < 1) {
-                requestAnimationFrame(animateScroll);
-            } else {
-                // Ensure exact final position and update active card
-                scrollContainer.scrollLeft = targetScrollPosition;
-                const scrollLeft = scrollContainer.scrollLeft;
-                const centerOffset = scrollContainer.clientWidth / 2;
-                const finalIndex = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
-                setLeftMostCardIndex(finalIndex);
-                setIsAnimationActive(false);
-            }
-        };
+                if (progress < 1) {
+                    requestAnimationFrame(animateScroll);
+                } else {
+                    // Ensure exact final position and update active card
+                    scrollContainer.scrollLeft = targetScrollPosition;
+                    const scrollLeft = scrollContainer.scrollLeft;
+                    const centerOffset = scrollContainer.clientWidth / 2;
+                    const finalIndex = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
+                    setLeftMostCardIndex(finalIndex);
+                    setIsAnimationActive(false);
+                }
+            };
 
-        requestAnimationFrame(animateScroll);
-    }, [cardWidthWithMargin, duplicatedFeaturedWork.length]);
+            requestAnimationFrame(animateScroll);
+        }
+    }, [cardWidthWithMargin, displayedFeaturedWork.length, isWideScreen]);
 
     const getCardStyle = (isActiveCard) => ({
         flex: `0 0 ${cardWidth}px`,
         height: `${cardWidth}px`,
+        width: isWideScreen ? '' : `100%`,
         margin: `0 ${cardMargin}px`,
         transition: 'transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0.5s ease-in-out',
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
-        border: isActiveCard ? '8px solid #b8becc' : '4px solid #b8becc', // Boundary box with color #E7EEFF
+        border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #b8becc') : 'none', // Boundary box with color #E7EEFF
         borderRadius: '20px',
         boxSizing: 'border-box',
-        // boxShadow: isActiveCard ? `0px 0px 48px rgba(138, 142, 153, 0.5)` : `rgba(138, 142, 153, 0.9) 2px 5px 50px`,
-        // boxShadow: isActiveCard
-        //     ? '0 10px 25px rgba(241, 231, 254, 1)' // More blurry shadow only on the bottom
-        //     : '0 10px 25px rgba(241, 231, 254, 1)', // Non-active cards have the same shadow for consistency
         marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
         marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
@@ -102,9 +101,9 @@ function FeaturedWork() {
         <div className="featured-work-container">
             <h2 className="featured-work-title">Featured Work</h2>
 
-            <div className="scroll-container" ref={scrollContainerRef}>
-                <div className="scroll-inner">
-                    {duplicatedFeaturedWork.map((project, index) => {
+            <div className={`scroll-container ${isWideScreen ? '' : 'small-screen'}`} ref={scrollContainerRef}>
+                <div className={`scroll-inner ${isWideScreen ? '' : 'vertical'}`}>
+                    {displayedFeaturedWork.map((project, index) => {
                         const actualIndex = index % featuredWork.length;
                         const isActiveCard = !isAnimationActive && isWideScreen && leftMostCardIndex === actualIndex;
                         return (
@@ -117,7 +116,9 @@ function FeaturedWork() {
                                     title={project.title}
                                     description={project.description}
                                     image={project.image}
+                                    link={project.link}
                                     isActive={isActiveCard}
+                                    isWideScreen={isWideScreen}
                                 />
                             </div>
                         );
@@ -125,7 +126,7 @@ function FeaturedWork() {
                 </div>
             </div>
 
-            <div className="bubble-progress-bar-container">
+            <div className={`bubble-progress-bar-container ${isWideScreen ? '' : 'hidden'}`}>
                 {featuredWork.map((_, index) => (
                     <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} />
                 ))}
@@ -136,17 +137,9 @@ function FeaturedWork() {
                 .featured-work-container {
                     text-align: center;
                     padding: 20px;
-                    
-                }
-
-                .card{
-                border: '4px solid #b8becc',
                 }
 
                 .featured-work-title {
-                    // font-family: 'Josefin Sans', sans-serif;
-                    // font-size: 28px;
-                    // margin-bottom: 20px;
                     color: #E7EEFF;
                     font-size: 3rem;
                     font-weight: 400;
@@ -166,22 +159,39 @@ function FeaturedWork() {
                     padding: 3rem 0rem;
                 }
 
+                .scroll-container.small-screen {
+                    display: block;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    // height: 100vh; /* Full viewport height */
+                    padding: 1rem 0;
+                }
+
                 .scroll-container::-webkit-scrollbar {
                     display: none; /* Chrome, Safari, Opera */
                 }
 
                 .scroll-inner {
                     display: flex;
-                    width: ${cardWidth * duplicatedFeaturedWork.length + cardMargin * (duplicatedFeaturedWork.length - 1)}px;
+                    flex-wrap: nowrap;
+                    width: ${cardWidth * displayedFeaturedWork.length + cardMargin * (displayedFeaturedWork.length - 1)}px;
                     text-align: center;
-                    height: 50vh;
                     align-items: center;
+                }
+
+                .scroll-inner.vertical {
+                    flex-direction: column;
+                    width: 100%;
                 }
 
                 .bubble-progress-bar-container {
                     display: flex;
                     justify-content: center;
                     margin: 10px 0;
+                }
+
+                .bubble-progress-bar-container.hidden {
+                    display: none;
                 }
 
                 .bubble {

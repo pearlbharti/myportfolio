@@ -181,6 +181,7 @@ function SelectedBlogs() {
         height: 100%;
         border-radius: 15px;
         object-fit: cover;
+        filter: brightness(0.6);
     }
 
     .blog-content {
@@ -188,9 +189,9 @@ function SelectedBlogs() {
         margin-left: 10rem;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* Changed from center to flex-start */
-        text-align: left; /* Changed from center to left */
-        padding-right: 1rem; /* Add padding on the right */
+        justify-content: flex-start;
+        text-align: left;
+        padding-right: 1rem;
         position: relative;
     }
 
@@ -213,7 +214,6 @@ function SelectedBlogs() {
     }
 
     .read-more-button {
-        /* Smaller button with white outline, white background, and 'Josefin Sans' font */
         --button_radius: 0.5em;
         --button_color: #000000;
         --button_outline_color: #ffffff;
@@ -222,31 +222,28 @@ function SelectedBlogs() {
         font-weight: bold;
         border: 2px solid var(--button_outline_color);
         border-radius: var(--button_radius);
-        // background: var(--button_outline_color);
         background: transparent;
         padding: 0.5em 1.25em;
         color: white;
         transform: translateY(-0.2em);
         transition: transform 0.1s ease;
         cursor: pointer;
-        position: absolute; /* Absolute positioning to align to the bottom-right */
-        bottom: 0; /* Align to the bottom */
-        right: 0; /* Align to the right */
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
     .read-more-button:hover {
-        /* Pull the button upwards when hovered */
         transform: translateY(-0.33em);
     }
 
     .read-more-button:active {
-        /* Push the button downwards when pressed */
         transform: translateY(0);
     }
 
     .progress-bar-container {
         position: relative;
-        right: -15px; /* Align right next to blogs-rectangle */
+        right: -15px;
         height: 100%;
         width: 15px;
         display: flex;
@@ -268,6 +265,47 @@ function SelectedBlogs() {
     .active-bubble {
         transform: scale(1.3);
         background-color: #333;
+    }
+
+    @media (max-width: 768px) {
+        .blogs-wrapper {
+            width: 90%;
+            height: 300px;
+        }
+
+        .blogs-rectangle {
+            height: 350px;
+        }
+
+        .blog-image {
+            width: 150px;
+            height: 150px;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .blog-content {
+            margin-left: 0;
+            padding: 1rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            margin: 70px 0 5px 0;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+        }
+
+        .blog-text {
+            display: none;
+        }
+
+        .read-more-button {
+            font-size: 12px;
+        }
     }
 `}</style>
         </div>

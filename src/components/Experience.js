@@ -113,13 +113,14 @@ const Experience = () => {
         position: relative;
         font-family: 'Josefin Sans', sans-serif;
     }
-         .journey-title {
-                font-size: 4rem;
-                font-weight: 200;
-                text-align: center;
-                margin: 3rem 0 4rem 0;
-                color: white;
-            }
+
+    .journey-title {
+        font-size: 4rem;
+        font-weight: 200;
+        text-align: center;
+        margin: 3rem 0 4rem 0;
+        color: white;
+    }
 
     .progress-bar {
         width: 10%;
@@ -215,20 +216,20 @@ const Experience = () => {
     }
 
     .experience-item {
-    margin: 0rem 0 5rem 0; /* Adjust margins to avoid overlap */
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    position: relative;
-}
+        margin: 0rem 0 5rem 0; /* Adjust margins to avoid overlap */
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        position: relative;
+    }
 
     .experience-content {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    height: auto; /* Allow height to adjust based on content */
-    max-width: 100%; /* Ensure it does not stretch beyond container */
-}
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        height: auto; /* Allow height to adjust based on content */
+        max-width: 100%; /* Ensure it does not stretch beyond container */
+    }
 
     .experience-text {
         flex: 1;
@@ -237,27 +238,26 @@ const Experience = () => {
         justify-content: space-between;
     }
 
-    
-.experience-image-wrapper {
-    position: relative;
-    width: 30%;
-    padding-top: 30%; /* Maintain a square aspect ratio */
-    margin-left: 20px; /* Ensure space between items */
-    overflow: hidden;
-    box-shadow: 0px 4px 8px 0px #8a8e99;
-    border-radius: 10px;
-    margin-right: 3rem;
-}
+    .experience-image-wrapper {
+        position: relative;
+        width: 30%;
+        padding-top: 30%; /* Maintain a square aspect ratio */
+        margin-left: 20px; /* Ensure space between items */
+        overflow: hidden;
+        box-shadow: 0px 4px 8px 0px #8a8e99;
+        border-radius: 10px;
+        margin-right: 3rem;
+    }
 
     .experience-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-}
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+    }
 
     .experience-image-wrapper.active .experience-image-border {
         transform: translate(0, 0) scale(1.05);
@@ -283,7 +283,7 @@ const Experience = () => {
         font-size: 1.3rem;
         line-height: 1.5;
         color: #b8becc;
-            margin: 0 6rem 0 0;
+        margin: 0 6rem 0 0;
     }
 
     .exp-company {
@@ -322,17 +322,20 @@ const Experience = () => {
     }
 
     @media (max-width: 768px) {
-    .experience-item {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-    }
+        .experience-item {
+            flex-direction: column; /* Stack items vertically on smaller screens */
+            margin: 0rem 0 5rem 2rem;
+        }
 
-    .experience-image-wrapper {
-        width: 100%; /* Make images full-width on smaller screens */
-        margin-left: 0; /* Remove left margin */
-        margin-bottom: 20px; /* Add bottom margin for spacing */
-        
+        .experience-image-wrapper {
+            display: none; /* Hide images on small screens */
+        }
+
+        .exp-description {
+        font-size: 1rem;
+        margin: 0;
+        }
     }
-}
 `}</style>
         </div>
     );

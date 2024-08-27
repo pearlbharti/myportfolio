@@ -3,7 +3,6 @@ import { throttle } from 'lodash';
 import { confidenceInterval } from '../assets/images';
 import ProjectWork from '../components/ProjectWork';
 
-
 function Work() {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [activeProject, setActiveProject] = useState(0);
@@ -13,7 +12,6 @@ function Work() {
     const [displayedText, setDisplayedText] = useState("I offer no proof, only confidence.");
     const [animationState, setAnimationState] = useState('typing');
 
-
     const projectDivRef = useRef(null);
     const listProjectRef = useRef(null);
     const contentcontainerRef = useRef(null);
@@ -22,15 +20,14 @@ function Work() {
     const curtainRef = useRef(null);
     const [scrollY, setScrollY] = useState(0);
 
-
     useEffect(() => {
-        const typingDuration = 2000; // Duration for typing animation
-        const pauseDuration = 500; // Duration of pause before backspacing starts
-        const backspacingDuration = 1000; // Duration for backspacing animation
-        const newTextTypingDuration = 500; // Duration for typing "No, Wait!" text
+        const typingDuration = 2000;
+        const pauseDuration = 500;
+        const backspacingDuration = 1000;
+        const newTextTypingDuration = 500;
 
         if (animationState === 'typing') {
-            setText(displayedText); // Show the full text during typing
+            setText(displayedText);
 
             const typingTimeout = setTimeout(() => {
                 setAnimationState('pause');
@@ -48,21 +45,18 @@ function Work() {
         }
 
         if (animationState === 'backspacing') {
-            // Clear the text immediately to start backspacing
-
             const backspaceTimeout = setTimeout(() => {
                 setText('');
-                setText('No, Wait!'); // Set the new text after backspacing
-                setAnimationState('typing-new-text'); // Start typing animation for the new text
+                setText('No, Wait!');
+                setAnimationState('typing-new-text');
             }, backspacingDuration);
 
             return () => clearTimeout(backspaceTimeout);
         }
 
         if (animationState === 'typing-new-text') {
-            // This state handles the typing animation for "No, Wait!"
             const typingNewTextTimeout = setTimeout(() => {
-                setAnimationState('done'); // Transition to the final state after typing
+                setAnimationState('done');
             }, newTextTypingDuration);
 
             return () => clearTimeout(typingNewTextTimeout);
@@ -90,7 +84,6 @@ function Work() {
         const handleScroll = () => {
             if (!projectDivRef.current) return;
 
-            // const scrollTop = projectDivRef.current.scrollTop;
             const projectElements = document.querySelectorAll('.project');
             const viewportHeight = window.innerHeight;
             let closestIndex = 0;
@@ -151,18 +144,9 @@ function Work() {
         }
     }, [toggle]);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setShowImage(true);
-    //     }, 700);
-
-    //     return () => clearTimeout(timer);
-    // }, []);
-
     useEffect(() => {
         const timer = setTimeout(() => {
             if (contentcontainerRef.current) {
-                console.log('Scrolling to top');
                 contentcontainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }, 4000);
@@ -213,7 +197,6 @@ function Work() {
                         listProjectRef={listProjectRef}
                     />
                 </div>
-
             </div>
             {showImage && !hasScrolled && (
                 <div className="no-wait-container">
@@ -353,6 +336,7 @@ function Work() {
                         transform: translateY(-40px);
                     }
                 }
+
                 @media (max-width: 768px) {
                     .projects-page {
                         flex-direction: column;
@@ -374,6 +358,49 @@ function Work() {
                     }
                     .project-content {
                         width: 100%;
+                    }
+                    
+                    .header-work {
+                        padding: 2em;
+                    }
+
+                    .header-bg {
+                        background-size: contain;
+                        background-position: center;
+                        height: 50%;
+                        width: 100%%;
+                    }
+
+                     .header-text {
+                        font-size: 1.7rem; /* Increase the font size */
+                        white-space: nowrap; /* Ensure the text doesn't wrap */
+                        text-align: center; /* Center the text */
+                        width: 100%;
+                    }
+
+                    .typing-container {
+                        width: 100%; /* Ensure the typing container is full width */
+                        justify-content: center; /* Center the text within the container */
+                    }
+                        .curtain{
+                        width: 190%;
+                        }
+                       .header-bg {
+                        position: absolute;
+                        top: 50%; /* Center vertically */
+                        left: 50%; /* Center horizontally */
+                        transform: translate(-50%, -50%); /* Offset by half its size */
+                        width: auto; /* Allow width to adjust as needed */
+                        height: auto; /* Allow height to adjust as needed */
+                        overflow: visible; /* Allow SVG to overflow if necessary */
+                        display: flex; /* Center the content */
+                        justify-content: center; /* Center horizontally */
+                        align-items: center; /* Center vertically */
+                    }
+
+                    @keyframes typing {
+                        from { width: 0; }
+                        to { width: 100%; }
                     }
                 }
             `}</style>

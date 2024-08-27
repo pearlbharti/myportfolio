@@ -1,141 +1,213 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const WorkCard = ({ title, description, image, isActive }) => {
+const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) => {
+  // Conditional styling for box-shadow and border
+  const cardStyle = isWideScreen
+    ? {}
+    : {
+      boxShadow: '0px 0px 4px 2px rgba(224,221,224,1)',
+      WebkitBoxShadow: '0px 0px 4px 2px rgba(224,221,224,1)',
+      MozBoxShadow: '0px 0px 4px 2px rgba(224,221,224,1)',
+      border: 'none',
+    };
+
   return (
-    <div className={`work-card ${isActive ? 'active' : ''}`}>
-      <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-      <div className="card-content">
-        <div className="card-text">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-description">{description}</p>
-        </div>
-        <div className="spacer"></div>
-        <div className="card-buttons">
-          <a href="#" className="card-button">Github Repo</a>
-          <a href="#" className="card-button">Try Me</a>
+    <div className={`work-card ${isActive ? 'active' : ''}`} style={cardStyle}>
+      <div className="card-content-wrapper">
+        <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
+        <div className="card-content">
+          <div className="card-text">
+            <h3 className="card-title">{title}</h3>
+            <p className="card-description">{description}</p>
+          </div>
+          <div className="spacer"></div>
+          <div className="card-buttons">
+            <a href={link} target="_blank" rel="noopener noreferrer" className="card-button">Check it out!</a>
+            {/* <a href="#" className="card-button">Try Me</a> */}
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        .work-card {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          border-radius: 20px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+  .work-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-        .card-image {
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          transition: transform 0.5s ease, filter 0.5s ease;
-          filter: brightness(90%) blur(3px);
-        }
+  .card-content-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+  }
 
-        .work-card:not(.active):hover .card-image {
-          transform: scale(1.1);
-          filter: brightness(100%) blur(0px);
-        }
+  .pin-lines {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    pointer-events: none;
+  }
 
-        .work-card.active .card-image {
-          transform: scale(1);
-          filter: blur(0px) brightness(100%);
-        }
+  .pin-lines.left {
+    left: -40px; /* Position outside the card */
+  }
 
-        .card-content {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-color: rgba(0, 0, 0, 0.7);
-          color: white;
-          border-radius: 4px;
-          transform: translateY(110%);
-          transition: transform 0.3s ease;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
+  .pin-lines.right {
+    right: -40px; /* Position outside the card */
+  }
 
-        .work-card:not(.active):hover .card-content {
-          transform: translateY(0);
-        }
+  .pin-line {
+    width: 100%;
+    height: 2px; /* Adjust line thickness as needed */
+    background: #88878b;
+  }
 
-        .work-card.active .card-content {
-          transform: translateY(0);
-        }
+  .card-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(20%) blur(3px);
+  }
 
-        .card-text {
-          display: flex;
-          flex-direction: column;
-          justify-content: center; /* Center vertically within the card-content */
-          align-items: center; /* Center horizontally */
-          flex: 1; /* Take up remaining space above the buttons */
-          padding: 0px 20px 0px 20px;
-        }
+  .work-card:not(.active):hover .card-image {
+    transform: scale(1.1);
+    filter: brightness(100%) blur(0px);
+  }
 
-        .card-title {
-          font-size: 1.2rem; /* Adjusted size */
-          margin: 0;
-          text-transform: uppercase;
-        }
+  .work-card.active .card-image {
+    transform: scale(1);
+    filter: blur(0px) brightness(100%);
+  }
 
-        .card-description {
-          font-size: 1rem;
-          margin-top: 5px;
-        }
+  .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 4px;
+    transform: translateY(110%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-        .spacer {
-          flex: 1; /* Take up remaining space between text and buttons */
-        }
+  .work-card:not(.active):hover .card-content {
+    transform: translateY(0);
+  }
 
-        .card-buttons {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 10px;
-          width: 100%;
-          padding: 10px 0px; /* Add padding for better spacing */
-        }
+  .work-card.active .card-content {
+    transform: translateY(0);
+  }
 
-        .card-button {
-          /* Smaller button with white outline, white background, and 'Josefin Sans' font */
-          --button_radius: 0.5em;
-          --button_color: #000000;
-          --button_outline_color: #ffffff;
-          font-family: 'Josefin Sans', sans-serif;
-          font-size: 0.8rem; /* Adjusted size */
-          font-weight: bold;
-          border: 2px solid var(--button_outline_color);
-          border-radius: var(--button_radius);
-          // background: var(--button_outline_color);
-          background: transparent;
-          padding: 6px 12px;
-          // color: var(--button_color);
-          color: white;
-          text-align: center;
-          text-decoration: none;
-          flex: 1;
-          margin: 0 5px;
-          display: block;
-          transition: background-color 0.3s, color 0.3s;
-        }
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 0px 20px 0px 20px;
+  }
 
-        .card-button:hover {
-          /* Pull the button upwards slightly when hovered */
-          transform: translateY(-0.2em);
-          background-color: rgba(231, 238, 255, 0.1); /* Light hover effect */
-          text-decoration: none;
-        }
+  .card-title {
+    font-size: 1.4rem;
+    margin: 3rem 0 3rem 0;
+    text-transform: uppercase;
+  }
 
-        .card-button:active {
-          /* Push the button downwards when pressed */
-          transform: translateY(0);
-        }
-      `}</style>
+  .card-description {
+    font-size: 1.5rem;
+    margin-top: 5px;
+    font-weight: 300;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .card-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    margin-top: 10px;
+    padding: 0 0 4rem 0px;
+  }
+
+  .card-button {
+    --button_radius: 0.5em;
+    --button_color: #000000;
+    --button_outline_color: #ffffff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.2rem; /* Smaller font size */
+    font-weight: 400;
+    border: 1px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    background: transparent;
+    padding: 4px 8px; /* Smaller padding */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .card-button:hover {
+    transform: translateY(-0.2em);
+    background-color: rgba(231, 238, 255, 0.1);
+    text-decoration: none;
+  }
+
+  .card-button:active {
+    transform: translateY(0);
+  }
+
+  /* Hide pin-lines on wider screens */
+  @media screen and (min-width: 769px) {
+    .pin-lines.left,
+    .pin-lines.right {
+      display: none;
+    }
+  }
+
+  /* Ensure pin lines stay outside the viewport on small screens */
+  @media screen and (max-width: 768px) {
+    .pin-lines.left {
+      left: -20px; /* Move further outside the card */
+      z-index: 2;
+    }
+
+    .pin-lines.right {
+      right: -20px; /* Move further outside the card */
+      z-index: 2;
+    }
+  }
+`}</style>
+
+
+
+      <div className="pin-lines left">
+        {[...Array(40)].map((_, index) => (
+          <div key={index} className="pin-line"></div>
+        ))}
+      </div>
+      <div className="pin-lines right">
+        {[...Array(40)].map((_, index) => (
+          <div key={index} className="pin-line"></div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -145,10 +217,12 @@ WorkCard.propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  isWideScreen: PropTypes.bool,
 };
 
 WorkCard.defaultProps = {
   isActive: false,
+  isWideScreen: true,
 };
 
 export default WorkCard;

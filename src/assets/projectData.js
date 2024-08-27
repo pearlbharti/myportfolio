@@ -16,17 +16,17 @@ export const dataProjects = [
     },
     {
         title: 'Reddit Data Pipeline',
-        description: 'This project sets up a comprehensive ETL pipeline for analyzing Reddit music data using Apache Airflow, Celery, and AWS services. It extracts data via Reddit API, stores it in S3, transforms with AWS Glue/Athena, and loads into Redshift for analysis. QuickSight provides visualization, with AWS Lambda managing file names and QuickSight updates.',
+        description: 'This project sets up a comprehensive ETL pipeline for analyzing Reddit music data using Apache Airflow, Celery, and AWS services. It extracts data via Reddit API, stores it in S3, transforms with AWS Glue/Athena, and loads into Redshift and Quicksight for analysis.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/reddit_pipeline.png',
         link: 'https://github.com/snehsuresh/reddit-data-pipeline',
-        skills: ["airflow", "python", "docker", "AWS"]
+        skills: ["airflow", "docker", "AWS"]
     },
     {
         title: 'Surveillance Anomaly Detection',
         description: 'This project provides a real-time system that detects anomalies in surveillance systems using YOLO.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/surveillance_anomaly.png',
         link: 'https://github.com/snehsuresh/surveillance-anomaly-detection',
-        skills: ["python", "roboflow", "javascript"]
+        skills: ["python", "yolov5", "javascript"]
     },
     {
         title: 'British Airways Reviews Dashboard',
@@ -38,10 +38,10 @@ export const dataProjects = [
 
     {
         title: 'Tuberculosis X-Ray Detection System',
-        description: 'This project involves deploying a CNN for tuberculosis detection in chest X-rays using Docker and Apache Airflow. It employs a Kaggle dataset, with a CNN architecture that includes convolutional layers and dropout. Docker containers manage the environment, while Airflow orchestrates data ingestion, training, and evaluation tasks, with DVC handling dataset versioning.',
+        description: 'This project involves deploying a CNN for tuberculosis detection in chest X-rays using Docker and Apache Airflow. Docker containers manage the environment, while Airflow orchestrates data ingestion, training, and evaluation tasks, with DVC handling dataset versioning.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/tb_xray.jpg',
         link: 'https://tuberculosis-xray-diagnosis-classifier.onrender.com',
-        skills: ["Airflow", "Python", "DVC", "CNN"]
+        skills: ["Airflow", "DVC", "CNN"]
     },
     // Add more projects as needed
 ];
@@ -49,21 +49,21 @@ export const dataProjects = [
 export const softwareProjects = [
     {
         title: 'Playerzpot Tournament',
-        description: 'This is the description for Project 3.',
+        description: 'PlayerzPot is a fantasy sports platform offering users a chance to create teams and win prizes based on real-world player performances. I developed the tournament feature, enabling users to compete in multi-match, mega, and skill-based game tournaments, enhancing the competitive experience and prize opportunities on the app.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/playerzpot.jpeg',
         link: 'https://playerzpot.com/',
         skills: ["Nodejs", "Socket IO", "Typescript", "Jenkins"]
     },
     {
         title: 'Unifeye',
-        description: 'This is the description for Project 3.',
+        description: 'Unifeye brings to you the ability to automatically recognize the user mapping and carry forward the same in subsequent version uploads which reduces the manual effort of mapping the facts in Inline XBRL.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/inlinexbrl.jpg',
         link: 'https://organizatech.com/Unifeye.html',
         skills: ["Python", "NLP", "Javascript", "XBRL", "HTML"]
     },
     {
         title: 'The Bespoke Company',
-        description: 'This is the description for Project 3.',
+        description: 'TBC is a cutting-edge app designed for customizing and perfecting your suits before purchase. Users can meticulously adjust every detail, from fabric and color to lapel style and button placement. With an intuitive interface and 3D visualization, it ensures your suit fits your exact preferences and specifications, providing a personalized shopping experience and guaranteeing a flawless final product..',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/tailorfy_ai.png',
         link: '',
         skills: ["ReactJs", "NodeJs"]
@@ -74,28 +74,28 @@ export const softwareProjects = [
 export const otherProjects = [
     {
         title: `CDC Data: US county rates of diabetes, obesity, and inactivity.`,
-        description: 'This is the description for Project 3.',
+        description: 'Insights into the relationship between inactivity/ obesity and diabetes, the intricacy of health as a factor demands a considerably broader and more nuanced understanding.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/diabetes.jpg',
         link: 'https://drive.google.com/file/d/1jfu3nLw9EaRrFow3erSCje_vE0ThKka6/view',
         skills: ["Mathematical Statistics", "scikit-learn", "Python"]
     },
     {
         title: `Time Series Economic Indicators Analysis : Analyze Boston's economic data.`,
-        description: 'This is the description for Project 3.',
+        description: 'Addressed to: The Boston Planning and Development Authority (BPDA). Examining trends, seasonal patterns, and correlations between international flights at Logan Airport and other economic indicators, aiming to predict future flights and assess unemployment patterns.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/boston.jpg',
         link: 'https://drive.google.com/file/d/1plJmhtkZjSIkYC3xa1VobrWa0KtRXgmb/view',
         skills: ["Mathematical Statistics", "scikit-learn", "Python", "Time Series"]
     },
     {
         title: 'Brain Tumor Detection',
-        description: 'This is the description for Project 3.',
+        description: 'Upload MRI images of the brain and detect tumors using image processing toolbox in MATLAB.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/brain_matlab.jpg',
         link: 'https://github.com/snehsuresh/brain_tumor_matlab',
         skills: ["MATLAB", "App Runner"]
     },
     {
         title: 'dbLink Pro',
-        description: 'This is the description for Project 3.',
+        description: 'A versatile Python package designed to simplify database interactions by offering a unified interface for performing CRUD.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/db_link_pro.jpg',
         link: 'https://pypi.org/project/dbLinkPro/',
         skills: ["python", "MySQL", "PostgreSQL", "Apache Cassandra"]

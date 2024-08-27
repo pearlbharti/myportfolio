@@ -4,7 +4,7 @@ import { dataProjects, softwareProjects, otherProjects } from '../assets/project
 
 function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projectDivRef }) {
     const projects = toggle === 'data' ? dataProjects : toggle === 'software' ? softwareProjects : otherProjects;
-    console.log("toggle", toggle);
+    // console.log("toggle", toggle);
 
     return (
         <>
@@ -128,7 +128,7 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
     .project {
         display: flex;
         align-items: flex-start;
-        margin-bottom: 5rem; /* Increased margin for more space */
+        margin-bottom: 5rem;
         height: auto;
         justify-content: space-between;
     }
@@ -153,21 +153,20 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
     .project-title {
         font-size: 2.3rem;
         font-weight: 300;
-        text-align: left; /* Ensures left alignment */
-        // margin-bottom: 0.8rem; /* Space between title and content */
+        text-align: left;
     }
 
     .project-content {
         width: 50%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Align content to the start (left) */
+        align-items: flex-start;
         justify-content: center;
-        text-align: left; /* Ensures left alignment */
+        text-align: left;
     }
 
     .project-description {
-        margin-bottom: 1rem; /* Space between content and button */
+        margin-bottom: 1rem;
         font-size: 1.7rem;
         font-weight: 200;
     }
@@ -175,7 +174,7 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
     .skills-list {
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 1rem; /* Space between skills and button */
+        margin-bottom: 1rem;
     }
 
     .skill-item {
@@ -201,35 +200,73 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
         color: #333;
     }
 
-    @media (max-width: 768px) {
-        .projects-page {
-            flex-direction: column;
-            height: auto;
-        }
-
-        .content-container,
-        .list-project,
-        .project-div {
-            width: 100%;
-            height: auto;
-        }
-
-        .project {
-            flex-direction: column;
-        }
-
-        .project-image {
-            width: 100%;
-            margin: 10px 0;
-            height: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-content {
-            width: 100%;
-        }
+   @media (max-width: 768px) {
+    .projects-page {
+        flex-direction: column;
+        height: auto;
     }
+
+    .content-container,
+    .list-project,
+    .project-div {
+        width: 100%;
+        height: auto;
+    }
+
+    .project {
+        flex-direction: column;
+        margin-bottom: 3rem; /* Adjusted margin for mobile */
+    }
+
+    .project-image {
+        display: none; /* Hide project image on mobile */
+    }
+
+    .project-content {
+        width: 100%;
+        height: 500px;
+        padding: 0 1rem; /* Add padding to give some margin */
+        border: 4mm ridge rgba(0, 0, 0, .9);
+        border-radius: 25px;
+        box-shadow: 7px 7px 9px 0px rgba(151 ,151, 151,1);
+        background: #010004;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Ensures proper spacing between elements */
+    }
+
+    .project-title {
+        width: 100%;
+        padding: 1rem 0 0 0;
+        font-size: 2rem; /* Slightly smaller font size for mobile */
+        font-weight: 400;
+        border-bottom: 2px solid #E7EEFF; /* Adding a 2px light blue bottom border */
+        color: #E7EEFF;
+        text-align: center; /* Center align title */
+    }
+
+    .project-description {
+        font-size: 1.5rem; /* Adjusted font size for mobile */
+        text-align: left; /* Left align description */
+        color: #E7EEFF;
+        margin-top: 1rem;
+    }
+    
+    .check-btn {
+        align-self: center; /* Center the button horizontally */
+        margin-bottom: 1rem; /* Ensure some space at the bottom */
+        color: #E7EEFF;
+    }
+    
+    .toggle-container {
+        display: flex;
+        margin: 10px 0 0 0;
+        justify-content: center;
+    }
+}
+
 `}</style>
+
 
         </>
     );

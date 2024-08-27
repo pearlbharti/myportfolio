@@ -43,7 +43,7 @@ function ContactPage() {
             <div className="contact-form-container">
                 <span className="title">Let's Collaborate!</span>
                 <p className="subtitle">
-                    Excited to work together or looking to hire me? Send me a message through the form, and don't forget to check out my resume <a href="/resume.pdf" className="link">here</a>!
+                    Excited to work together or looking to hire me? Send me a message through the form, and don't forget to check out my resume <a href="https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/documents/Pillai_Resume_2024_folio.pdf" target="_blank" rel="noopener noreferrer" className="link">here</a>!
                 </p>
                 <form className="form" onSubmit={handleSubmit}>
                     <input
@@ -161,7 +161,21 @@ function ContactPage() {
                 .icon:hover {
                     fill: #007BFF;
                 }
-                
+                @media (max-width: 768px) {
+                    .contact-form-container {
+                        border: none;
+                        box-shadow: none;
+                        width: 100%;
+                        text-align: left;
+
+                    }
+                        .page-container{
+                        padding: 2rem;
+                        }
+                    .icon-container {
+                        display: none;
+                    }
+                }
             `}</style>
         </div>
     );
