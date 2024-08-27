@@ -26,7 +26,7 @@ function App() {
     return () => clearTimeout(timer); // Cleanup on component unmount
   }, []);
   return (
-    <Router>
+    <Router basename="/myportfolio" >
       {loading ? (
         <LoadingScreen /> // Show loading screen while loading is true
       ) : (
