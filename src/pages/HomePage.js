@@ -3,7 +3,6 @@ import FeaturedWork from './FeaturedWork';
 import SelectedBlogs from './SelectedBlogs';
 import GlareButton1 from '../components/GlareButton1';
 import { githubIcon, linkedInIcon, emailIcon, jumpingArrow } from '../assets/images';
-import { heroText } from '../assets/text';
 
 function HomePage() {
     const [hasScrolled, setHasScrolled] = useState(false);
