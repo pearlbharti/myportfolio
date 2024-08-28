@@ -104,8 +104,9 @@ function Footer() {
                     <p className="copyright">&copy; Sneh Pillai, Built using ReactJs</p>
                 </div>
                 <div className="right">
-                    <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="no-color">Github</a>
-                    <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" className="no-color">LinkedIn</a>
+                    <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer" className="no-color">Github</a>
+                    <a href="https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/documents/Pillai_Resume_2024_folio.pdf" target="_blank" rel="noopener noreferrer" className="no-color">Resume</a>
+                    <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer" className="no-color">LinkedIn</a>
                 </div>
             </div>
             <style jsx>{newLocal}</style>
