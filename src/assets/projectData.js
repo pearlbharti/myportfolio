@@ -65,7 +65,7 @@ export const softwareProjects = [
         title: 'The Bespoke Company',
         description: 'TBC is a cutting-edge app designed for customizing and perfecting your suits before purchase. Users can meticulously adjust every detail, from fabric and color to lapel style and button placement.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/tailorfy_ai.png',
-        link: '',
+        link: 'https://thebespokecompany.netlify.app/',
         skills: ["ReactJs", "NodeJs"]
     },
 ]
