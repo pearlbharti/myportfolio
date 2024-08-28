@@ -126,7 +126,7 @@ function HomePage() {
                 .cta-button {
                     opacity: 0;
                     animation: fadeInButton 0.5s ease-in forwards;
-                    animation-delay: 1s;
+                    animation-delay: 0.8s;
                 }
 
                 .scroll-section {
