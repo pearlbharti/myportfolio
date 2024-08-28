@@ -26,7 +26,7 @@ function HomePage() {
         // Set showContent to true after CTA button animation
         const timer = setTimeout(() => {
             setShowContent(true);
-        }, 2000); // Delay should match CTA button animation duration
+        }, 1100); // Delay should match CTA button animation duration
 
         return () => clearTimeout(timer);
     }, []);
@@ -126,7 +126,7 @@ function HomePage() {
                 .cta-button {
                     opacity: 0;
                     animation: fadeInButton 0.5s ease-in forwards;
-                    animation-delay: 1.5s;
+                    animation-delay: 1s;
                 }
 
                 .scroll-section {
