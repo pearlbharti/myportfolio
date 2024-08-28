@@ -23,7 +23,7 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
           </div>
           <div className="spacer"></div>
           <div className="card-buttons">
-            <a href={link} target="_blank" rel="noopener noreferrer" className="card-button">Check it</a>
+            <a href={link} target="_blank" rel="noopener noreferrer" className="card-button">Check it out</a>
             {/* <a href="#" className="card-button">Try Me</a> */}
           </div>
         </div>
