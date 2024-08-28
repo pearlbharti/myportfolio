@@ -26,7 +26,7 @@ function HomePage() {
         // Set showContent to true after CTA button animation
         const timer = setTimeout(() => {
             setShowContent(true);
-        }, 1100); // Delay should match CTA button animation duration
+        }, 800); // Delay should match CTA button animation duration
 
         return () => clearTimeout(timer);
     }, []);
