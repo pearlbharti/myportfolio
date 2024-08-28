@@ -1,4 +1,4 @@
-export const myImage = 'https://dvw0mu5xdr2i4.cloudfront.net/IMG_7774.jpg'
+export const myImage = 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/story_images/self-ny1.jpg'
 
 export const confidenceInterval = `
   <svg width="681" height="288" viewBox="0 0 681 288" fill="none" xmlns="http://www.w3.org/2000/svg">

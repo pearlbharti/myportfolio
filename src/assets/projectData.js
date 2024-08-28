@@ -49,21 +49,21 @@ export const dataProjects = [
 export const softwareProjects = [
     {
         title: 'Playerzpot Tournament',
-        description: 'PlayerzPot is a fantasy sports platform offering users a chance to create teams and win prizes based on real-world player performances. I developed the tournament feature, enabling users to compete in multi-match, mega, and skill-based game tournaments, enhancing the competitive experience and prize opportunities on the app.',
+        description: 'A tournament feature, enabling users to compete in multi-match, mega, and skill-based game tournaments, enhancing the competitive experience and prize opportunities on the app.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/playerzpot.jpeg',
         link: 'https://playerzpot.com/',
-        skills: ["Nodejs", "Socket IO", "Typescript", "Jenkins"]
+        skills: ["Node", "SocketIO", "Typescript"]
     },
     {
         title: 'Unifeye',
-        description: 'Unifeye brings to you the ability to automatically recognize the user mapping and carry forward the same in subsequent version uploads which reduces the manual effort of mapping the facts in Inline XBRL.',
+        description: 'Automatically recognize user mapping and carry forward the same in subsequent version uploads which reduces the manual effort of mapping the facts in Inline XBRL.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/inlinexbrl.jpg',
         link: 'https://organizatech.com/Unifeye.html',
-        skills: ["Python", "NLP", "Javascript", "XBRL", "HTML"]
+        skills: ["NLP", "Javascript", "XBRL"]
     },
     {
         title: 'The Bespoke Company',
-        description: 'TBC is a cutting-edge app designed for customizing and perfecting your suits before purchase. Users can meticulously adjust every detail, from fabric and color to lapel style and button placement. With an intuitive interface and 3D visualization, it ensures your suit fits your exact preferences and specifications, providing a personalized shopping experience and guaranteeing a flawless final product..',
+        description: 'TBC is a cutting-edge app designed for customizing and perfecting your suits before purchase. Users can meticulously adjust every detail, from fabric and color to lapel style and button placement.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/tailorfy_ai.png',
         link: '',
         skills: ["ReactJs", "NodeJs"]
@@ -77,14 +77,14 @@ export const otherProjects = [
         description: 'Insights into the relationship between inactivity/ obesity and diabetes, the intricacy of health as a factor demands a considerably broader and more nuanced understanding.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/diabetes.jpg',
         link: 'https://drive.google.com/file/d/1jfu3nLw9EaRrFow3erSCje_vE0ThKka6/view',
-        skills: ["Mathematical Statistics", "scikit-learn", "Python"]
+        skills: ["Math Statistics", "sklearn"]
     },
     {
         title: `Time Series Economic Indicators Analysis : Analyze Boston's economic data.`,
-        description: 'Addressed to: The Boston Planning and Development Authority (BPDA). Examining trends, seasonal patterns, and correlations between international flights at Logan Airport and other economic indicators, aiming to predict future flights and assess unemployment patterns.',
+        description: 'Examining trends, seasonal patterns, and correlations between international flights at Logan Airport and other economic indicators, aiming to predict future flights and assess unemployment patterns.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/boston.jpg',
         link: 'https://drive.google.com/file/d/1plJmhtkZjSIkYC3xa1VobrWa0KtRXgmb/view',
-        skills: ["Mathematical Statistics", "scikit-learn", "Python", "Time Series"]
+        skills: ["Time Series Analysis"]
     },
     {
         title: 'Brain Tumor Detection',
@@ -98,7 +98,7 @@ export const otherProjects = [
         description: 'A versatile Python package designed to simplify database interactions by offering a unified interface for performing CRUD.',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/work_images/db_link_pro.jpg',
         link: 'https://pypi.org/project/dbLinkPro/',
-        skills: ["python", "MySQL", "PostgreSQL", "Apache Cassandra"]
+        skills: ["MySQL", "PgSQL", "Cassandra"]
     },
 
 ]

@@ -7,6 +7,7 @@ function SelectedBlogs() {
     const scrollAmount = useRef(0);
     const SCROLL_DELAY = 500;
     const SCROLL_THRESHOLD = 100;
+    const canScroll = useRef(true); // Add a flag for scrolling
 
     // Handle mouse wheel scroll
     const handleWheel = (e) => {
@@ -35,8 +36,14 @@ function SelectedBlogs() {
     // Handle touch events
     const handleTouchStart = (e) => {
         e.preventDefault();
-        if (scrollIndex < blogs.length - 1) {
-            setScrollIndex((prevIndex) => prevIndex + 1);
+        if (canScroll.current) {
+            if (scrollIndex < blogs.length - 1) {
+                setScrollIndex((prevIndex) => prevIndex + 1);
+            }
+            canScroll.current = false; // Disable scrolling
+            setTimeout(() => {
+                canScroll.current = true; // Re-enable scrolling after a short delay
+            }, 500); // Delay should be adjusted as needed
         }
     };
 
@@ -70,7 +77,6 @@ function SelectedBlogs() {
                                 style={{
                                     opacity: scrollIndex === index ? 1 : 0,
                                 }}
-                                // Adding touch event handler for mobile
                                 onTouchStart={handleTouchStart}
                             >
                                 <div className="blog-image">

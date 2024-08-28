@@ -18,7 +18,10 @@ function ContactPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission
-        emailjs.send('service_x2y7s6a', 'template_mxz9bqe', formData, '-YI4SGA2u3CCaQF9U')
+        emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            formData,
+            process.env.REACT_APP_EMAILJS_USER_ID)
             .then((response) => {
                 setFeedbackMessage('Your message has been sent successfully.');
                 console.log("Mail Sent");

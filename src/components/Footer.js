@@ -4,7 +4,7 @@ function Footer() {
     const newLocal = `
         .footer {
             font-family: 'Josefin Sans', sans-serif;
-            padding: 3rem 8rem 0rem;
+            padding: 8rem 0rem 0rem 0rem;
             background-color: #010004;
             color: #333;
         }
@@ -19,6 +19,7 @@ function Footer() {
         }
         .content {
             text-align: left; /* Align content to the left */
+            padding: 0 0 0rem 2rem;
         }
         .footer-text {
             color: #E7EEFF;
@@ -73,15 +74,17 @@ function Footer() {
                 margin-bottom: 10px;
             }
             .footer-bottom {
-                flex-direction: column;
+                flex-direction: column-reverse; /* Place right on top of left */
                 align-items: flex-start;
                 text-align: left;
+            }
+            .right {
+                margin-top: 10px;
             }
             .right a {
                 margin-right: 15px;
             }
             .right, .left {
-                margin-top: 10px;
                 font-size: 12px;
             }
         }
@@ -97,12 +100,12 @@ function Footer() {
                 </p>
             </div>
             <div className="footer-bottom">
+                <div className="left">
+                    <p className="copyright">&copy; Sneh Pillai, Built using ReactJs</p>
+                </div>
                 <div className="right">
                     <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="no-color">Github</a>
                     <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" className="no-color">LinkedIn</a>
-                </div>
-                <div className="left">
-                    <p className="copyright">&copy; Sneh Pillai, Built using ReactJs</p>
                 </div>
             </div>
             <style jsx>{newLocal}</style>

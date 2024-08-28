@@ -358,6 +358,7 @@ function Work() {
                     }
                     .project-content {
                         width: 100%;
+                        height: 600px;
                     }
                     
                     .header-work {

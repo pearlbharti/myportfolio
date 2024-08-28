@@ -90,7 +90,7 @@ function FeaturedWork() {
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
-        border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #b8becc') : 'none', // Boundary box with color #E7EEFF
+        border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #5c5f66') : 'none', // Boundary box with color #E7EEFF
         borderRadius: '20px',
         boxSizing: 'border-box',
         marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,

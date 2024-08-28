@@ -1,7 +1,7 @@
 export const blogs = [
     {
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/blog_images/facial_audio.jpeg',
-        title: 'Developing a Real-Time Facial Emotion-to-Audio System for Enhanced Accessibility',
+        title: 'Real-Time Facial Emotion-to-Audio System for Enhanced Accessibility',
         date: 'August 13, 2024',
         content: 'I’ve put together a new read where I go deep into the process of building a facial emotion detection model with audio feedback, the obstacles I faced.',
         link: 'https://www.linkedin.com/pulse/developing-real-time-facial-emotion-to-audio-system-enhanced-pillai-rvvfe/?trackingId=%2BiSI2%2F0t%2B7Z8R1WdGcS2Qg%3D%3D',
@@ -18,7 +18,7 @@ export const blogs = [
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/blog_images/rag_chatbot.jpg',
         title: `RAG and SageMaker's efficiency for deploying advanced language models.`,
         date: 'July 13, 2024',
-        content: 'Iterative Optimisation: This blog will introduce you to the complexities of continual fine-tuning in machine learning. Learn how to dynamically adjust models, improve hyperparameters, and never stop striving for optimal performance.',
+        content: 'Iterative Optimisation: This blog will introduce you to the complexities of continual fine-tuning in machine learning. Learn how to dynamically adjust models and hyperparameters.',
         link: 'https://www.linkedin.com/pulse/rag-sagemakers-efficiency-deploying-advanced-language-sneh-pillai-1rpze/?trackingId=FVVvBejLEk2JiKy%2BAiwExQ%3D%3D'
     },
     {

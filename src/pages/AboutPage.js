@@ -162,6 +162,7 @@ function AboutPage() {
         background-repeat: no-repeat;
         background-position: center;
         transition: background-position 0.1s ease;
+        // transform: scale(,3);
     }
     .curtain-effect {
         position: relative;
