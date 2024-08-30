@@ -8,6 +8,8 @@ function SelectedBlogs() {
     const SCROLL_DELAY = 500;
     const SCROLL_THRESHOLD = 100;
     const canScroll = useRef(true); // Add a flag for scrolling
+    const touchStartY = useRef(0); // Track touch start position
+    const readMoreButtonRef = useRef(null);
 
     // Handle mouse wheel scroll
     const handleWheel = (e) => {
@@ -33,28 +35,57 @@ function SelectedBlogs() {
         }
     };
 
-    // Handle touch events
+    // Handle touch start
     const handleTouchStart = (e) => {
         e.preventDefault();
-        if (canScroll.current) {
-            if (scrollIndex < blogs.length - 1) {
-                setScrollIndex((prevIndex) => prevIndex + 1);
-            }
-            canScroll.current = false; // Disable scrolling
-            setTimeout(() => {
-                canScroll.current = true; // Re-enable scrolling after a short delay
-            }, 500); // Delay should be adjusted as needed
+        touchStartY.current = e.touches[0].clientY;
+
+        // Store the target element to identify if it's a read-more button
+        const targetElement = e.target.closest('[data-action]');
+        canScroll.current = targetElement && targetElement.getAttribute('data-action') !== 'read-more';
+    };
+
+    // Handle touch end
+    const handleTouchEnd = (e) => {
+        e.preventDefault();
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchDifference = touchEndY - touchStartY.current;
+
+        // Check if the touch was within the allowed scrolling area
+        if (!canScroll.current) {
+            return;
         }
+
+        if (Math.abs(touchDifference) > SCROLL_THRESHOLD) {
+            if (touchDifference < 0 && scrollIndex < blogs.length - 1) {
+                setScrollIndex((prevIndex) => prevIndex + 1);
+            } else if (touchDifference > 0 && scrollIndex > 0) {
+                setScrollIndex((prevIndex) => prevIndex - 1);
+            }
+        }
+        setTimeout(() => {
+            canScroll.current = true;
+        }, SCROLL_DELAY);
+    };
+
+
+    // Handle click on the read more button
+    const handleButtonClick = (e) => {
+        e.stopPropagation();
+        // This prevents the click from triggering the scroll action
+        window.location.href = e.currentTarget.getAttribute('data-link');
     };
 
     useEffect(() => {
         const container = document.querySelector('.blogs-rectangle');
         container.addEventListener('wheel', handleWheel);
-        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchstart', handleTouchStart, { passive: false });
+        container.addEventListener('touchend', handleTouchEnd, { passive: false });
 
         return () => {
             container.removeEventListener('wheel', handleWheel);
             container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchend', handleTouchEnd);
         };
     }, [scrollIndex]);
 
@@ -77,7 +108,6 @@ function SelectedBlogs() {
                                 style={{
                                     opacity: scrollIndex === index ? 1 : 0,
                                 }}
-                                onTouchStart={handleTouchStart}
                             >
                                 <div className="blog-image">
                                     <img src={blog.image} alt={blog.title} />
@@ -88,7 +118,12 @@ function SelectedBlogs() {
                                     <p className="blog-text">{blog.content}</p>
                                     {scrollIndex === index && (
                                         <a href={blog.link} target="_blank" rel="noopener noreferrer">
-                                            <button className="read-more-button">
+                                            <button
+                                                className="read-more-button"
+                                                data-link={blog.link}
+                                                data-action="read-more"
+                                                onClick={handleButtonClick}
+                                            >
                                                 Read More
                                             </button>
                                         </a>
