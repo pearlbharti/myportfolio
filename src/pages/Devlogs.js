@@ -74,93 +74,106 @@ const Devlog = () => {
                 <p>{devlogData}</p>
             )}
             <style jsx>{`
-                .devlog-container {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 16px;
-                    width: 100%;
-                    min-height: 100vh;
-                    align-items: center;
-                    background-color: #010004;
-                    color: #E7EEFF;
-                    font-family: 'Josefin Sans', sans-serif;
-                }
+    .devlog-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        min-height: 100vh;
+        align-items: center;
+        background-color: #010004;
+        color: #E7EEFF;
+        font-family: 'Josefin Sans', sans-serif;
+    }
 
-                .card {
-                    position: relative;
-                    background-color: rgba(255, 255, 255, 0);
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    border-radius: 8px;
-                    padding: 16px;
-                    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
-                    width: calc(100% - 32px);
-                    max-width: 80%;
-                    margin: 16px;
-                    transition: max-height 0.5s ease-out;
-                    overflow: hidden;
-                }
+    .card {
+        position: relative;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+        width: calc(100% - 32px);
+        max-width: 80%;
+        margin: 16px;
+        transition: max-height 0.5s ease-out;
+        overflow: hidden;
+    }
 
-                .card-title {
-                    margin: 0;
-                    font-size: 1.5em;
-                }
+    .card-title {
+        margin: 0;
+        font-size: 1.5em;
+    }
 
-                .card-status,
-                .card-update,
-                .card-issues,
-                .card-deadline {
-                    margin: 8px 0;
-                }
+    .card-status,
+    .card-update,
+    .card-issues,
+    .card-deadline {
+        margin: 8px 0;
+    }
 
-                .read-more-button,
-                .close-button {
-                    --button_radius: 0.5em;
-                    --button_color: #000000;
-                    --button_outline_color: #ffffff;
-                    font-family: 'Josefin Sans', sans-serif;
-                    font-size: 14px;
-                    font-weight: bold;
-                    border: 2px solid var(--button_outline_color);
-                    border-radius: var(--button_radius);
-                    background: transparent;
-                    padding: 0.5em 1.25em;
-                    color: #E7EEFF;
-                    transform: translateY(-0.2em);
-                    transition: transform 0.1s ease;
-                    cursor: pointer;
-                    position: absolute;
-                    bottom: 16px;
-                    right: 16px;
-                }
+    .read-more-button,
+    .close-button {
+        --button_radius: 0.5em;
+        --button_color: #000000;
+        --button_outline_color: #ffffff;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        border: 2px solid var(--button_outline_color);
+        border-radius: var(--button_radius);
+        background: transparent;
+        padding: 0.5em 1.25em;
+        color: #E7EEFF;
+        transform: translateY(-0.2em);
+        transition: transform 0.1s ease;
+        cursor: pointer;
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+    }
 
-                .read-more-button:hover,
-                .close-button:hover {
-                    transform: translateY(-0.33em);
-                }
+    .read-more-button:hover,
+    .close-button:hover {
+        transform: translateY(-0.33em);
+    }
 
-                .expanded-section {
-                    display: flex;
-                    gap: 16px;
-                    margin-top: 20px;
-                    padding: 16px;
-                    border-top: 1px solid rgba(255, 255, 255, 0.3);
-                }
+    .expanded-section {
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+        padding: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-                .problem-statement {
-                    flex: 1;
-                }
+    .problem-statement {
+        flex: 1;
+    }
 
-                .replit-embed {
-                    flex: 2;
-                }
+    .replit-embed {
+        flex: 2;
+    }
 
-                .close-button {
-                    bottom: 8px; /* Adjust positioning */
-                    right: 16px;
-                    top: auto;
-                    left: auto;
-                }
-            `}</style>
+    .close-button {
+        bottom: 8px; /* Adjust positioning */
+        right: 16px;
+        top: auto;
+        left: auto;
+    }
+
+    /* Mobile screens: stack problem-statement and replit-embed vertically */
+    @media (max-width: 768px) {
+        .expanded-section {
+            flex-direction: column;
+        }
+
+        .replit-embed {
+            width: 100%; /* Ensure iframe takes full width on mobile */
+            height: auto; /* Adjust height if needed */
+        }
+    }
+`}</style>
+
         </div>
     );
 };
