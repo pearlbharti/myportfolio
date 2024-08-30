@@ -8,8 +8,7 @@ function SelectedBlogs() {
     const SCROLL_DELAY = 500;
     const SCROLL_THRESHOLD = 100;
     const canScroll = useRef(true); // Add a flag for scrolling
-    const touchStartY = useRef(0); // Track touch start position
-    const readMoreButtonRef = useRef(null);
+    const touchStartY = useRef(null);
 
     // Handle mouse wheel scroll
     const handleWheel = (e) => {
@@ -35,57 +34,45 @@ function SelectedBlogs() {
         }
     };
 
-    // Handle touch start
+    // Handle touch events for scrolling
     const handleTouchStart = (e) => {
-        e.preventDefault();
         touchStartY.current = e.touches[0].clientY;
-
-        // Store the target element to identify if it's a read-more button
-        const targetElement = e.target.closest('[data-action]');
-        canScroll.current = targetElement && targetElement.getAttribute('data-action') !== 'read-more';
     };
 
-    // Handle touch end
-    const handleTouchEnd = (e) => {
-        e.preventDefault();
-        const touchEndY = e.changedTouches[0].clientY;
-        const touchDifference = touchEndY - touchStartY.current;
+    const handleTouchMove = (e) => {
+        if (touchStartY.current === null) return;
 
-        // Check if the touch was within the allowed scrolling area
-        if (!canScroll.current) {
-            return;
-        }
+        const touchEndY = e.touches[0].clientY;
+        const touchDifference = touchStartY.current - touchEndY;
 
-        if (Math.abs(touchDifference) > SCROLL_THRESHOLD) {
-            if (touchDifference < 0 && scrollIndex < blogs.length - 1) {
+        if (touchDifference > SCROLL_THRESHOLD) {
+            if (scrollIndex < blogs.length - 1) {
                 setScrollIndex((prevIndex) => prevIndex + 1);
-            } else if (touchDifference > 0 && scrollIndex > 0) {
+            }
+            touchStartY.current = null; // Reset touch start
+        } else if (touchDifference < -SCROLL_THRESHOLD) {
+            if (scrollIndex > 0) {
                 setScrollIndex((prevIndex) => prevIndex - 1);
             }
+            touchStartY.current = null; // Reset touch start
         }
-        setTimeout(() => {
-            canScroll.current = true;
-        }, SCROLL_DELAY);
     };
 
-
-    // Handle click on the read more button
+    // Handle touch event for buttons
     const handleButtonClick = (e) => {
-        e.stopPropagation();
-        // This prevents the click from triggering the scroll action
-        window.location.href = e.currentTarget.getAttribute('data-link');
+        e.stopPropagation(); // Prevent the event from propagating to parent elements
     };
 
     useEffect(() => {
         const container = document.querySelector('.blogs-rectangle');
         container.addEventListener('wheel', handleWheel);
-        container.addEventListener('touchstart', handleTouchStart, { passive: false });
-        container.addEventListener('touchend', handleTouchEnd, { passive: false });
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchmove', handleTouchMove);
 
         return () => {
             container.removeEventListener('wheel', handleWheel);
             container.removeEventListener('touchstart', handleTouchStart);
-            container.removeEventListener('touchend', handleTouchEnd);
+            container.removeEventListener('touchmove', handleTouchMove);
         };
     }, [scrollIndex]);
 
@@ -120,8 +107,7 @@ function SelectedBlogs() {
                                         <a href={blog.link} target="_blank" rel="noopener noreferrer">
                                             <button
                                                 className="read-more-button"
-                                                data-link={blog.link}
-                                                data-action="read-more"
+                                                onTouchStart={handleButtonClick}
                                                 onClick={handleButtonClick}
                                             >
                                                 Read More
@@ -365,5 +351,6 @@ function SelectedBlogs() {
         </div>
     );
 }
+
 
 export default SelectedBlogs;
