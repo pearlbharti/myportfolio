@@ -7,6 +7,7 @@ const devlogData = [
         issues: 'Potentially increased risk of IP blocking or rate limiting...',
         deadline: '2024-09-01',
         done: false,
+        problemStatement: ['Processing Time: Each page takes 3 seconds to scrape, leading to excessive total processing time for 200,000+ recipes.', 'Resource Usage: Headless browser requires significant resources, further impacting performance.']
     },
     {
         id: 2,
