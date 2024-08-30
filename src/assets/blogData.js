@@ -26,14 +26,15 @@ export const blogs = [
         title: 'Wisconsin Breast Cancer Diagnosis: SVM Analysis',
         date: 'December 16, 2023',
         content: 'Machine Learning in Oncology: SVMs and the Quest for Diagnostic Precision. Use support vector machines to explore the field of tumor categorization.See my Medium blog for important discoveries from the Wisconsin Breast Cancer Dataset.',
-        link: 'https://medium.com/@snehsuresh02/fine-tuning-for-sensitivity-crafting-a-melanoma-classifier-for-the-real-world-9552b520b531'
+        link: 'https://medium.com/@snehsuresh02/wisconsin-breast-cancer-diagnosis-svm-analysis-b87e0d303b8c',
     },
     {
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/blog_images/melanoma_classifier.webp',
         title: 'Fine-Tuning a Melanoma Classifier for Sensitivity',
         date: 'December 19, 2023',
         content: 'Iterative Optimisation: This blog will introduce you to the complexities of continual fine-tuning in machine learning. Learn how to dynamically adjust models, improve hyperparameters, and never stop striving for optimal performance.',
-        link: 'https://medium.com/@snehsuresh02/wisconsin-breast-cancer-diagnosis-svm-analysis-b87e0d303b8c',
+        link: 'https://medium.com/@snehsuresh02/fine-tuning-for-sensitivity-crafting-a-melanoma-classifier-for-the-real-world-9552b520b531'
+
     },
     // Add more blogs as needed
 ];
