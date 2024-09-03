@@ -96,7 +96,7 @@ function AboutPage() {
         line-height: 1.5;
     }
     .header {
-        height: 50vh;
+        height: 70vh;
         text-align: center;
         padding: 4em;
         color: #E7EEFF;
@@ -105,15 +105,16 @@ function AboutPage() {
         flex-direction: column;
         justify-content: center;
         position: relative;
+
     }
     .header-text {
         font-size: 3rem;
-        font-weight: 300;
+        font-weight: 200;
     }
     .intro-text {
         color: #E7EEFF;
         font-weight: 300;
-        font-size: 1.9em;
+        font-size: 1.6em;
     }
     .underline-2 {
         width: 60vw;
@@ -135,7 +136,7 @@ function AboutPage() {
     }
     .left {
         flex: 1;
-        padding-right: 20px;
+        padding: 4em 3em 2em 3em;
         background: rgba(0, 0, 0, 0.5);
         position: relative; /* Ensure positioning */
         z-index: 2; /* Higher z-index */
@@ -219,8 +220,9 @@ function AboutPage() {
     .journey {
         position: relative;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        padding: 2rem 6rem 2rem 14rem;
+        // align-items: center;
+        // justify-content: center;
         color: #010004;
     }
     .interests {

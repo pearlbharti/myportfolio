@@ -1,117 +1,117 @@
 import React from 'react';
+import { FaGithub, FaLinkedin, FaFilePdf } from 'react-icons/fa';
 
-function Footer() {
-    const newLocal = `
-        .footer {
-            font-family: 'Josefin Sans', sans-serif;
-            padding: 8rem 0rem 0rem 0rem;
-            background-color: #010004;
-            color: #333;
-        }
-        .footer::before {
-            content: '';
-            display: block;
-            width: 60%; /* 60% of the screen width */
-            margin: 0 auto; /* Center it */
-            border-top: 1px solid rgba(221, 221, 221, 0.5); /* Reduced opacity */
-            position: relative;
-            top: -1rem; /* Adjust position to overlap with the original border */
-        }
-        .content {
-            text-align: left; /* Align content to the left */
-            padding: 0 0 0rem 2rem;
-        }
-        .footer-text {
-            color: #E7EEFF;
-            margin-bottom: 15px;
-            font-weight: 300;
-        }
-        .content p {
-            margin: 0 0 10px;
-            font-size: 1.3rem;
-        }
-        a {
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: none;
-        }
-        .no-color {
-            color: #a1a6b2; /* Removes the color, inherits the text color */
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            text-align: left; /* Align footer-bottom to the left */
-        }
-        .left {
-            font-size: 14px;
-        }
-        .right {
-            display: flex;
-            align-items: center;
-        }
-        .right a {
-            margin-right: 15px;
-            font-size: 14px;
-        }
-        .copyright {
-            color: #8a8e99;
-        }
-
-        /* Media query for small screens */
-        @media (max-width: 768px) {
-            .footer {
-                padding: 2rem 2rem 0rem;
-            }
-            .content {
-                text-align: left;
-            }
-            .footer-text {
-                font-size: 1rem;
-                margin-bottom: 10px;
-            }
-            .footer-bottom {
-                flex-direction: column-reverse; /* Place right on top of left */
-                align-items: flex-start;
-                text-align: left;
-            }
-            .right {
-                margin-top: 10px;
-            }
-            .right a {
-                margin-right: 15px;
-            }
-            .right, .left {
-                font-size: 12px;
-            }
-        }
-    `;
+const Footer = () => {
     return (
-        <div className="footer">
-            <div className="content">
-                <p className="footer-text">
+        <footer>
+            <style jsx>{`
+                @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600&display=swap');
+                
+                footer {
+                    background-color: #010004;
+                    color: #E7EEFF;
+                    padding: 6rem 2rem 0 2rem;
+                    text-align: center;
+                    position: relative;
+                    overflow: hidden;
+                    font-weight:300;
+                    font-size: 1.2rem;
+                    font-family: 'Josefin Sans', sans-serif;
+                }
+
+                footer::before {
+                    content: '';
+                    display: block;
+                    width: 80%;
+                    height: 2px;
+                    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(221,221,221,1) 50%, rgba(255,255,255,0) 100%);
+                    margin: 0 auto;
+                    animation: pulse 4s infinite;
+                    opacity: 0.8;
+                }
+
+                @keyframes pulse {
+                    0% { width: 0; }
+                    50% { width: 80%; }
+                    100% { width: 0; }
+                }
+
+                .footer-content {
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+
+                .contact-info {
+                    margin-bottom: 1.5rem;
+                }
+
+                .social-media {
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    justify-content: center;
+                    gap: 2rem;
+                }
+
+                .footer-bottom {
+                    font-size: 0.9rem;
+                    color: #8a8e99;
+                }
+
+                .link {
+                    color: #E7EEFF;
+                    text-decoration: none;
+                    transition: color 0.3s ease, transform 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .link:hover {
+                    color: #ffffff;
+                    text-shadow: 0 0 10px rgba(231, 238, 255, 1);
+                    transform: translateY(-5px);
+                }
+
+                .resume-link:hover::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background: rgba(231, 238, 255, 0.1);
+                    border-radius: 8px;
+                    transform: scale(1.1);
+                    transition: transform 0.3s ease;
+                }
+            `}</style>
+            <div className="footer-content">
+                <p className="contact-info">
                     I'm always open for collaboration and discussions, Let's get in touch!
                 </p>
-                <p>
-                    <a href="mailto:snehpillai02@gmail.com" className="no-color">snehpillai02@gmail.com</a> / <a href="mailto:spillai@umassd.edu" className="no-color">spillai@umassd.edu</a>
-                </p>
-            </div>
-            <div className="footer-bottom">
-                <div className="left">
-                    <p className="copyright">&copy; Sneh Pillai, Built using ReactJs</p>
+                <div className="contact-info">
+                    <p>Email: <tab></tab> 
+                        <a href="mailto:snehpillai02@gmail.com" className="link"> snehpillai02@gmail.com</a> / 
+                        <a href="mailto:spillai@umassd.edu" className="link"> spillai@umassd.edu</a>
+                    </p>
                 </div>
-                <div className="right">
-                    <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer" className="no-color">Github</a>
-                    <a href="https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/documents/Pillai_Resume_2024_folio.pdf" target="_blank" rel="noopener noreferrer" className="no-color">Resume</a>
-                    <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer" className="no-color">LinkedIn</a>
+                <div className="social-media">
+                    <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer" className="link">
+                        <FaLinkedin /> LinkedIn
+                    </a>
+                    <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer" className="link">
+                        <FaGithub /> GitHub
+                    </a>
+                    <a href="https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/documents/Pillai_Resume_2024_folio.pdf" target="_blank" rel="noopener noreferrer" className="link resume-link">
+                        <FaFilePdf /> Resume
+                    </a>
+                </div>
+                <div className="footer-bottom">
+                    <p>&copy; 2024 Sneh Pillai. All rights reserved.</p>
                 </div>
             </div>
-            <style jsx>{newLocal}</style>
-        </div>
+        </footer>
     );
-}
+};
 
 export default Footer;

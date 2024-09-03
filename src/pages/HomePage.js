@@ -55,7 +55,7 @@ function HomePage() {
                             <div className="linkedin-icon icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
                         </a>
                     </div>
-                    <GlareButton1 className="cta-button" link="/contact" onClick={() => console.log('Navigating to Contact page')}>Connect with Me!</GlareButton1>
+                    <GlareButton1 className="cta-button" link="/contact" onClick={() => console.log('Navigating to Contact page')}>Let's Connect!</GlareButton1>
                 </div>
                 {!hasScrolled && (
                     <div className="scroll-section">
@@ -92,9 +92,9 @@ function HomePage() {
                     color: #E7EEFF;
                     text-align: center;
                     width: calc(100vw - 4rem);
-                    max-width: 70vw;
-                    font: 200 calc(1.5vw + 0.8rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 15rem 0 0;
+                    max-width: 60vw;
+                    font: 200 calc(1.5vw + 0.5rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
+                    margin: 12rem 0 0;
                     opacity: 0;
                     animation: fadeIn 2s ease-in forwards;
                 }
@@ -102,7 +102,7 @@ function HomePage() {
                 .image-gallery {
                     display: flex;
                     color: #E7EEFF;
-                    margin: 3rem 0 1rem 0;
+                    margin: 1rem 0 1rem 0;
                     gap: 1.5rem;
                     justify-content: space-between;
                     max-width: 600px;
@@ -110,7 +110,16 @@ function HomePage() {
 
                 .icon {
                     opacity: 0;
+                    background: none; /* Remove background color */
+                    background-color: transparent; /* Ensure no background color */
                     animation: fadeInIcon 0.5s ease-in forwards;
+                    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Soft white glow */
+                    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+                }
+
+                .icon:hover {
+                    transform: scale(1.2); /* Scale up on hover */
+                    box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.4); /* Brighter glow on hover */
                 }
 
                 .github-icon {
@@ -127,6 +136,14 @@ function HomePage() {
                     opacity: 0;
                     animation: fadeInButton 0.5s ease-in forwards;
                     animation-delay: 0.8s;
+                    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Adding shadow to CTA button */
+                    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+                }
+
+                .cta-button:hover {
+                    transform: translateY(-0.33em) scale(1.1); /* Grows 10% larger on hover */
+                    transition: transform 0.3s ease; /* Smooth transition */
+                    box-shadow: 0px 8px 25px rgba(255, 255, 255, 0.4); /* Brighter glow on hover */
                 }
 
                 .scroll-section {

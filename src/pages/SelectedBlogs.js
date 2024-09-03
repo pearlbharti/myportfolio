@@ -176,8 +176,8 @@ function SelectedBlogs() {
                 .blog-main-title {
                     font-family: 'Josefin Sans', sans-serif;
                     color: #E7EEFF;
-                    font-size: 3rem;
-                    font-weight: 400;
+                    font-size: 2.5rem;
+                    font-weight: 300;
                     text-align: center;
                     margin: 3rem 0 10rem 0;
                 }
@@ -238,7 +238,7 @@ function SelectedBlogs() {
 
                 .blog-image {
                     width: 200px;
-                    height: 200px;
+                    height: 300px;
                     position: absolute;
                     left: -30px;
                     top: 50%;
@@ -268,20 +268,25 @@ function SelectedBlogs() {
 
                 .blog-title {
                     font-size: 1.5rem;
-                    margin: 0 0 5px 0;
+                    font-weight:400;
+                    margin: 0 0 0.5rem 0;
                     color: #e7eeff;
+                    font-family: 'Josefin Sans', sans-serif;
                 }
 
                 .blog-date {
                     font-size: 0.9rem;
                     color: #e7eeff;
                     margin: 0 0 2em 0;
+                    font-family: 'Josefin Sans', sans-serif;
                 }
 
                 .blog-text {
-                    font-size: 1.1rem;
-                    margin: 0 0 5px 0;
+                    font-size: 1.2rem;
+                    font-weight:300;
+                    margin: 0 0 1rem 0;
                     color: #e7eeff;
+                    font-family: 'Josefin Sans', sans-serif;
                 }
 
                 .read-more-button {
@@ -330,15 +335,27 @@ function SelectedBlogs() {
                     margin: 8px 0;
                     border-radius: 50%;
                     background-color: #ddd;
-                    transition: transform 0.3s ease, background-color 0.3s ease;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
                     cursor: pointer;
+                }
+
+                .blog-bubble:hover {
+                    transform: scale(1.1);
+                    background-color: #bbb;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 }
 
                 .active-bubble {
                     transform: scale(1.3);
+                    height: 24px;
+                    width:12px;
+                    background-color: #ff5e57;
+                    border-radius: 12px; /* Makes it more of a pill shape */
+                    background: linear-gradient(135deg, #333, #555);
                     background-color: #333;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
                 }
-
                 .nav-buttons {
                     display: flex;
                     gap: 1rem;

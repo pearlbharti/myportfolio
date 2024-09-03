@@ -88,35 +88,39 @@ function ContactPage() {
                 }
                 .page-container {
                     font-family: 'Josefin Sans', sans-serif;
-                    height: 90vh;
+                    min-height: 100vh;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                     align-items: center;
                     background-color: #010004;
                     position: relative;
+                    padding: 3rem 0 0
                 }
+
+
                 .contact-form-container {
                     background-color: transparent;
-                    padding: 30px;
+                    padding: 20px;
                     border-radius: 8px;
-                    border: 1px solid #ffffff;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
                     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-                    max-width: 500px;
+                    max-width: 400px;
                     width: 100%;
                     text-align: center;
+                    min-height: 200px;
                 }
                 .title {
-                    font-size: 2.8rem;
+                    font-size: 2.5rem;
                     margin-bottom: 20px;
                     color: #E7EEFF;
-                    font-weight: 400;
+                    font-weight: 300;
+                    font-family: 'Josefin Sans', sans-serif;
                 }
                 .subtitle {
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     margin-bottom: 30px;
                     color: #dddddd;
-                    font-weight: 300;
+                    font-weight: 200;
                 }
                 .link {
                     color: #007BFF;

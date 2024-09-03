@@ -96,7 +96,7 @@ function Navbar({ isVisible }) {
                 .navbar {
                     align-items: center;
                     padding: 0 1em;
-                    height: 5em;
+                    height: 1em;
                     box-sizing: border-box;
                     background-color: #010004; /* Set background color explicitly */
                     border-bottom: none;
@@ -110,6 +110,7 @@ function Navbar({ isVisible }) {
 
                 .navbar.fade-in {
                     opacity: 1;
+                    height: 100%;
                 }
 
                 .navbar-container {
@@ -129,10 +130,11 @@ function Navbar({ isVisible }) {
                 }
 
                 .the-img {
-                    height: 100%;
-                    width: 10rem;
+                    height: 50%;
+                    width: 7.5rem;
                     object-fit: cover;
                     object-position: center;
+                    padding : 0.5rem 0 0.5rem;
                 }
 
                 .navigate {
@@ -146,18 +148,6 @@ function Navbar({ isVisible }) {
                     transition: opacity 0.3s ease;
                 }
 
-                .nav-item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    color: #E7EEFF;
-                    padding: 1em;
-                    font-weight: 500;
-                    position: relative;
-                    transition: color 0.3s ease;
-                }
 
                 .nav-link {
                     text-decoration: none;
@@ -165,24 +155,55 @@ function Navbar({ isVisible }) {
                     position: relative;
                 }
 
+               .navbar {
+                    background-color: #000; /* Dark background for the navbar */
+                }
+
+                .nav-item {
+                    padding: 10px 20px; /* Adjust padding for spacing */
+                    color: rgba(255, 255, 255, 0.5); /* Translucent white text */
+                    font-size: 16px; /* Slightly larger text */
+                    font-weight: 300; /* Thinner font weight for inactive items */
+                    position: relative; /* For the pseudo-element positioning */
+                    transition: color 0.3s ease, font-weight 0.3s ease, text-shadow 0.3s ease; /* Smooth transition for color, font-weight, and text-shadow */
+                }
+
                 .nav-item.active {
-                    background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 41%);
-                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-                    border-radius: 1px;
+                    color: #fff; /* Solid white text when active */
+                    font-weight: 500; /* Medium font weight for active items */
+                    background: transparent; /* Remove background color */
+                    text-shadow: 0 0 8px rgba(131, 113, 243, 0.8), 0 0 12px rgba(131, 113, 243, 0.6); /* Glowing effect */
                 }
 
                 .nav-item.active::after {
                     content: '';
                     position: absolute;
-                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    height: 4px;
-                    background: radial-gradient(70.31% 100% at 50% 0%, rgba(131, 113, 243, 0.5) 0%, rgba(69, 156, 236, 0) 100%), radial-gradient(130.16% 129.69% at 63.64% -12.5%, #8528FB 0%, rgba(86, 84, 74, 0.12) 100%), radial-gradient(80.68% 51.24% at 19.32% 40.62%, #1864B7 0%, rgba(23, 61, 102, 0.88) 100%), radial-gradient(28.98% 110.94% at 43.75% -31.25%, rgba(24, 17, 24, 0.53) 21.25%, #000000 100%), #030303;
-                    border-radius: 4px;
-                    transform: translateY(50%);
+                    left: 50%;
+                    bottom: -5px;
+                    width: 60%;
+                    height: 3px;
+                    background: linear-gradient(135deg, rgba(131, 113, 243, 1) 0%, rgba(69, 156, 236, 1) 100%);
+                    box-shadow: 0 0 15px rgba(131, 113, 243, 0.8), 
+                                0 0 25px rgba(69, 156, 236, 0.8);
+                    border-radius: 5px;
+                    transform: translateX(-50%);
+                    transition: width 0.3s ease;
                 }
+
+                .nav-item:hover {
+                    color: #fff; /* Solid white text on hover */
+                    font-weight: 300; /* Increase font weight on hover */
+                    text-shadow: 0 0 10px rgba(131, 113, 243, 0.8);
+
+                }
+
+                .nav-item:hover::after {
+                    width: 100%; /* Expand underline on hover */
+                    width: 80%; /* Slightly expand underline on hover */
+                    box-shadow: 0 0 20px rgba(131, 113, 243, 0.8), 
+                    0 0 30px rgba(69, 156, 236, 0.8);
+                }
+
 
                 .hamburger {
                     display: none;
