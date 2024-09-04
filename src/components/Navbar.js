@@ -150,6 +150,7 @@ function Navbar({ isVisible }) {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    opacity: 0.7;
                     justify-content: center;
                     cursor: pointer;
                     color: #E7EEFF;
@@ -170,6 +171,7 @@ function Navbar({ isVisible }) {
                     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                     border-radius: 1px;
                     font-weight: 500;
+                    opacity:1;
                 }
 
                 .nav-item.active::after {

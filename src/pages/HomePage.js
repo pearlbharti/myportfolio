@@ -92,9 +92,9 @@ function HomePage() {
                     color: #E7EEFF;
                     text-align: center;
                     width: calc(100vw - 4rem);
-                    max-width: 70vw;
-                    font: 200 calc(1.5vw + 0.8rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 15rem 0 0;
+                    max-width: 60vw;
+                    font: 200 calc(1.5vw + 0.5rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
+                    margin: 12rem 0 0;
                     opacity: 0;
                     animation: fadeIn 2s ease-in forwards;
                 }
