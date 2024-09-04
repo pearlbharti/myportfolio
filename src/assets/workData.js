@@ -27,6 +27,7 @@ export const featuredWork = [
         title: 'Tuberculosis X-Ray Detection System',
         description: 'Automating a comprehensive pipeline for tuberculosis detection in chest X-rays using a CNN including ingestion, training, and evaluation',
         image: 'https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/home_page/genai.png',
+        link: 'https://tuberculosis-xray-diagnosis-classifier.onrender.com',
     },
     // Add more projects as needed
 ];
