@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/">
+    <Router>
       {loading ? (
         <LoadingScreen />
       ) : (
