@@ -199,13 +199,17 @@ function FeaturedWork() {
                     height: 15px;
                     margin: 0 5px;
                     border-radius: 50%;
-                    background-color: #ddd;
+                    background-color: #333;
                     transition: transform 0.3s ease, background-color 0.3s ease;
                 }
 
                 .active-bubble {
-                    transform: scale(1.5);
-                    background-color: #333;
+                    background-color: #ddd;
+                    transform: scale(1.2);
+                    height: 15px;
+                    width: 30px;
+                    border-radius: 70px;
+                    background: linear-gradient(135deg, #333, #555);
                 }
 
                 .more-work-button {

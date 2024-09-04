@@ -96,7 +96,7 @@ function AboutPage() {
         line-height: 1.5;
     }
     .header {
-        height: 50vh;
+        height:70vh;
         text-align: center;
         padding: 4em;
         color: #E7EEFF;
@@ -134,14 +134,15 @@ function AboutPage() {
         z-index: 100;
     }
     .left {
-        flex: 1;
+        flex: 3;
         padding-right: 20px;
+        margin-right: 20px;
         background: rgba(0, 0, 0, 0.5);
         position: relative; /* Ensure positioning */
         z-index: 2; /* Higher z-index */
     }
     .right {
-        flex: 1;
+        flex: 2;
         position: relative; /* Ensure positioning */
         z-index: 1; /* Lower z-index */
     }

@@ -102,7 +102,7 @@ function HomePage() {
                 .image-gallery {
                     display: flex;
                     color: #E7EEFF;
-                    margin: 3rem 0 1rem 0;
+                    margin: 1rem 0 1rem 0;
                     gap: 1.5rem;
                     justify-content: space-between;
                     max-width: 600px;

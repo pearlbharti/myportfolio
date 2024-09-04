@@ -334,7 +334,7 @@ function SelectedBlogs() {
                     height: 12px;
                     margin: 8px 0;
                     border-radius: 50%;
-                    background-color: #ddd;
+                    background-color: #333;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
                     cursor: pointer;
@@ -353,7 +353,7 @@ function SelectedBlogs() {
                 background-color: #ff5e57;
                 border-radius: 12px; /* Makes it more of a pill shape */
                 background: linear-gradient(135deg, #333, #555);
-                background-color: #333;
+                background-color: #ddd;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
                 transition: transform 0.7s ease; /* Adjust the duration (0.5s) and easing (ease) as desired */
             }
