@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import GlareButton1 from '../components/GlareButton1';
 import { featuredWork } from '../assets/workData';
 import WorkCard from '../components/WorkCard';
 
 function FeaturedWork() {
     const repeatArray = (arr, times) => Array.from({ length: times }, () => arr).flat();
-    const [leftMostCardIndex, setLeftMostCardIndex] = useState(0);
+
+    const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
     const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 800);
-    const [isAnimationActive, setIsAnimationActive] = useState(true);
-    const scrollContainerRef = useRef(null);
 
     const cardWidth = 390;
     const cardMargin = 0;
@@ -17,69 +16,16 @@ function FeaturedWork() {
     // Use different data for small screens
     const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork, 15) : featuredWork;
 
+    const handleResize = () => {
+        setIsWideScreen(window.innerWidth > 800);
+    };
+
     useEffect(() => {
-        const scrollContainer = scrollContainerRef.current;
-        if (!scrollContainer) return;
-
-        const handleScroll = () => {
-            if (!isAnimationActive && isWideScreen) {
-                const scrollLeft = scrollContainer.scrollLeft;
-                const centerOffset = scrollContainer.clientWidth / 2;
-                const index = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
-                setLeftMostCardIndex(index);
-            }
-        };
-
-        const handleResize = () => {
-            setIsWideScreen(window.innerWidth > 800);
-        };
-
-        scrollContainer.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
-
         return () => {
-            scrollContainer.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
-    }, [cardWidthWithMargin, isWideScreen, isAnimationActive]);
-
-    useEffect(() => {
-        if (isWideScreen) {
-            const scrollContainer = scrollContainerRef.current;
-            if (!scrollContainer) return;
-
-            const initialScrollPosition = (displayedFeaturedWork.length / 2) * cardWidthWithMargin - scrollContainer.clientWidth / 2;
-            const targetScrollPosition = initialScrollPosition;
-            const duration = 0; // duration of the scroll in milliseconds
-            const startTime = performance.now();
-
-            setIsAnimationActive(true);
-
-            const animateScroll = (currentTime) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                // Smoother easing function for natural feel
-                const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
-
-                scrollContainer.scrollLeft = targetScrollPosition * easeOutExpo(progress);
-
-                if (progress < 1) {
-                    requestAnimationFrame(animateScroll);
-                } else {
-                    // Ensure exact final position and update active card
-                    scrollContainer.scrollLeft = targetScrollPosition;
-                    const scrollLeft = scrollContainer.scrollLeft;
-                    const centerOffset = scrollContainer.clientWidth / 2;
-                    const finalIndex = Math.floor((scrollLeft + centerOffset) / cardWidthWithMargin) % featuredWork.length;
-                    setLeftMostCardIndex(finalIndex);
-                    setIsAnimationActive(false);
-                }
-            };
-
-            requestAnimationFrame(animateScroll);
-        }
-    }, [cardWidthWithMargin, displayedFeaturedWork.length, isWideScreen]);
+    }, []);
 
     const getCardStyle = (isActiveCard) => ({
         flex: `0 0 ${cardWidth}px`,
@@ -90,47 +36,37 @@ function FeaturedWork() {
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
-        border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #5c5f66') : 'none', // Boundary box with color #E7EEFF
+        border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #5c5f66') : 'none',
         borderRadius: '20px',
         boxSizing: 'border-box',
         marginLeft: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
         marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
 
-    const scrollToIndex = (index) => {
-        const scrollContainer = scrollContainerRef.current;
-        if (!scrollContainer) return;
+    const handleMouseEnter = (index) => {
+        setHoveredCardIndex(index);
+    };
 
-        const targetScrollPosition = index * cardWidthWithMargin - scrollContainer.clientWidth / 2 + cardWidth / 2;
-
-        setIsAnimationActive(true);
-
-        scrollContainer.scrollTo({
-            left: targetScrollPosition,
-            behavior: 'smooth',
-        });
-
-        // Wait for the scrolling to finish
-        setTimeout(() => {
-            setLeftMostCardIndex(index);
-            setIsAnimationActive(false);
-        }, 100); // Adjust duration based on smooth scrolling timing
+    const handleMouseLeave = () => {
+        setHoveredCardIndex(null);
     };
 
     return (
         <div className="featured-work-container">
             <h2 className="featured-work-title">FEATURED WORK</h2>
 
-            <div className={`scroll-container ${isWideScreen ? '' : 'small-screen'}`} ref={scrollContainerRef}>
+            <div className={`scroll-container ${isWideScreen ? '' : 'small-screen'}`}>
                 <div className={`scroll-inner ${isWideScreen ? '' : 'vertical'}`}>
                     {displayedFeaturedWork.map((project, index) => {
                         const actualIndex = index % featuredWork.length;
-                        const isActiveCard = !isAnimationActive && isWideScreen && leftMostCardIndex === actualIndex;
+                        const isActiveCard = hoveredCardIndex === actualIndex;
                         return (
                             <div
                                 key={index}
                                 style={getCardStyle(isActiveCard)}
                                 className={`card ${isActiveCard ? 'active-card' : ''}`}
+                                onMouseEnter={() => handleMouseEnter(actualIndex)}
+                                onMouseLeave={handleMouseLeave}
                             >
                                 <WorkCard
                                     title={project.title}
@@ -148,7 +84,7 @@ function FeaturedWork() {
 
             <div className={`bubble-progress-bar-container ${isWideScreen ? '' : 'hidden'}`}>
                 {featuredWork.map((_, index) => (
-                    <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} onClick={() => scrollToIndex(index)} />
+                    <div key={index} className={`bubble ${hoveredCardIndex === index ? 'active-bubble' : ''}`} onClick={() => handleMouseEnter(index)} />
                 ))}
             </div>
             <GlareButton1 link="/work" onClick={() => console.log('Navigating to Work page')}>More Work</GlareButton1>
@@ -160,13 +96,13 @@ function FeaturedWork() {
                 }
 
                 .featured-work-title {
-                color: #E7EEFF;
-                font-size: 2rem;
-                font-weight: 300;
-                text-align: center;
-                margin: 3rem 0 1rem 0;
-                font-family: 'Josefin Sans';
-            }
+                    color: #E7EEFF;
+                    font-size: 2rem;
+                    font-weight: 300;
+                    text-align: center;
+                    margin: 3rem 0 1rem 0;
+                    font-family: 'Josefin Sans';
+                }
 
                 .scroll-container {
                     font-family: 'Josefin Sans', sans-serif;
@@ -184,7 +120,6 @@ function FeaturedWork() {
                     display: block;
                     overflow-y: auto;
                     overflow-x: hidden;
-                    // height: 100vh; /* Full viewport height */
                     padding: 1rem 0;
                 }
 
@@ -216,7 +151,6 @@ function FeaturedWork() {
                 }
 
                 .bubble {
-                    // background-color: #bbb;
                     width: 15px;
                     height: 15px;
                     margin: 0 5px;
@@ -224,8 +158,7 @@ function FeaturedWork() {
                     background-color: #333;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-                    transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-                    cursor:pointer;
+                    cursor: pointer;
                 }
                 
                 .bubble:hover {
@@ -242,9 +175,8 @@ function FeaturedWork() {
                     border-radius: 70px;
                     background: linear-gradient(135deg, #333, #555);
                     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-                    transition: transform 0.7s ease; /* Adjust the duration (0.5s) and easing (ease) as desired */
+                    transition: transform 0.7s ease;
                 }
-
 
                 .more-work-button {
                     background-color: rgba(0, 0, 0, 1);

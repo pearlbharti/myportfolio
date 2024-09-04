@@ -199,6 +199,8 @@ function HomePage() {
                 }
 
                 @media (max-width: 600px) {
+                    .landing{
+                    height:100%}
                     .cta-button {
                         font-size: 20px;
                         padding: 10px 20px;

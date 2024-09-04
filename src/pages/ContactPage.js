@@ -95,6 +95,7 @@ function ContactPage() {
                     align-items: center;
                     background-color: #010004;
                     position: relative;
+                    margin-top: 2rem;
                 }
                 .contact-form-container {
                     background-color: transparent;

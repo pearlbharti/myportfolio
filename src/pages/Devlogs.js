@@ -84,6 +84,7 @@ const Devlog = () => {
         background-color: #010004;
         color: #E7EEFF;
         font-family: 'Josefin Sans', sans-serif;
+        margin-top: 2rem;
     }
 
     .card {
@@ -103,13 +104,17 @@ const Devlog = () => {
     .card-title {
         margin: 0;
         font-size: 1.5em;
+        font-weight: 300;
     }
+
 
     .card-status,
     .card-update,
     .card-issues,
     .card-deadline {
         margin: 8px 0;
+        opacity: 0.8;
+        font-weight: 300;
     }
 
     .read-more-button,
@@ -144,10 +149,12 @@ const Devlog = () => {
         margin-top: 20px;
         padding: 16px;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
+        font-weight: 300;
     }
 
     .problem-statement {
         flex: 1;
+        opacity: 0.7;
     }
 
     .replit-embed {
