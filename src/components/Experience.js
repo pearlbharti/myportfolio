@@ -246,7 +246,7 @@ const Experience = () => {
         overflow: hidden;
         box-shadow: 0px 4px 8px 0px #8a8e99;
         border-radius: 10px;
-        margin-right: 3rem;
+        margin-right: 5rem;
     }
 
     .experience-image {
@@ -274,16 +274,17 @@ const Experience = () => {
     .exp-subtitle {
         display: block;
         font-size: 1.1em;
-        font-weight: bold;
+        font-weight: 300;
         margin-bottom: 5px;
         color: #8a8e99;
     }
 
     .exp-description {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         line-height: 1.5;
         color: #b8becc;
         margin: 0 6rem 0 0;
+        font-weight: 300;
     }
 
     .exp-company {

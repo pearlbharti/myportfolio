@@ -167,7 +167,7 @@ function Navbar({ isVisible }) {
                 }
 
                 .nav-item.active {
-                    background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 90%);
+                    background: radial-gradient(circle at center, rgba(162, 110, 231, 0.3), rgba(69, 156, 236, 0) 90%);
                     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                     border-radius: 1px;
                     font-weight: 500;

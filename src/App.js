@@ -20,7 +20,7 @@ function App() {
       setTimeout(() => {
         setNavbarVisible(true);
       }, 50);
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);

@@ -72,7 +72,7 @@ function AboutPage() {
                         </div>
                         <div className="card">
                             <span className='service-subtitle'>FULL PACKAGE</span>
-                            <p className='service-text'>I blend AI and machine learning know-how with hands-on experience in software development and cloud tech. I’ve got a knack for making complex systems work smoothly, from coding in Python and JavaScript to wrangling big data on AWS.</p>
+                            <p className='service-text'>Blending machine learning know-how with hands-on experience in software development and cloud tech. I’ve got a knack for making complex systems work smoothly, from coding to wrangling big data on AWS.</p>
                         </div>
                     </div>
                 </section>
