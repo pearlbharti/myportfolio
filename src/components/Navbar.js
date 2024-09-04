@@ -96,7 +96,7 @@ function Navbar({ isVisible }) {
                 .navbar {
                     align-items: center;
                     padding: 0 1em;
-                    height: 5em;
+                    height: 3.5em;
                     box-sizing: border-box;
                     background-color: #010004; /* Set background color explicitly */
                     border-bottom: none;
@@ -130,7 +130,7 @@ function Navbar({ isVisible }) {
 
                 .the-img {
                     height: 100%;
-                    width: 10rem;
+                    width: 7rem;
                     object-fit: cover;
                     object-position: center;
                 }
@@ -154,7 +154,7 @@ function Navbar({ isVisible }) {
                     cursor: pointer;
                     color: #E7EEFF;
                     padding: 1em;
-                    font-weight: 500;
+                    font-weight: 300;
                     position: relative;
                     transition: color 0.3s ease;
                 }
@@ -166,9 +166,10 @@ function Navbar({ isVisible }) {
                 }
 
                 .nav-item.active {
-                    background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 41%);
+                    background: radial-gradient(circle at center, rgba(131, 113, 243, 0.5), rgba(69, 156, 236, 0) 90%);
                     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                     border-radius: 1px;
+                    font-weight: 500;
                 }
 
                 .nav-item.active::after {
