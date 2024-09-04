@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/myportfolio">
+    <Router basename="/">
       {loading ? (
         <LoadingScreen />
       ) : (
