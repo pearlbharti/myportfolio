@@ -107,6 +107,15 @@ function HomePage() {
                     justify-content: space-between;
                     max-width: 600px;
                 }
+                .image-gallery a {
+                    background-color: transparent; /* Makes the background of the icons transparent */
+                    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and glow */
+                }
+
+                .image-gallery a:hover {
+                    transform: scale(1.1); /* Scales the icon to 1.1 on hover */
+                    // box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Whitish gradient glow */
+                }
 
                 .icon {
                     opacity: 0;

@@ -113,7 +113,8 @@ function AboutPage() {
     .intro-text {
         color: #E7EEFF;
         font-weight: 300;
-        font-size: 1.9em;
+        font-size: 1.4em;
+        opacity: 0.8;
     }
     .underline-2 {
         width: 60vw;
@@ -134,7 +135,7 @@ function AboutPage() {
         z-index: 100;
     }
     .left {
-        flex: 3;
+        flex: 6;
         padding-right: 20px;
         margin-right: 20px;
         background: rgba(0, 0, 0, 0.5);
@@ -142,7 +143,7 @@ function AboutPage() {
         z-index: 2; /* Higher z-index */
     }
     .right {
-        flex: 2;
+        flex: 4;
         position: relative; /* Ensure positioning */
         z-index: 1; /* Lower z-index */
     }
@@ -157,7 +158,7 @@ function AboutPage() {
     }
     .image-container {
         width: 100%;
-        height: 120%;
+        height: 130%;
         background-image: url(${myImage});
         background-size: cover;
         background-repeat: no-repeat;

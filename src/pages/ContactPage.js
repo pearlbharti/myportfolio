@@ -44,7 +44,7 @@ function ContactPage() {
                 </a>
             </div>
             <div className="contact-form-container">
-                <span className="title">Let's Collaborate!</span>
+                <span className="title">LET'S COLLABORATE!</span>
                 <p className="subtitle">
                     Excited to work together or looking to hire me? Send me a message through the form, and don't forget to check out my resume <a href="https://d14xe37va4uv2q.cloudfront.net/portfolio_assets/documents/Pillai_Resume_2024_folio.pdf" target="_blank" rel="noopener noreferrer" className="link">here</a>!
                 </p>
@@ -107,16 +107,17 @@ function ContactPage() {
                     text-align: center;
                 }
                 .title {
-                    font-size: 2.8rem;
+                    font-size: 1.8rem;
                     margin-bottom: 20px;
                     color: #E7EEFF;
-                    font-weight: 400;
+                    font-weight: 300;
                 }
                 .subtitle {
-                    font-size: 1.6rem;
+                    font-size: 1.3rem;
                     margin-bottom: 30px;
                     color: #dddddd;
                     font-weight: 300;
+                    opacity: 0.8;
                 }
                 .link {
                     color: #007BFF;

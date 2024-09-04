@@ -106,7 +106,7 @@ function SelectedBlogs() {
 
     return (
         <div className="selected-blogs-container">
-            <h1 className="blog-main-title">Selected Blogs</h1>
+            <h1 className="blog-main-title">SELECTED BLOGS</h1>
             <div className="blogs-wrapper">
                 <div className="blogs-rectangle">
                     {blogs.map((blog, index) => (
@@ -176,7 +176,7 @@ function SelectedBlogs() {
                 .blog-main-title {
                     font-family: 'Josefin Sans', sans-serif;
                     color: #E7EEFF;
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 300;
                     text-align: center;
                     margin: 3rem 0 10rem 0;
@@ -336,8 +336,9 @@ function SelectedBlogs() {
                     border-radius: 50%;
                     background-color: #333;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+                    // transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
                     cursor: pointer;
+                    // transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
                 }
 
                 .blog-bubble:hover {
@@ -347,16 +348,16 @@ function SelectedBlogs() {
                 }
 
                 .current-bubble {
-                transform: scale(1.2);
-                height: 24px;
-                width: 12px;
-                background-color: #ff5e57;
-                border-radius: 12px; /* Makes it more of a pill shape */
-                background: linear-gradient(135deg, #333, #555);
-                background-color: #ddd;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-                transition: transform 0.7s ease; /* Adjust the duration (0.5s) and easing (ease) as desired */
-            }
+                    transform: scale(1.2);
+                    height: 24px;
+                    width: 12px;
+                    // background-color: #ff5e57;
+                    border-radius: 12px; /* Makes it more of a pill shape */
+                    background: linear-gradient(135deg, #333, #555);
+                    background-color: #ddd;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                    transition: transform 0.7s ease; /* Adjust the duration (0.5s) and easing (ease) as desired */
+                }
                 .nav-buttons {
                     display: flex;
                     gap: 1rem;

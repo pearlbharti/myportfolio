@@ -10,7 +10,7 @@ function FeaturedWork() {
     const [isAnimationActive, setIsAnimationActive] = useState(true);
     const scrollContainerRef = useRef(null);
 
-    const cardWidth = 400;
+    const cardWidth = 390;
     const cardMargin = 0;
     const cardWidthWithMargin = cardWidth + cardMargin;
 
@@ -86,7 +86,7 @@ function FeaturedWork() {
         height: `${cardWidth}px`,
         width: isWideScreen ? '' : `100%`,
         margin: `0 ${cardMargin}px`,
-        transition: 'transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0.5s ease-in-out',
+        transition: 'transform 0.2s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0s ease-in-out',
         scrollSnapAlign: 'start',
         transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
@@ -97,9 +97,29 @@ function FeaturedWork() {
         marginRight: isActiveCard ? `${cardMargin}px` : `${cardMargin}px`,
     });
 
+    const scrollToIndex = (index) => {
+        const scrollContainer = scrollContainerRef.current;
+        if (!scrollContainer) return;
+
+        const targetScrollPosition = index * cardWidthWithMargin - scrollContainer.clientWidth / 2 + cardWidth / 2;
+
+        setIsAnimationActive(true);
+
+        scrollContainer.scrollTo({
+            left: targetScrollPosition,
+            behavior: 'smooth',
+        });
+
+        // Wait for the scrolling to finish
+        setTimeout(() => {
+            setLeftMostCardIndex(index);
+            setIsAnimationActive(false);
+        }, 100); // Adjust duration based on smooth scrolling timing
+    };
+
     return (
         <div className="featured-work-container">
-            <h2 className="featured-work-title">Featured Work</h2>
+            <h2 className="featured-work-title">FEATURED WORK</h2>
 
             <div className={`scroll-container ${isWideScreen ? '' : 'small-screen'}`} ref={scrollContainerRef}>
                 <div className={`scroll-inner ${isWideScreen ? '' : 'vertical'}`}>
@@ -128,7 +148,7 @@ function FeaturedWork() {
 
             <div className={`bubble-progress-bar-container ${isWideScreen ? '' : 'hidden'}`}>
                 {featuredWork.map((_, index) => (
-                    <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} />
+                    <div key={index} className={`bubble ${!isAnimationActive && isWideScreen && leftMostCardIndex === index ? 'active-bubble' : ''}`} onClick={() => scrollToIndex(index)} />
                 ))}
             </div>
             <GlareButton1 link="/work" onClick={() => console.log('Navigating to Work page')}>More Work</GlareButton1>
@@ -140,12 +160,13 @@ function FeaturedWork() {
                 }
 
                 .featured-work-title {
-                    color: #E7EEFF;
-                    font-size: 3rem;
-                    font-weight: 400;
-                    text-align: center;
-                    margin: 3rem 0 1rem 0;
-                }
+                color: #E7EEFF;
+                font-size: 2rem;
+                font-weight: 300;
+                text-align: center;
+                margin: 3rem 0 1rem 0;
+                font-family: 'Josefin Sans';
+            }
 
                 .scroll-container {
                     font-family: 'Josefin Sans', sans-serif;
@@ -195,12 +216,22 @@ function FeaturedWork() {
                 }
 
                 .bubble {
+                    // background-color: #bbb;
                     width: 15px;
                     height: 15px;
                     margin: 0 5px;
                     border-radius: 50%;
                     background-color: #333;
-                    transition: transform 0.3s ease, background-color 0.3s ease;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+                    transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+                    cursor:pointer;
+                }
+                
+                .bubble:hover {
+                    transform: scale(1.1);
+                    background-color: #bbb;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 }
 
                 .active-bubble {
@@ -210,7 +241,10 @@ function FeaturedWork() {
                     width: 30px;
                     border-radius: 70px;
                     background: linear-gradient(135deg, #333, #555);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                    transition: transform 0.7s ease; /* Adjust the duration (0.5s) and easing (ease) as desired */
                 }
+
 
                 .more-work-button {
                     background-color: rgba(0, 0, 0, 1);

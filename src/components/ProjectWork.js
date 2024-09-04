@@ -8,7 +8,7 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
 
     return (
         <>
-            <div className="featured-title">Featured Projects</div>
+            <div className="featured-title">FEATURED PROJECTS</div>
             <div className="toggle-container">
                 <button className={`toggle-btn ${toggle === 'data' ? 'active' : ''}`} onClick={() => setToggle('data')}>
                     <span className="button_top">Data</span>
@@ -53,7 +53,7 @@ function ProjectsPage({ listProjectRef, activeProject, toggle, setToggle, projec
     }
 
     .featured-title {
-        font-size: 3rem;
+        font-size: 2rem;
         color: #E7EEFF;
         margin-top: 10rem;
         display: flex;
