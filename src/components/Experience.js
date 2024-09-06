@@ -21,21 +21,28 @@ const Experience = () => {
                 }
                 setProgressHeight(scrolledPercentage);
 
+                let activeIndex = -1;
                 checkpoints.forEach((checkpoint, index) => {
                     const checkpointPosition = parseFloat(checkpoint.getAttribute('data-position'));
-                    const isActive = scrolledPercentage >= checkpointPosition;
-                    const imageWrapper = document.querySelector(`.experience-item:nth-child(${index + 1}) .experience-image-wrapper`);
+                    if (scrolledPercentage >= checkpointPosition) {
+                        activeIndex = index;
+                    }
+                });
 
-                    if (isActive) {
+                checkpoints.forEach((checkpoint, index) => {
+                    if (index <= activeIndex) {
                         checkpoint.classList.add('active');
-                        if (imageWrapper) {
-                            imageWrapper.classList.add('active');
-                        }
                     } else {
                         checkpoint.classList.remove('active');
-                        if (imageWrapper) {
-                            imageWrapper.classList.remove('active');
-                        }
+                    }
+                });
+
+                const imageWrappers = document.querySelectorAll('.experience-image-wrapper');
+                imageWrappers.forEach((wrapper, index) => {
+                    if (index <= activeIndex) {
+                        wrapper.classList.add('active');
+                    } else {
+                        wrapper.classList.remove('active');
                     }
                 });
 
@@ -52,8 +59,8 @@ const Experience = () => {
             } else if (scrollTop + viewportMiddle < experienceTop) {
                 setProgressHeight(0);
                 checkpoints.forEach((checkpoint) => checkpoint.classList.remove('active'));
-                years.forEach((year) => year.classList.remove('active'));
                 document.querySelectorAll('.experience-image-wrapper').forEach(wrapper => wrapper.classList.remove('active'));
+                years.forEach((year) => year.classList.remove('active'));
             }
         };
 
@@ -66,14 +73,14 @@ const Experience = () => {
     }
 
     const years = [2019, 2021, 2022, 2023];
-    const checkpoints = [27, 45, 63, 82]
+    const checkpoints = [29, 47, 65, 82];
 
     return (
         <div className="experience-container">
             <div className="progress-bar">
                 <div className="progress-bar-inner">
                     <div className="progress-filled" style={{ height: `${progressHeight}%` }}></div>
-                    <div className="progress-checkpoint" data-position="8">
+                    <div className="progress-checkpoint" data-position="12">
                         <span className="checkpoint-year">2015</span>
                     </div>
                     {years.map((year, index) => (
@@ -184,7 +191,7 @@ const Experience = () => {
     }
 
     .progress-checkpoint:nth-child(2) {
-        top: 8.5%;
+        top: 10%;
     }
 
     .progress-checkpoint:nth-child(3) {
@@ -216,7 +223,7 @@ const Experience = () => {
     }
 
     .experience-item {
-        margin: 0rem 0 5rem 0; /* Adjust margins to avoid overlap */
+        margin: 0rem 0rem 5rem 0; /* Adjust margins to avoid overlap */
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
@@ -232,21 +239,25 @@ const Experience = () => {
     }
 
     .experience-text {
-        flex: 1;
+        flex: 3;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
     .experience-image-wrapper {
+        flex: 1;
         position: relative;
-        width: 30%;
-        padding-top: 30%; /* Maintain a square aspect ratio */
+        width: 4rem;
+        height:17rem;
+
+        // padding-top: 30%; /* Maintain a square aspect ratio (30% padding-top for 1:1 aspect ratio) */
         margin-left: 20px; /* Ensure space between items */
         overflow: hidden;
         box-shadow: 0px 4px 8px 0px #8a8e99;
         border-radius: 10px;
         margin-right: 5rem;
+        transition: box-shadow 0.3s ease, filter 0.3s ease;
     }
 
     .experience-image {
@@ -256,11 +267,35 @@ const Experience = () => {
         width: 100%;
         height: 100%;
         border-radius: 10px;
-        object-fit: cover;
+        filter: brightness(50%) grayscale(50%);
+        transform:scale(1.1);
+        transition: filter 0.3s ease;
+        transition: transform 0.3s ease;
+    }
+    
+    .experience-image-wrapper.active .experience-image {
+        filter:brightness(80%) grayscale(0%);
+        transform:scale(1);
+    }
+
+    .experience-image-wrapper .experience-image-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #E7EEFF;
+        border-radius: 10px;
+        transform: scale(0);
+        transition: transform 0.3s ease;
     }
 
     .experience-image-wrapper.active .experience-image-border {
         transform: translate(0, 0) scale(1.05);
+    }
+
+    .experience-image-wrapper.active {
+        // box-shadow: 0 0 15px rgba(162, 110, 231, 0.6), 0 0 20px rgba(162, 110, 231, 0.4);
     }
 
     .exp-title {
@@ -333,11 +368,12 @@ const Experience = () => {
         }
 
         .exp-description {
-        font-size: 1rem;
-        margin: 0;
+            font-size: 1rem;
+            margin: 0;
         }
     }
 `}</style>
+
         </div>
     );
 };
