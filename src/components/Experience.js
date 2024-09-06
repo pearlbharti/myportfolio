@@ -267,15 +267,17 @@ const Experience = () => {
         width: 100%;
         height: 100%;
         border-radius: 10px;
-        filter: brightness(50%) grayscale(50%);
-        transform:scale(1.1);
+        filter: grayscale(50%);
+        opacity: 0.5;
+        transform:scale(0.95);
         transition: filter 0.3s ease;
         transition: transform 0.3s ease;
     }
     
     .experience-image-wrapper.active .experience-image {
         filter:brightness(80%) grayscale(0%);
-        transform:scale(1);
+        opacity: 1;
+        // transform:scale(0.95);
     }
 
     .experience-image-wrapper .experience-image-border {
