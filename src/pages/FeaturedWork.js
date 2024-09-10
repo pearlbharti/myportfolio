@@ -11,9 +11,10 @@ function FeaturedWork() {
 
     const cardWidth = 390;
     const cardMargin = 0;
+    const cardWidthWithMargin = cardWidth + cardMargin;
 
     // Use different data for small screens
-    const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork) : featuredWork;
+    const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork, 1) : featuredWork;
 
     const handleResize = () => {
         setIsWideScreen(window.innerWidth > 800);
@@ -33,7 +34,7 @@ function FeaturedWork() {
         margin: `0 ${cardMargin}px`,
         transition: 'transform 0.2s ease-in-out, box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out, margin 0s ease-in-out',
         scrollSnapAlign: 'start',
-        transform: isActiveCard ? `scale(1)` : 'scale(0.8)',
+        transform: isActiveCard && isWideScreen ? `scale(1)` : 'scale(0.8)',
         zIndex: isActiveCard ? 1 : 0,
         border: isWideScreen ? (isActiveCard ? '8px solid #b8becc' : '4px solid #5c5f66') : 'none',
         borderRadius: '20px',

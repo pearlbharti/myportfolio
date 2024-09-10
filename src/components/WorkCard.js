@@ -13,10 +13,10 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
     };
 
   return (
-    <div className={`work-card ${isActive ? 'active' : ''}`} style={cardStyle}>
+    <div className={`work-card ${isActive || !isWideScreen ? 'active' : ''}`} style={cardStyle}>
       <div className="card-content-wrapper">
         <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-        <div className={`card-content ${isActive ? 'active' : ''}`}>
+        <div className={`card-content ${isActive || !isWideScreen ? 'active' : ''}`}>
           <div className="card-text">
             <h3 className="card-title">{title}</h3>
             <p className="card-description">{description}</p>
@@ -36,6 +36,31 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
           border-radius: 20px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+          .pin-lines {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .pin-lines.left {
+    left: -40px; /* Position outside the card */
+  }
+
+  .pin-lines.right {
+    right: -40px; /* Position outside the card */
+  }
+
+  .pin-line {
+    width: 100%;
+    height: 2px; /* Adjust line thickness as needed */
+    background: #88878b;
+  }
 
         .card-content-wrapper {
           position: relative;
@@ -163,11 +188,6 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
             left: -20px;
             z-index: 2;
           }
-
-
-        .card-image {
-          filter: brightness(100%) blur(0px);
-        }
 
           .card-content {
             transform: translateY(0%);
