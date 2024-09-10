@@ -164,6 +164,11 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
             z-index: 2;
           }
 
+
+        .card-image {
+          filter: brightness(100%) blur(0px);
+        }
+
           .card-content {
             transform: translateY(0%);
           }
