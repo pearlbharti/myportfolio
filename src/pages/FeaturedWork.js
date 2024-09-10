@@ -11,10 +11,9 @@ function FeaturedWork() {
 
     const cardWidth = 390;
     const cardMargin = 0;
-    const cardWidthWithMargin = cardWidth + cardMargin;
 
     // Use different data for small screens
-    const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork, 15) : featuredWork;
+    const displayedFeaturedWork = isWideScreen ? repeatArray(featuredWork) : featuredWork;
 
     const handleResize = () => {
         setIsWideScreen(window.innerWidth > 800);
