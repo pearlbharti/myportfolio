@@ -40,9 +40,7 @@ function HomePage() {
                         <span style={{ fontWeight: 500 }}>Software Engineer</span> and a{" "}
                         <span style={{ fontWeight: 500 }}>Data Scientist</span>.<br />
                         Passionate about crafting optimum, innovative solutions.
-                        <br />
-                        Currently pursuing a Master's in Data Science at the University of
-                        Massachusetts, Dartmouth.
+
                     </div>
                     <div className="image-gallery">
                         <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer">
@@ -106,6 +104,8 @@ function HomePage() {
                     gap: 1.5rem;
                     justify-content: space-between;
                     max-width: 600px;
+                    opacity: 0.5;
+
                 }
                 .image-gallery a {
                     background-color: transparent; /* Makes the background of the icons transparent */
