@@ -242,4 +242,4 @@ function Navbar({ isVisible }) {
     );
 }
 
-export default Navbar;
+export default Navbar
