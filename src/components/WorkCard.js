@@ -101,7 +101,7 @@ const WorkCard = ({ title, description, image, link, isActive, isWideScreen }) =
           display: flex;
           flex-direction: column;
           height: 100%;
-          opacity: 0.3; /* Default opacity for inactive cards */
+          opacity: 1; /* Default opacity for inactive cards */
         }
 
         .card-content.active {
