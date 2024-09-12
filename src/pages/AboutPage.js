@@ -4,6 +4,7 @@ import { myImage } from '../assets/images';
 import Experience from '../components/Experience';
 import GlareButton1 from '../components/GlareButton1';
 
+
 function AboutPage() {
     const [curtainHeight, setCurtainHeight] = useState(100);
     const curtainRef = useRef(null);

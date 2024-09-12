@@ -3,7 +3,7 @@ import FeaturedWork from './FeaturedWork';
 import SelectedBlogs from './SelectedBlogs';
 import GlareButton1 from '../components/GlareButton1';
 import { githubIcon, linkedInIcon, emailIcon, jumpingArrow } from '../assets/images';
-
+import LandingScreen from './LandingScreen';
 function HomePage() {
     const [hasScrolled, setHasScrolled] = useState(false);
     const [showContent, setShowContent] = useState(false);
@@ -34,27 +34,7 @@ function HomePage() {
     return (
         <>
             <div className="homepage">
-                <div className="landing">
-                    <div className="intro-text">
-                        An experienced{" "}
-                        <span style={{ fontWeight: 500 }}>Software Engineer</span> and a{" "}
-                        <span style={{ fontWeight: 500 }}>Data Scientist</span>.<br />
-                        Passionate about crafting optimum, innovative solutions.
-
-                    </div>
-                    <div className="image-gallery">
-                        <a href="https://github.com/snehsuresh" target="_blank" rel="noopener noreferrer">
-                            <div className="github-icon icon" dangerouslySetInnerHTML={{ __html: githubIcon }}></div>
-                        </a>
-                        <a href="mailto:snehpillai02@gmail.com">
-                            <div className="email-icon icon" dangerouslySetInnerHTML={{ __html: emailIcon }}></div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/snehpillai/" target="_blank" rel="noopener noreferrer">
-                            <div className="linkedin-icon icon" dangerouslySetInnerHTML={{ __html: linkedInIcon }}></div>
-                        </a>
-                    </div>
-                    <GlareButton1 className="cta-button" link="/contact" onClick={() => console.log('Navigating to Contact page')}>Connect with Me!</GlareButton1>
-                </div>
+                <LandingScreen />
                 {!hasScrolled && (
                     <div className="scroll-section">
                         <div className="arrow-image" dangerouslySetInnerHTML={{ __html: jumpingArrow }}></div>
@@ -88,11 +68,12 @@ function HomePage() {
 
                 .intro-text {
                     color: #E7EEFF;
-                    text-align: center;
+                    text-align: left;
                     width: calc(100vw - 4rem);
                     max-width: 60vw;
                     font: 200 calc(1.5vw + 0.5rem) 'Josefin Sans', -apple-system, Roboto, Helvetica, sans-serif;
-                    margin: 12rem 0 0;
+                    padding: 10rem 1rem 0 2rem;
+                    margin: 1rem;
                     opacity: 0;
                     animation: fadeIn 2s ease-in forwards;
                 }

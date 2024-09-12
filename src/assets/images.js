@@ -89,3 +89,9 @@ export const linkedInIcon = `<svg width="30" height="30" viewBox="0 0 40 40" fil
                                 </filter>
                             </defs>
                         </svg>`
+
+
+export const eye = 'https://d14xe37va4uv2q.cloudfront.net/pearl_portfolio_assets/eye.png'
+export const pearllogo = 'https://d14xe37va4uv2q.cloudfront.net/pearl_portfolio_assets/LOGO.png'
+export const MEnTIGGS = 'https://d14xe37va4uv2q.cloudfront.net/pearl_portfolio_assets/MEnTIGGS.png'
+export const wavingHand = 'https://d14xe37va4uv2q.cloudfront.net/pearl_portfolio_assets/waving-hand.svg'

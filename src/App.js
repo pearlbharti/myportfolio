@@ -9,6 +9,7 @@ import Work from './pages/Work';
 import AboutPage from './pages/AboutPage';
 import Devlog from './pages/Devlogs';
 import ScrollToTop from './components/ScrollToTop';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <Router basename="/myportfolio">
+      <CustomCursor />
       {loading ? (
         <LoadingScreen />
       ) : (
