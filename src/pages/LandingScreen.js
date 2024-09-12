@@ -192,6 +192,13 @@ const LandingScreen = () => {
                 .anchor-eyes {
                     display: none;
                 }
+                    .hero-text {
+                  color: #888;
+                  font-size: 1.8em;
+                  font-weight: bold;
+                  margin: 0;
+                  transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+                }
             }
 
                 @keyframes wave-animation {
