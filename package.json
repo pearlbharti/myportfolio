@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "dotenv -e .env npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -b gh-pages"
   },
   "eslintConfig": {
     "extends": [
