@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/myportfolio">
+    <Router>
       <CustomCursor />
       {loading ? (
         <LoadingScreen />
